@@ -72,8 +72,9 @@ if [ "$GETOUT" = 3 ]; then
 
 TITLE2="$(gettext 'Select location to save file')"
 
-yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt 
+SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
 
+cp $LUPPATH/uip-$NOW.txt $SAVETARGET
 
 else
 
