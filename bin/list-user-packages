@@ -17,7 +17,7 @@
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
 LUPPATH="$HOME/user-installed-packages"
-#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+ICONPATH="user-installed-packages"
 
 #create folder
 
