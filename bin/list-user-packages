@@ -30,7 +30,7 @@ fi
 if [ ! -f $LUPPATH/install.sh ]; then
 
 	echo '#!/bin/sh
-sudo apt-get install --ignore-missing $(cat $HOME/user-installed-packages/install-list.txt)
+pkexec apt-get install --ignore-missing $(cat $HOME/user-installed-packages/install-list.txt)
 ' > $LUPPATH/install.sh
 
 	chmod +x $LUPPATH/install.sh
