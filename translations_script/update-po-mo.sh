@@ -11,9 +11,9 @@ make_po()
 for val in $lang; do
     if [ ! -e "po/$val/$RESOURCE.po" ]; then
         mkdir -p po/$val
-        msginit --input=pot/"$RESOURCE".pot --no-translator --locale=$val --output=po/$val/"$RESOURCE".po
+        msginit --input=pot/"$RESOURCE".pot --no-translator --locale=$val --output=po/"${RESOURCE}_${val}.po"
     else
-        msgmerge --update po/$val/$RESOURCE.po po/$RESOURCE.pot
+        msgmerge --update po/"${RESOURCE}_${val}.po" pot/$RESOURCE.pot
     fi
 done
 }
@@ -32,9 +32,9 @@ make_mo()
 {
     for val in $lang; do
         if [ ! -e "mo/$val/$RESOURCE.mo" ]; then
-        	if [ -e po/$val/"${RESOURCE}.po" ]; then
+        	if [ -e po/"${RESOURCE}_${val}.po" ]; then
             	mkdir -p mo/$val
-            	msgfmt --output-file=mo/$val/"$RESOURCE".mo po/$val/"${RESOURCE}.po"
+            	msgfmt --output-file=mo/$val/"$RESOURCE".mo po/"${RESOURCE}_${val}.po"
             fi
         fi
     done
