@@ -1,0 +1,15 @@
+Source: user-installed-packages
+Section: system
+Priority: optional
+Maintainer: Dolphin Oracle <dolphinoracle@gmail.com>
+Build-Depends: debhelper (>= 9.20120115)
+Standards-Version: 3.9.6
+Homepage: http://mxlinux.org
+
+Package: user-installed-packages
+Architecture: all
+Depends: yad, apt
+Description: list user installed packages
+ Generate list of user installed pakcages.  
+ Install packages from previously generated list.
+  

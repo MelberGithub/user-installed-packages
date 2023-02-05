@@ -17,7 +17,7 @@
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
 LUPPATH="$HOME/user-installed-packages"
-#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+ICONPATH="user-installed-packages"
 
 #create folder
 
@@ -30,7 +30,7 @@ fi
 if [ ! -f $LUPPATH/install.sh ]; then
 
 	echo '#!/bin/sh
-sudo apt-get install --ignore-missing $(cat $HOME/user-installed-packages/install-list.txt)
+pkexec apt-get install --ignore-missing $(cat $HOME/user-installed-packages/install-list.txt)
 ' > $LUPPATH/install.sh
 
 	chmod +x $LUPPATH/install.sh
