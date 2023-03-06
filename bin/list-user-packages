@@ -65,7 +65,7 @@ UIPPATH="$LUPPATH/uip-$NOW.txt"
 
 yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="$TEXTLIST1\n <i>$UIPPATH</i>\n\n$TEXTLIST2" --width=500 --height=800 --borders=20 --center --fixed --list --no-headers --separator="" --column=Style --text-align=left --button="gtk-save":3 --button="gtk-close" < $UIPPATH
 
-GETOUT=$(echo "$?")
+	GETOUT="$?"
 
 
 if [ "$GETOUT" = 3 ]; then
@@ -128,7 +128,7 @@ fi
 
 echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g' > $LUPPATH/install-list.txt
 
-cd $LUPPATH
+	cd "$LUPPATH" || exit
 
 xfce4-terminal -x bash -c "./install.sh; bash"
 
