@@ -8,7 +8,7 @@
 
 #source gettext.sh
 
-#export TEXTDOMAINDIR=/usr/share/locale 
+#export TEXTDOMAINDIR=/usr/share/locale
 #export TEXTDOMAIN="mx-xxx"
 
 
@@ -43,44 +43,44 @@ fi
 
 uip_list() {
 
-TITLELIST="$(gettext 'User Installed Packages')"
-CLASS="uip"
-LUPPATH="$HOME/user-installed-packages"
-#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+	TITLELIST="$(gettext 'User Installed Packages')"
+	CLASS="uip"
+	LUPPATH="$HOME/user-installed-packages"
+	#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
 
 
-#create list
+	#create list
 
-NOW=$(date +%y"%m%d")
+	NOW=$(date +%y"%m%d")
 
-comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u) > $LUPPATH/uip-$NOW.txt
-
-
-#show list
-
-TEXTLIST1="$(gettext 'This list has been saved under')"
-TEXTLIST2="$(gettext 'You have installed the following packages:')"
-UIPPATH="$LUPPATH/uip-$NOW.txt"
+	comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u) > $LUPPATH/uip-$NOW.txt
 
 
-yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="$TEXTLIST1\n <i>$UIPPATH</i>\n\n$TEXTLIST2" --width=500 --height=800 --borders=20 --center --fixed --list --no-headers --separator="" --column=Style --text-align=left --button="gtk-save":3 --button="gtk-close" < $UIPPATH
+	#show list
+
+	TEXTLIST1="$(gettext 'This list has been saved under')"
+	TEXTLIST2="$(gettext 'You have installed the following packages:')"
+	UIPPATH="$LUPPATH/uip-$NOW.txt"
+
+
+	yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="$TEXTLIST1\n <i>$UIPPATH</i>\n\n$TEXTLIST2" --width=500 --height=800 --borders=20 --center --fixed --list --no-headers --separator="" --column=Style --text-align=left --button="gtk-save":3 --button="gtk-close" < $UIPPATH
 
 	GETOUT="$?"
 
 
-if [ "$GETOUT" = 3 ]; then
+	if [ "$GETOUT" = 3 ]; then
 
-TITLE2="$(gettext 'Select location to save file')"
+	TITLE2="$(gettext 'Select location to save file')"
 
-SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
+	SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
 
-cp $LUPPATH/uip-$NOW.txt $SAVETARGET
+	cp $LUPPATH/uip-$NOW.txt $SAVETARGET
 
-else
+	else
 
-	  exit
+		exit
 
-fi
+	fi
 
 }
 
@@ -91,46 +91,46 @@ fi
 
 uip_load() {
 
-TITLELOAD="$(gettext 'Select UIP list to load')"
-CLASS="uip"
-LUPPATH="$HOME/user-installed-packages"
-#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+	TITLELOAD="$(gettext 'Select UIP list to load')"
+	CLASS="uip"
+	LUPPATH="$HOME/user-installed-packages"
+	#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
 
 
-UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
- --width=800 --height=500 --borders=20 --center \
---file --filename=$HOME)
+	UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
+	--width=800 --height=500 --borders=20 --center \
+	--file --filename=$HOME)
 
 
-mapfile -t CHECKLIST < $UIPLOAD
+	mapfile -t CHECKLIST < $UIPLOAD
 
-CHECKLIST=( "${CHECKLIST[@]/#/__}" )
+	CHECKLIST=( "${CHECKLIST[@]/#/__}" )
 
-CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
-
-
-
-TITLEINSTALL="$(gettext 'Install packages')"
-TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
-
-UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
---text="$TEXTINSTALL1" --width=500 --height=800 --borders=20 --center --fixed --text-align=left --button="gtk-ok" --button="gtk-close" \
---checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
-
-GETOUT=$(echo "$?")
-
-if [ "$GETOUT" = 1 ]; then
-
-	  exit
-
-fi
+	CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
 
 
-echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g' > $LUPPATH/install-list.txt
+
+	TITLEINSTALL="$(gettext 'Install packages')"
+	TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
+
+	UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
+	--text="$TEXTINSTALL1" --width=500 --height=800 --borders=20 --center --fixed --text-align=left --button="gtk-ok" --button="gtk-close" \
+	--checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
+
+	GETOUT=$(echo "$?")
+
+	if [ "$GETOUT" = 1 ]; then
+
+		exit
+
+	fi
+
+
+	echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g' > $LUPPATH/install-list.txt
 
 	cd "$LUPPATH" || exit
 
-xfce4-terminal -x bash -c "./install.sh; bash"
+	xfce4-terminal -x bash -c "./install.sh; bash"
 
 }
 
@@ -157,5 +157,3 @@ BUTTON2="$(gettext 'Load a previously saved UIP list and install these packages'
 yad --title="$TITLE" --class="$CLASS" --window-icon="$ICONPATH" --borders=20 --center --width=600 --height=300 --fixed --form --text-align=center --text="$TEXTMAIN1" --button="gtk-close" \
 --field="$BUTTON1:FBTN" 'bash -c uip_list' \
 --field="$BUTTON2:FBTN" 'bash -c uip_load'
-
-
