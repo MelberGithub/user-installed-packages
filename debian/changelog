@@ -1,3 +1,9 @@
+user-installed-packages (23.03.02) mx; urgency=medium
+
+  * fix desktop file
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 07 Mar 2023 18:27:56 -0500
+
 user-installed-packages (23.03.01) mx; urgency=medium
 
   * update to .3
