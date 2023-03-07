@@ -117,7 +117,7 @@ UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
 #Install packages in separate terminal
 #Anyone know how to hold the x-terminal-emulator open on completion???
 
-x-terminal-emulator -e "sudo apt-get install --ignore-missing $UIPINSTALL"
+x-terminal-emulator -e "sudo apt-get install --ignore-missing $UIPINSTALL; echo -n $(eval_gettext 'Press <Enter> to exit'); read x"
 
 #Install packages in same terminal
 #sudo apt-get install --ignore-missing $UIPINSTALL
