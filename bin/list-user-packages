@@ -1,41 +1,21 @@
 #!/bin/bash
 #Tool to list user installed packages
-#V.0.1 by Melber and MX Devs, 21 January 2023
+#V.0.3 by MX Devs, 06 March 2023
 #License: GPL-3.0+
 
 
 #set up translation
-
-#source gettext.sh
-
-#export TEXTDOMAINDIR=/usr/share/locale
-#export TEXTDOMAIN="mx-xxx"
+source gettext.sh
+export TEXTDOMAINDIR=/usr/share/locale 
+export TEXTDOMAIN="user-installed-packages"
 
 
 #define some variables
 
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
-LUPPATH="$HOME/user-installed-packages"
-ICONPATH="user-installed-packages"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
-#create folder
-
-if [ ! -d $LUPPATH ]; then
-
-	mkdir "$LUPPATH"
-
-fi
-
-if [ ! -f $LUPPATH/install.sh ]; then
-
-	echo '#!/bin/sh
-pkexec apt-get install --ignore-missing $(cat $HOME/user-installed-packages/install-list.txt)
-' > $LUPPATH/install.sh
-
-	chmod +x $LUPPATH/install.sh
-
-fi
 
 ####################
 
@@ -43,29 +23,26 @@ fi
 
 uip_list() {
 
-	TITLELIST="$(gettext 'User Installed Packages')"
-	CLASS="uip"
-	LUPPATH="$HOME/user-installed-packages"
-	#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+  TITLELIST="$(gettext 'User Installed Packages')"
+  CLASS="uip"
+  ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 	#create list
 
 	NOW=$(date +%y"%m%d")
 
-	comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u) > $LUPPATH/uip-$NOW.txt
+  UIPLIST=$(comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
 
 
 	#show list
 
-	TEXTLIST1="$(gettext 'This list has been saved under')"
-	TEXTLIST2="$(gettext 'You have installed the following packages:')"
-	UIPPATH="$LUPPATH/uip-$NOW.txt"
+  TEXTLIST1="$(gettext 'You have installed the following packages:')"
+  TEXTBTNSAVE="$(gettext 'Save List')"
 
+  yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
 
-	yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="$TEXTLIST1\n <i>$UIPPATH</i>\n\n$TEXTLIST2" --width=500 --height=800 --borders=20 --center --fixed --list --no-headers --separator="" --column=Style --text-align=left --button="gtk-save":3 --button="gtk-close" < $UIPPATH
-
-	GETOUT="$?"
+	  GETOUT="$?"
 
 
 	if [ "$GETOUT" = 3 ]; then
@@ -74,11 +51,14 @@ uip_list() {
 
 	SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
 
-	cp $LUPPATH/uip-$NOW.txt $SAVETARGET
+  echo $SAVETARGET
 
-	else
+  echo "$UIPLIST" > $SAVETARGET
 
-		exit
+
+  else
+
+    exit
 
 	fi
 
@@ -91,33 +71,38 @@ uip_list() {
 
 uip_load() {
 
-	TITLELOAD="$(gettext 'Select UIP list to load')"
-	CLASS="uip"
-	LUPPATH="$HOME/user-installed-packages"
-	#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+  TITLELOAD="$(gettext 'Select UIP list to load')"
+  CLASS="uip"
+  ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 	UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
 	--width=800 --height=500 --borders=20 --center \
 	--file --filename=$HOME)
 
+    GETOUT=$(echo "$?")
 
-	mapfile -t CHECKLIST < $UIPLOAD
+  if [ "$GETOUT" = 1 ]; then
 
-	CHECKLIST=( "${CHECKLIST[@]/#/__}" )
+    exit
 
-	CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
+  fi
 
 
+  mapfile -t CHECKLIST < $UIPLOAD
+
+  CHECKLIST=( "${CHECKLIST[@]/#/__}" )
+  CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
 
 	TITLEINSTALL="$(gettext 'Install packages')"
 	TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
 
-	UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
-	--text="$TEXTINSTALL1" --width=500 --height=800 --borders=20 --center --fixed --text-align=left --button="gtk-ok" --button="gtk-close" \
-	--checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
 
-	GETOUT=$(echo "$?")
+  UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
+  --text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" --button="gtk-close" \
+  --checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
+
+  GETOUT=$(echo "$?")
 
 	if [ "$GETOUT" = 1 ]; then
 
@@ -126,11 +111,14 @@ uip_load() {
 	fi
 
 
-	echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g' > $LUPPATH/install-list.txt
+  UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
+  HOLDMESSAGE="$(gettext 'Press Enter to exit')"
+  #Install packages in separate terminal
+  #Anyone know how to hold the x-terminal-emulator open on completion???
+  x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL); echo -n $(echo $HOLDMESSAGE); echo; read x"
 
-	cd "$LUPPATH" || exit
-
-	xfce4-terminal -x bash -c "./install.sh; bash"
+  #Install packages in same terminal
+  #sudo apt-get install --ignore-missing $UIPINSTALL
 
 }
 
@@ -146,8 +134,7 @@ export -f uip_list uip_load
 #MAIN WINDOW
 TITLE="$(gettext 'MX - User Installed Packages')"
 CLASS="uip"
-LUPPATH="$HOME/user-installed-packages"
-#ICONPATH="/usr/share/pixmaps/mx-uip-icon.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 TEXTMAIN1="$(gettext '<b>MX-UIP is a tool to view user installed packages.\n\n<i>What would you like to do?</i></b>\n')\n"
 BUTTON1="$(gettext 'List the current user installed packages')"
