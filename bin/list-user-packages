@@ -14,7 +14,7 @@ export TEXTDOMAIN="mx-xxx"
 
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 
