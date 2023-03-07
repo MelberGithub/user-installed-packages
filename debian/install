@@ -1,5 +1,6 @@
 bin/* 			usr/bin 
 icon/64/* usr/share/icons/hicolor/64x64/apps
+icon/64/* usr/share/pixmaps
 icon/32/* usr/share/icons/hicolor/32x32/apps
 user-installed-packages.desktop usr/share/applications
 #translations_script/mo/am/user-installed-apps.mo     /usr/share/locale/am/LC_MESSAGES

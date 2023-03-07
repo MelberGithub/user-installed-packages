@@ -7,15 +7,14 @@
 #set up translation
 source gettext.sh
 export TEXTDOMAINDIR=/usr/share/locale 
-export TEXTDOMAIN="mx-xxx"
+export TEXTDOMAIN="user-installed-packages"
 
 
 #define some variables
 
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
-
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 ####################
@@ -26,7 +25,7 @@ uip_list() {
 
 TITLELIST="$(gettext 'User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 #create list
@@ -74,7 +73,7 @@ uip_load() {
 
 TITLELOAD="$(gettext 'Select UIP list to load')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
@@ -113,11 +112,10 @@ fi
 
 
 UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-
+HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 #Install packages in separate terminal
 #Anyone know how to hold the x-terminal-emulator open on completion???
-
-x-terminal-emulator -e "sudo apt-get install --ignore-missing $UIPINSTALL"
+x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL); echo -n $(echo $HOLDMESSAGE); echo; read x"
 
 #Install packages in same terminal
 #sudo apt-get install --ignore-missing $UIPINSTALL
@@ -136,7 +134,7 @@ export -f uip_list uip_load
 #MAIN WINDOW
 TITLE="$(gettext 'MX - User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 TEXTMAIN1="$(gettext '<b>MX-UIP is a tool to view user installed packages.\n\n<i>What would you like to do?</i></b>\n')\n"
 BUTTON1="$(gettext 'List the current user installed packages')"
