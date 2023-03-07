@@ -26,7 +26,7 @@ uip_list() {
 
 TITLELIST="$(gettext 'User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 #create list
@@ -74,7 +74,7 @@ uip_load() {
 
 TITLELOAD="$(gettext 'Select UIP list to load')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
@@ -136,7 +136,7 @@ export -f uip_list uip_load
 #MAIN WINDOW
 TITLE="$(gettext 'MX - User Installed Packages')"
 CLASS="uip"
-ICONPATH="$HOME/Bilder/user-installed-packages.png"
+ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 TEXTMAIN1="$(gettext '<b>MX-UIP is a tool to view user installed packages.\n\n<i>What would you like to do?</i></b>\n')\n"
 BUTTON1="$(gettext 'List the current user installed packages')"
