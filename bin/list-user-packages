@@ -104,6 +104,8 @@ UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPA
 
 GETOUT=$(echo "$?")
 
+echo $UIPINSTALL
+
 if [ "$GETOUT" = 1 ]; then
 
 	  exit
@@ -112,7 +114,7 @@ fi
 
 
 UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-HOLDMESSAGE="$(gettext 'Press any key to exit')"
+HOLDMESSAGE="$(gettext 'Press <Enter> to exit')"
 #Install packages in separate terminal
 #Anyone know how to hold the x-terminal-emulator open on completion???
 x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $UIPINSTALL; echo -n $HOLDMESSAGE; read x"
