@@ -7,7 +7,7 @@
 #set up translation
 source gettext.sh
 export TEXTDOMAINDIR=/usr/share/locale 
-export TEXTDOMAIN="mx-xxx"
+export TEXTDOMAIN="user-installed-packages"
 
 
 #define some variables
@@ -15,7 +15,6 @@ export TEXTDOMAIN="mx-xxx"
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
 ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
-
 
 
 ####################
@@ -113,11 +112,10 @@ fi
 
 
 UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-
+HOLDMESSAGE="$(gettext 'Press any key to exit')"
 #Install packages in separate terminal
 #Anyone know how to hold the x-terminal-emulator open on completion???
-
-x-terminal-emulator -e "sudo apt-get install --ignore-missing $UIPINSTALL; echo -n $(eval_gettext 'Press <Enter> to exit'); read x"
+x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $UIPINSTALL; echo -n $HOLDMESSAGE; read x"
 
 #Install packages in same terminal
 #sudo apt-get install --ignore-missing $UIPINSTALL
