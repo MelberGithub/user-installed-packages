@@ -58,7 +58,7 @@ uip_list() {
 
   	else
 
-    	exit
+		exit
 
 	fi
 
