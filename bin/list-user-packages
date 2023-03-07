@@ -112,7 +112,6 @@ fi
 
 
 UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-echo $UIPINSTALL
 HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 #Install packages in separate terminal
 #Anyone know how to hold the x-terminal-emulator open on completion???
