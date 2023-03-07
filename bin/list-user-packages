@@ -23,44 +23,44 @@ ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 uip_list() {
 
-TITLELIST="$(gettext 'User Installed Packages')"
-CLASS="uip"
-ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
+  TITLELIST="$(gettext 'User Installed Packages')"
+  CLASS="uip"
+  ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
-#create list
+	#create list
 
-NOW=$(date +%y"%m%d")
+	NOW=$(date +%y"%m%d")
 
-UIPLIST=$(comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
-
-
-#show list
-
-TEXTLIST1="$(gettext 'You have installed the following packages:')"
-TEXTBTNSAVE="$(gettext 'Save List')"
-
-yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
-
-GETOUT=$(echo "$?")
+  UIPLIST=$(comm -23 <(apt-mark showmanual | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
 
 
-if [ "$GETOUT" = 3 ]; then
+	#show list
 
-TITLE2="$(gettext 'Select location to save file')"
+  TEXTLIST1="$(gettext 'You have installed the following packages:')"
+  TEXTBTNSAVE="$(gettext 'Save List')"
 
-SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
+  yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
 
-echo $SAVETARGET
-
-echo "$UIPLIST" > $SAVETARGET
+	  GETOUT="$?"
 
 
-else
+	if [ "$GETOUT" = 3 ]; then
 
-	  exit
+	TITLE2="$(gettext 'Select location to save file')"
 
-fi
+	SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
+
+  echo $SAVETARGET
+
+  echo "$UIPLIST" > $SAVETARGET
+
+
+  else
+
+    exit
+
+	fi
 
 }
 
@@ -71,54 +71,54 @@ fi
 
 uip_load() {
 
-TITLELOAD="$(gettext 'Select UIP list to load')"
-CLASS="uip"
-ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
+  TITLELOAD="$(gettext 'Select UIP list to load')"
+  CLASS="uip"
+  ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
-UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
- --width=800 --height=500 --borders=20 --center \
---file --filename=$HOME)
+	UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
+	--width=800 --height=500 --borders=20 --center \
+	--file --filename=$HOME)
 
-GETOUT=$(echo "$?")
+    GETOUT=$(echo "$?")
 
-if [ "$GETOUT" = 1 ]; then
+  if [ "$GETOUT" = 1 ]; then
 
-	  exit
+    exit
 
-fi
-
-
-mapfile -t CHECKLIST < $UIPLOAD
-
-CHECKLIST=( "${CHECKLIST[@]/#/__}" )
-CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
-
-TITLEINSTALL="$(gettext 'Install packages')"
-TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
+  fi
 
 
-UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
---text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" --button="gtk-close" \
---checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
+  mapfile -t CHECKLIST < $UIPLOAD
 
-GETOUT=$(echo "$?")
+  CHECKLIST=( "${CHECKLIST[@]/#/__}" )
+  CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
 
-if [ "$GETOUT" = 1 ]; then
-
-	  exit
-
-fi
+	TITLEINSTALL="$(gettext 'Install packages')"
+	TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
 
 
-UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-HOLDMESSAGE="$(gettext 'Press Enter to exit')"
-#Install packages in separate terminal
-#Anyone know how to hold the x-terminal-emulator open on completion???
-x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL); echo -n $(echo $HOLDMESSAGE); echo; read x"
+  UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
+  --text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" --button="gtk-close" \
+  --checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
 
-#Install packages in same terminal
-#sudo apt-get install --ignore-missing $UIPINSTALL
+  GETOUT=$(echo "$?")
+
+	if [ "$GETOUT" = 1 ]; then
+
+		exit
+
+	fi
+
+
+  UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
+  HOLDMESSAGE="$(gettext 'Press Enter to exit')"
+  #Install packages in separate terminal
+  #Anyone know how to hold the x-terminal-emulator open on completion???
+  x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL); echo -n $(echo $HOLDMESSAGE); echo; read x"
+
+  #Install packages in same terminal
+  #sudo apt-get install --ignore-missing $UIPINSTALL
 
 }
 
