@@ -1,6 +1,6 @@
 #!/bin/bash
 #Tool to list user installed packages
-#V.0.3 by MX Devs, 06 March 2023
+#V.0.4 by MX Devs, 08 March 2023
 #License: GPL-3.0+
 
 
@@ -112,14 +112,13 @@ uip_load() {
 
 
  	UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
+	UIPINSTALL_AVAILABLE=$(apt-cache -q madison $(echo $UIPINSTALL) | awk '{print $1}')
  	HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 	
 	#Install packages in separate terminal
- 	#Anyone know how to hold the x-terminal-emulator open on completion???
- 	x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL); echo -n $(echo $HOLDMESSAGE); echo; read x"
+ 	
+ 	x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL_AVAILABLE); echo -n $(echo $HOLDMESSAGE); echo; read x"
 
-  #Install packages in same terminal
-  #sudo apt-get install --ignore-missing $UIPINSTALL
 
 }
 
@@ -137,11 +136,15 @@ TITLE="$(gettext 'MX - User Installed Packages')"
 CLASS="uip"
 ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
-TEXTMAIN1="$(gettext '<b>MX-UIP is a tool to view user installed packages.\n\n<i>What would you like to do?</i></b>\n')\n"
-BUTTON1="$(gettext 'List the current user installed packages')"
-BUTTON2="$(gettext 'Load a previously saved UIP list and install these packages')"
+TEXTMAIN1="$(gettext 'This app is designed to make it easy to reinstall packages that the user has added to the default installation and retained.')"
+TEXTMAIN2="$(gettext 'It combines two steps:')"
+TEXTMAIN3="$(gettext '1) quickly and easily create a list of those packages')"
+TEXTMAIN4="$(gettext '2) use that list in another location to review and reinstall those packages, if still available')"
+
+BUTTON1="$(gettext 'Create a list of user installed packages')"
+BUTTON2="$(gettext 'Open a previously saved list to install selected packages')"
 
 
-yad --title="$TITLE" --class="$CLASS" --window-icon="$ICONPATH" --borders=20 --center --width=600 --height=300 --fixed --form --text-align=center --text="$TEXTMAIN1" --button="gtk-close" \
+yad --title="$TITLE" --class="$CLASS" --window-icon="$ICONPATH" --borders=20 --center --width=600 --height=350 --form --text-align=left --text="$TEXTMAIN1\n\n$TEXTMAIN2\n\n$TEXTMAIN3\n$TEXTMAIN4\n" --button="gtk-close" \
 --field="$BUTTON1:FBTN" 'bash -c uip_list' \
 --field="$BUTTON2:FBTN" 'bash -c uip_load'
