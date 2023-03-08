@@ -2,6 +2,6 @@
 Name=User Installed Packages
 Comment=List user installed packages. Install packages from existing list
 Icon=user-installed-packages
-Type=Application 
+Type=Application
 Exec=list-user-packages
 Categories=System;MX-Setup;
