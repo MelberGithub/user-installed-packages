@@ -31,7 +31,8 @@ uip_list() {
         ))
 
     #show list
-    TEXTLIST1="$(gettext 'You have installed the following packages:')"
+    TOTAL=$(echo $UIPLIST | wc -w)
+    TEXTLIST1="$(printf "$(gettext 'You have installed %d packages:')" "$TOTAL")"
     TEXTBTNSAVE="$(gettext 'Save List')"
 
     yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 \
