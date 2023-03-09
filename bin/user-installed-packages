@@ -25,9 +25,10 @@ uip_list() {
     ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
     #create list
-    UIPLIST=$(comm -23 <(apt-mark showmanual | grep -v 'linux-image' | grep -v 'linux-header' | sed 's/[: \t].*$//' | sort -u) \
-        <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt; \
-        dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
+    UIPLIST=$(comm -23 <(apt-mark showmanual | grep -v 'linux-image' | grep -v 'linux-header' | cut -d: -f1 | sort -u) \
+        <(sort -u <(cut -d: -f1 /usr/share/antiX/installed-packages.txt; \
+            dpkg-query -W -f '${Depends}\n' | tr -d '()' | tr ',' '\n' | grep -vF '|')
+        ))
 
     #show list
     TEXTLIST1="$(gettext 'You have installed the following packages:')"
@@ -66,7 +67,7 @@ uip_load() {
     mapfile -t CHECKLIST < "$UIPLOAD"
 
     CHECKLIST=( "${CHECKLIST[@]/#/__}" )
-    CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
+    CHECKLIST="${CHECKLIST[@]//__/" TRUE "}"
 
     TITLEINSTALL="$(gettext 'Install packages')"
     TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
@@ -77,7 +78,7 @@ uip_load() {
 
     [ $? = 1 ] && exit
 
-    UIPINSTALL_LIST=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
+    UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
     UIPINSTALL_AVAILABLE=$(apt-cache -q madison ${UIPINSTALL_LIST} | awk '{print $1}')
     local UIP_NOT_AVAILABLE
     for i in $UIPINSTALL_LIST; do
