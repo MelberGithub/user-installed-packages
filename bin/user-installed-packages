@@ -118,8 +118,8 @@ uip_load() {
 			UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
 		fi
 	done
-	echo "these packages are not available" |tee $HOME/UIP_NOT_AVAILABLE.txt 
-	echo "$UIP_NOT_AVAILABLE" |tee $HOME/UIP_NOT_AVAILABLE.txt
+	echo "$(gettext 'these packages are not available')" |tee $HOME/UIP_NOT_AVAILABLE.txt 
+	echo "$UIP_NOT_AVAILABLE" |tee -a $HOME/UIP_NOT_AVAILABLE.txt
 		
  	HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 	
