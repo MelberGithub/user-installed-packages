@@ -79,10 +79,10 @@ uip_load() {
     [ $? = 1 ] && exit
 
     UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
-    UIPINSTALL_AVAILABLE=$(apt-cache -q madison ${UIPINSTALL_LIST} | awk '{print $1}')
+    UIPINSTALL_AVAILABLE=$(apt-cache -q madison $UIPINSTALL_LIST | awk '{print $1}')
     local UIP_NOT_AVAILABLE
     for i in $UIPINSTALL_LIST; do
-        if ! echo "${UIPINSTALL_AVAILABLE}" | grep -q -w "$i"; then
+        if ! echo "$UIPINSTALL_AVAILABLE" | grep -q -w "$i"; then
             UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
         fi
     done
