@@ -26,7 +26,7 @@ uip_list() {
 
     #create list
     UIPLIST=$(comm -23 <(apt-mark showmanual | grep -v 'linux-image' | grep -v 'linux-header' | cut -d: -f1 | sort -u) \
-        <(sort -u <(cut -d: -f1 /usr/share/antiX/installed-packages.txt; \
+        <(sort -u <([ -f /usr/share/antiX/installed-packages.txt ] && cut -d: -f1 /usr/share/antiX/installed-packages.txt; \
             dpkg-query -W -f '${Depends}\n' | tr -d '()' | tr ',' '\n' | grep -vF '|')
         ))
 
