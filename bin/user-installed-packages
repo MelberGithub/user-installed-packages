@@ -6,135 +6,97 @@
 
 #set up translation
 source gettext.sh
-export TEXTDOMAINDIR=/usr/share/locale 
+export TEXTDOMAINDIR=/usr/share/locale
 export TEXTDOMAIN="user-installed-packages"
 
 
 #define some variables
-
 TITLE="$(gettext 'User Installed Packages')"
 CLASS="uip"
 ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
 
 ####################
-
 #function uip_list
 
 uip_list() {
+    TITLELIST="$(gettext 'User Installed Packages')"
+    CLASS="uip"
+    ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
-	TITLELIST="$(gettext 'User Installed Packages')"
- 	CLASS="uip"
- 	ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
+    #create list
+    UIPLIST=$(comm -23 <(apt-mark showmanual |grep -v 'linux-image' |grep -v 'linux-header' | sed 's/[: \t].*$//' | sort -u) \
+        <( { [ -f /usr/share/antiX/installed-packages.txt ] && sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; \
+        dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
 
+    #show list
+    TOTAL=$(echo $UIPLIST | wc -w)
+    TEXTLIST1="$(printf "$(gettext 'You have installed %d packages:')" "$TOTAL")"
+    TEXTBTNSAVE="$(gettext 'Save List')"
 
-	#create list
+    yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 \
+        --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style \
+        --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
 
-	NOW=$(date +%y"%m%d")
-
-  	UIPLIST=$(comm -23 <(apt-mark showmanual |grep -v 'linux-image' |grep -v 'linux-header' | sed 's/[: \t].*$//' | sort -u) <( { sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
-
-
-	#show list
-
-  	TEXTLIST1="$(gettext 'You have installed the following packages:')"
-  	TEXTBTNSAVE="$(gettext 'Save List')"
-
-  	yad --title="$TITLELIST" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTLIST1</b>" --width=500 --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
-
-		GETOUT="$?"
-
-
-	if [ "$GETOUT" = 3 ]; then
-
-		TITLE2="$(gettext 'Select location to save file')"
-
-		SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 --borders=20 --center --file --save --filename=$HOME/uip-$NOW.txt)
-
-  		echo $SAVETARGET
-
-  		echo "$UIPLIST" > $SAVETARGET
-
-
-  	else
-
-		exit
-
-	fi
-
+    if [ $? = 3 ]; then
+        TITLE2="$(gettext 'Select location to save file')"
+        NOW=$(date +%y"%m%d")
+        SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
+            --borders=20 --center --file --save --filename="$HOME"/uip-"$NOW".txt)
+        echo "$SAVETARGET"
+        echo "$UIPLIST" > "$SAVETARGET"
+    else
+        exit
+    fi
 }
 
-
 ####################
-
 #function uip_load
 
 uip_load() {
+    TITLELOAD="$(gettext 'Select UIP list to load')"
+    CLASS="uip"
+    ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
-	TITLELOAD="$(gettext 'Select UIP list to load')"
- 	CLASS="uip"
- 	ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
+    UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
+        --width=800 --height=500 --borders=20 --center \
+        --file --filename="$HOME" --file-filter="Text files (*.txt)|*.txt" --file-filter="All files (*.*)|*.*")
 
+    [ $? == "1" ] && exit
 
-	UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
-	--width=800 --height=500 --borders=20 --center \
-	--file --filename=$HOME)
+    mapfile -t CHECKLIST < "$UIPLOAD"
 
-    	GETOUT=$(echo "$?")
+    CHECKLIST=( "${CHECKLIST[@]/#/__}" )
+    CHECKLIST="${CHECKLIST[@]//__/" TRUE "}"
 
- 	if [ "$GETOUT" = 1 ]; then
+    TITLEINSTALL="$(gettext 'Install packages')"
+    TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
 
-		exit
+    UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
+        --text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" \
+        --button="gtk-close" --checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
 
-	fi
+    [ $? == "1" ] && exit
 
+    UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
+    UIPINSTALL_AVAILABLE=$(apt-cache -q madison $UIPINSTALL_LIST | awk '{print $1}')
+    local UIP_NOT_AVAILABLE
+    for i in $UIPINSTALL_LIST; do
+        if ! echo "$UIPINSTALL_AVAILABLE" | grep -q -w "$i"; then
+            UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
+        fi
+    done
+    gettext 'these packages are not available' | tee "$HOME"/UIP_NOT_AVAILABLE.txt
+    echo "$UIP_NOT_AVAILABLE" | tee -a "$HOME"/UIP_NOT_AVAILABLE.txt
 
-  	mapfile -t CHECKLIST < $UIPLOAD
+    HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 
-  	CHECKLIST=( "${CHECKLIST[@]/#/__}" )
-  	CHECKLIST=$(echo "${CHECKLIST[@]}" | sed -e 's/__/ TRUE /g')
-
-	TITLEINSTALL="$(gettext 'Install packages')"
-	TEXTINSTALL1="$(gettext 'Select which packages you want to install:')"
-
-
-  	UIPINSTALL=$(yad --title="$TITLEINSTALL" --class="$CLASS" --window-icon="$ICONPATH" \
-  	--text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" --button="gtk-close" \
-  	--checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
-
-  		GETOUT=$(echo "$?")
-
-	if [ "$GETOUT" = 1 ]; then
-
-		exit
-
-	fi
-
- 	UIPINSTALL_LIST=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-	UIPINSTALL_AVAILABLE=$(apt-cache -q madison $(echo ${UIPINSTALL_LIST}) | awk '{print $1}')
-	local UIP_NOT_AVAILABLE
-	for i in $UIPINSTALL_LIST; do
-		if ! echo ${UIPINSTALL_AVAILABLE} | grep -q -w "$i"; then
-			UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
-		fi
-	done
-	echo "$(gettext 'these packages are not available')" |tee $HOME/UIP_NOT_AVAILABLE.txt 
-	echo "$UIP_NOT_AVAILABLE" |tee -a $HOME/UIP_NOT_AVAILABLE.txt
-		
- 	HOLDMESSAGE="$(gettext 'Press Enter to exit')"
-	
-	#Install packages in separate terminal
- 	
- 	x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing $(echo $UIPINSTALL_AVAILABLE); echo -n $(echo $HOLDMESSAGE); echo; read x"
-
-
+    #Install packages in separate terminal
+    x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing  $(echo $UIPINSTALL_AVAILABLE); echo -n \"$HOLDMESSAGE\"; echo; read x"
 }
 
-
 #export functions
-
 export -f uip_list uip_load
-
 
 ###################################################################
 ###################################################################
@@ -152,7 +114,7 @@ TEXTMAIN4="$(gettext '2) use that list in another location to review and reinsta
 BUTTON1="$(gettext 'Create a list of user installed packages')"
 BUTTON2="$(gettext 'Open a previously saved list to install selected packages')"
 
-
-yad --title="$TITLE" --class="$CLASS" --window-icon="$ICONPATH" --borders=20 --center --width=600 --height=350 --form --text-align=left --text="$TEXTMAIN1\n\n$TEXTMAIN2\n\n$TEXTMAIN3\n$TEXTMAIN4\n" --button="gtk-close" \
---field="$BUTTON1:FBTN" 'bash -c uip_list' \
---field="$BUTTON2:FBTN" 'bash -c uip_load'
+yad --title="$TITLE" --class="$CLASS" --window-icon="$ICONPATH" --borders=20 --center --width=600 --height=350 --form \
+    --text-align=left --text="$TEXTMAIN1\n\n$TEXTMAIN2\n\n$TEXTMAIN3\n$TEXTMAIN4\n" --button="gtk-close" \
+    --field="$BUTTON1:FBTN" 'bash -c uip_list' \
+    --field="$BUTTON2:FBTN" 'bash -c uip_load'
