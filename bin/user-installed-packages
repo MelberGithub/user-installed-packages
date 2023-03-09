@@ -60,7 +60,7 @@ uip_load() {
 
     UIPLOAD=$(yad --title="$TITLELOAD" --class="$CLASS" --window-icon="$ICONPATH" \
         --width=800 --height=500 --borders=20 --center \
-        --file --filename="$HOME")
+        --file --filename="$HOME" --file-filter="Text files (*.txt)|*.txt" --file-filter="All files (*.*)|*.*")
 
     [ $? = 1 ] && exit
 
