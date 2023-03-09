@@ -40,7 +40,7 @@ uip_list() {
 
     if [ $? = 3 ]; then
         TITLE2="$(gettext 'Select location to save file')"
-        NOW=$(date +%y"%m%d")
+        NOW=$(date +%F)
         SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
             --borders=20 --center --file --save --filename="$HOME"/uip-"$NOW".txt)
         echo "$SAVETARGET"
@@ -80,19 +80,45 @@ uip_load() {
 
     UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
     UIPINSTALL_AVAILABLE=$(apt-cache -q madison $UIPINSTALL_LIST | awk '{print $1}')
-    local UIP_NOT_AVAILABLE
-    for i in $UIPINSTALL_LIST; do
-        if ! echo "$UIPINSTALL_AVAILABLE" | grep -q -w "$i"; then
-            UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
-        fi
-    done
-    gettext 'these packages are not available' | tee "$HOME"/UIP_NOT_AVAILABLE.txt
-    echo "$UIP_NOT_AVAILABLE" | tee -a "$HOME"/UIP_NOT_AVAILABLE.txt
+   	UIP_NOT_AVAILABLE=()
+	
+	for i in $UIPINSTALL_LIST; do
+		if ! echo ${UIPINSTALL_AVAILABLE} | grep -q -w "$i"; then
+			UIP_NOT_AVAILABLE+=("$i")
+		fi	
+	done
+    
+	if [ -n "$UIP_NOT_AVAILABLE" ]; then
+	    TITLEMISSING="$(gettext 'Missing Packages')"
+	    TEXTMISSING1="$(gettext 'The following packages are no longer available:')"
+	    TEXTBTNSAVE="$(gettext 'Save List')"
 
-    HOLDMESSAGE="$(gettext 'Press Enter to exit')"
+	    yad --title="$TITLEMISSING" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTMISSING1</b>" \
+	    --width=500 --height=500 --borders=20 --center --list --no-headers --no-selection --separator="xxx" \
+	    --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "${UIP_NOT_AVAILABLE[@]}"
 
-    #Install packages in separate terminal
-    x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing  $(echo $UIPINSTALL_AVAILABLE); echo -n \"$HOLDMESSAGE\"; echo; read x"
+        if [ $? = 3 ]; then
+		    TITLE2="$(gettext 'Select location to save file')"
+            NOW=$(date +%F)
+	    	SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
+		    --borders=20 --center --file --save --filename=$HOME/uip-missing-$NOW.txt)
+        
+            echo "$NOW" | tee "$SAVETARGET"
+            echo "$TEXTMISSING1" | tee -a "$SAVETARGET"
+    
+            for i in "${UIP_NOT_AVAILABLE[@]}"
+                do 
+                echo "$i"  | tee -a "$SAVETARGET"
+            done
+		fi
+	fi
+
+	if [ -n "$UIPINSTALL_AVAILABLE" ]; then
+        HOLDMESSAGE="$(gettext 'Press Enter to exit')"
+
+        #Install packages in separate terminal
+        x-terminal-emulator -e bash -c "sudo apt-get install --ignore-missing  $(echo $UIPINSTALL_AVAILABLE); echo -n \"$HOLDMESSAGE\"; echo; read x"
+    fi
 }
 
 #export functions
