@@ -110,9 +110,17 @@ uip_load() {
 
 	fi
 
-
- 	UIPINSTALL=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
-	UIPINSTALL_AVAILABLE=$(apt-cache -q madison $(echo $UIPINSTALL) | awk '{print $1}')
+ 	UIPINSTALL_LIST=$(echo "${UIPINSTALL[@]}" | sed -e 's/TRUE //g')
+	UIPINSTALL_AVAILABLE=$(apt-cache -q madison $(echo ${UIPINSTALL_LIST}) | awk '{print $1}')
+	local UIP_NOT_AVAILABLE
+	for i in $UIPINSTALL_LIST; do
+		if ! echo ${UIPINSTALL_AVAILABLE} | grep -q -w "$i"; then
+			UIP_NOT_AVAILABLE="$UIP_NOT_AVAILABLE $i"
+		fi
+	done
+	echo "these packages are not available" |tee $HOME/UIP_NOT_AVAILABLE.txt 
+	echo "$UIP_NOT_AVAILABLE" |tee $HOME/UIP_NOT_AVAILABLE.txt
+		
  	HOLDMESSAGE="$(gettext 'Press Enter to exit')"
 	
 	#Install packages in separate terminal
