@@ -63,7 +63,7 @@ uip_load() {
         --width=800 --height=500 --borders=20 --center \
         --file --filename="$HOME" --file-filter="Text files (*.txt)|*.txt" --file-filter="All files (*.*)|*.*")
 
-    [ $? = 1 ] && exit
+    [ $? == "1" ] && exit
 
     mapfile -t CHECKLIST < "$UIPLOAD"
 
@@ -77,7 +77,7 @@ uip_load() {
         --text="$TEXTINSTALL1" --width=500 --height=500 --borders=20 --center --text-align=left --button="gtk-ok" \
         --button="gtk-close" --checklist --list --no-headers --separator=" " --column=tick --column=package $CHECKLIST)
 
-    [ $? = 1 ] && exit
+    [ $? == "1" ] && exit
 
     UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
     UIPINSTALL_AVAILABLE=$(apt-cache -q madison $UIPINSTALL_LIST | awk '{print $1}')
