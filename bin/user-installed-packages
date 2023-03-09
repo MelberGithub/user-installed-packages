@@ -25,10 +25,9 @@ uip_list() {
     ICONPATH="/usr/share/pixmaps/user-installed-packages.png"
 
     #create list
-    UIPLIST=$(comm -23 <(apt-mark showmanual | grep -v 'linux-image' | grep -v 'linux-header' | cut -d: -f1 | sort -u) \
-        <(sort -u <([ -f /usr/share/antiX/installed-packages.txt ] && cut -d: -f1 /usr/share/antiX/installed-packages.txt; \
-            dpkg-query -W -f '${Depends}\n' | tr -d '()' | tr ',' '\n' | grep -vF '|')
-        ))
+    UIPLIST=$(comm -23 <(apt-mark showmanual |grep -v 'linux-image' |grep -v 'linux-header' | sed 's/[: \t].*$//' | sort -u) \
+        <( { [ -f /usr/share/antiX/installed-packages.txt ] && sed 's/[: \t].*$//' /usr/share/antiX/installed-packages.txt ; \
+        dpkg-query -W -f '${Depends}\n' | sed 's/([^)]*)//g; s/ //g; s/,/\n/g' | grep -vF '|' ; } | sort -u))
 
     #show list
     TOTAL=$(echo $UIPLIST | wc -w)
