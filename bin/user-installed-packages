@@ -38,7 +38,7 @@ uip_list() {
         --height=600 --borders=20 --center --list --no-headers --no-selection --separator="" --column=Style \
         --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "$UIPLIST"
 
-    if [ $? = 3 ]; then
+    if [ $? == "3" ]; then
         TITLE2="$(gettext 'Select location to save file')"
         NOW=$(date +%F)
         SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
@@ -81,36 +81,35 @@ uip_load() {
     UIPINSTALL_LIST="${UIPINSTALL[@]//TRUE /}"
     UIPINSTALL_AVAILABLE=$(apt-cache -q madison $UIPINSTALL_LIST | awk '{print $1}')
     UIP_NOT_AVAILABLE=()
-	
+
     for i in $UIPINSTALL_LIST; do
         if ! echo ${UIPINSTALL_AVAILABLE} | grep -q -w "$i"; then
             UIP_NOT_AVAILABLE+=("$i")
-        fi	
+        fi
     done
 
     if [ -n "$UIP_NOT_AVAILABLE" ]; then
-	TITLEMISSING="$(gettext 'Missing Packages')"
-	TEXTMISSING1="$(gettext 'The following packages are no longer available:')"
-	TEXTBTNSAVE="$(gettext 'Save List')"
+        TITLEMISSING="$(gettext 'Missing Packages')"
+        TEXTMISSING1="$(gettext 'The following packages are no longer available:')"
+        TEXTBTNSAVE="$(gettext 'Save List')"
 
-	yad --title="$TITLEMISSING" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTMISSING1</b>" \
-	--width=500 --height=500 --borders=20 --center --list --no-headers --no-selection --separator="xxx" \
-	--column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "${UIP_NOT_AVAILABLE[@]}"
+        yad --title="$TITLEMISSING" --class="$CLASS" --window-icon="$ICONPATH" --text="<b>$TEXTMISSING1</b>" \
+            --width=500 --height=500 --borders=20 --center --list --no-headers --no-selection --separator="xxx" \
+            --column=Style --text-align=left --button="$TEXTBTNSAVE":3 --button="gtk-close" "${UIP_NOT_AVAILABLE[@]}"
 
-        if [ $? = 3 ]; then
-	    TITLE2="$(gettext 'Select location to save file')"
+        if [ $? == "3" ]; then
+            TITLE2="$(gettext 'Select location to save file')"
             NOW=$(date +%F)
-	    SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
-            --borders=20 --center --file --save --filename=$HOME/uip-missing-$NOW.txt)
-        
+            SAVETARGET=$(yad --title="$TITLE2" --class="$CLASS" --window-icon="$ICONPATH" --width=800 --height=500 \
+                --borders=20 --center --file --save --filename="$HOME"/uip-missing-"$NOW".txt)
+
             echo "$NOW" | tee "$SAVETARGET"
             echo "$TEXTMISSING1" | tee -a "$SAVETARGET"
-    
-            for i in "${UIP_NOT_AVAILABLE[@]}"
-                do 
+
+            for i in "${UIP_NOT_AVAILABLE[@]}"; do
                 echo "$i"  | tee -a "$SAVETARGET"
             done
-	fi
+        fi
     fi
 
     if [ -n "$UIPINSTALL_AVAILABLE" ]; then
