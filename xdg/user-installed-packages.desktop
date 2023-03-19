@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+Exec=user-installed-packages
+TryExec=user-installed-packages
+Icon=user-installed-packages
+Categories=System;MX-Setup;
+# TRANSLATORS:
+# The desktop entry name will be displayed within the menu.
+Name=User Installed Packages
+# TRANSLATORS:
+# The desktop entry comment will be shown within the menu.
+Comment=List user installed packages. Install packages from existing list.
+# TRANSLATORS:
+# Keywords to search in the menu. Hint: Add translated keywords to existing.
+Keywords=apt;install;package;uip;
+Path=
+StartupNotify=false
+StartupWMClass=user-installed-packages
+Terminal=false

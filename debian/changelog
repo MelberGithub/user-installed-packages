@@ -1,3 +1,18 @@
+user-installed-packages (23.03.03) mx; urgency=medium
+
+  * Refactor code
+  * Add multi-architecture handling
+  * Add package description to listed and saved packages
+  * Add file read/write error handling
+  * Add error/success notifications
+  * Do not upgrade, only install new packages
+  * Add Keywords to desktop file
+  * Add detection of packages that cannot be installed
+  * Switch to mesonbuild
+  * Adjust translations scripts for meson build
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 19 Mar 2023 15:08:48 -0500
+
 user-installed-packages (23.03.02) mx; urgency=medium
 
   * fix desktop file

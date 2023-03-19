@@ -1,14 +1,23 @@
 Source: user-installed-packages
 Section: system
 Priority: optional
-Maintainer: Dolphin Oracle <dolphinoracle@gmail.com>
-Build-Depends: debhelper (>= 9.20120115)
+Maintainer: fehlix <fehlix@mxlinux.org>
+XSBC-Original-Maintainer: Dolphin Oracle <dolphinoracle@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ gnome-pkg-tools (>= 0.21),
+ meson (>= 1.0.0),
 Standards-Version: 3.9.6
 Homepage: http://mxlinux.org
 
 Package: user-installed-packages
 Architecture: all
-Depends: yad, apt
+Depends: 
+ apt,
+ file,
+ libnotify-bin,
+ yad,
+ ${misc:Depends}
 Description: list user installed packages
  Generate list of user installed pakcages.  
  Install packages from previously generated list.
