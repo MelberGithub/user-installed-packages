@@ -112,7 +112,7 @@ uip_list() {
     UIP=($(comm -23 \
        <( eval apt-mark showmanual "$GREP_FILTER" | sed 's/[[:space:]].*//' | sort -u) \
        <( { sed -r "s/[[:space:]].*//;
-                    s/:(all|any|$arch)//g;
+                    s/:(all|any|$ARCH)//g;
                     " "$INSTALLED_PACKAGES";
            dpkg-query --showformat='${Depends}:${Architecture}\n' --show |
            sed -r "s/[[:space:]]*//g;
