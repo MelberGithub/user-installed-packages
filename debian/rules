@@ -1,4 +1,24 @@
 #!/usr/bin/make -f
-%:
-	dh $@
+
+export DH_ALWAYS_EXCLUDE=CVS:.svn:GIT:.git:.gitignore:debs:*~
+#export DH_VERBOSE=1
+export DH_QUIET=1
+
+VERSION := $(shell dpkg-parsechangelog -SVersion)
+
+override_dh_auto_clean:
+	dh_auto_clean
+	@rm debs/* 2>/dev/null || :
+
+override_dh_auto_build:
+	@sed -i~ 's/@VERSION@/$(VERSION)/' meson.build
+	dh_auto_build
+
+execute_after_dh_builddeb:
+	@mv meson.build~ meson.build
+
 override_dh_usrlocal:
+
+%:
+	dh $@  --buildsystem=meson --builddirectory=mesonbuild
+

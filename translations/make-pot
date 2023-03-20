@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# top level directories:
+# script in bin-dir
+BIN_DIR=../bin
+# desktop file(s) in toplevel data-dir
+DATA_DIR=../xdg
+
+# get package name from changelog - or set otherwise
+CHNGLOG=$(find {,../,../../}debian/changelog  -type f -name changelog -print -quit 2>/dev/null)
+PKGNAME=$(dpkg-parsechangelog -l "$CHNGLOG" -SSource)
+
+# set pot-file name
+POT=$PKGNAME.pot
+
+[ -f $POT ] && mv $POT $POT~
+touch $POT
+
+
+# no-location: don't generate new POT if only location has changed
+# translator comments in scripts: only thos with TRANSLATOR tag
+#
+# msgid-bugs-address
+#SENDBUGS="translations@mxlinux.org"
+SENDBUGS="https://forum.mxlinux.org/viewforum.php?f=96"
+
+POTFILES=(
+        $BIN_DIR/$PKGNAME
+        )
+xgettext --package-name=$PKGNAME --language Shell --join-existing \
+          --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap --add-comments=TRANSLATORS  \
+          --output=$POT "${POTFILES[@]}"
+
+POTFILES=(
+        $DATA_DIR/$PKGNAME.desktop
+        )
+xgettext --package-name=$PKGNAME --language=Desktop --join-existing \
+          --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap --add-comments  \
+          -k --keyword=Name --keyword=GenericName \
+          --keyword=Comment  --keyword=Keywords \
+          --output=$POT "${POTFILES[@]}"
+
+sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
+
+if [ -f $POT~ ]; then
+    POT_CHANGE=$(diff user-installed-packages.pot user-installed-packages.pot~ | grep -vE '^([0-9]|-)|POT-Creation-Date:' | wc -l)
+    if (( POT_CHANGE == 0 )); then
+       echo "No change in POT-file: $POT"
+       echo "Keeping existing POT-file"
+       mv $POT~ $POT
+    else
+        echo "New POT-file generated:  $POT"
+       rm $POT~
+    fi
+fi

@@ -9,3 +9,7 @@ It combines two steps:
 
 
 build package with "debuild -uc -us"
+
+build and sign package with "debuild -si"
+
+Build prerequisit : meson version >= 1.0.0
