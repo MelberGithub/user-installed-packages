@@ -87,7 +87,7 @@ main() {
     TEXT_MAIN="$TEXT_MAIN1\n\n$TEXT_MAIN2\n\n$TEXT_MAIN3\n$TEXT_MAIN4\n"
 
     BUTTON1=$(gettext 'Create a list of user installed packages')
-    BUTTON2=$(gettext 'Open a previously saved list to install selected packages')
+    BUTTON2=$(gettext 'Open a previously saved list and install selected packages')
 
     YAD=(yad
         --title="$TITLE_MAIN" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
