@@ -1,16 +1,16 @@
 #!/bin/bash
 
-#  fehlix test project
+#  fehlix test project do not use
 #: ${ORGANIZATION:=fehlix}
 #: ${PROJECT:=testproject-do-not-use}
-
 
 # set transifex organization and project name - if not set in environment alredy
 : ${ORGANIZATION:=anticapitalista}
 : ${PROJECT:=antix-development}
 
 # set transifex resource name here  if it is not the package name
-RESOURCE=
+RESOURCE=user-installed-packages-mx
+
 
 echodo() { echo "${@}";  ${@}; }
 
