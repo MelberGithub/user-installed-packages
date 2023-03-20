@@ -1,16 +1,18 @@
 #!/bin/bash
 
-#  fehlix test project
+#  fehlix test project do not use
 #: ${ORGANIZATION:=fehlix}
 #: ${PROJECT:=testproject-do-not-use}
 #: ${MINIMUM_PERC:=0}
-
 
 # set transifex organization and project name - if not set in environment already
 : ${ORGANIZATION:=anticapitalista}
 : ${PROJECT:=antix-development}
 # set transifex resource name here if it is not the package name
-RESOURCE=
+RESOURCE=user-installed-packages-mx
+
+# set minium translations completion in percent to pull translation
+: ${MINIMUM_PERC:=5}
 
 echodo() { echo "${@}";  ${@}; }
 
@@ -27,9 +29,6 @@ PKGNAME=$(dpkg-parsechangelog -l "$CHNGLOG" -SSource)
 # prepare transifex 
 [ -d .tx         ] || mkdir -p .tx
 [ -f  .tx/config ] && rm  .tx/config
-
-# set minium translations completion in percent to pull translation
-: ${MINIMUM_PERC:=5}
 
 cat <<EOF > .tx/config
 [main]
@@ -52,8 +51,8 @@ EOF
 # set transifex resource_id
 RESOUCE_ID="${PROJECT}.${RESOURCE}"
 
-#echodo ${TXBIN} pull --force  --source --all "$RESOUCE_ID"
-echodo ${TXBIN} pull --source --translations --all "$RESOUCE_ID"
+#echodo ${TXBIN} pull --force  --all "$RESOUCE_ID"
+echodo ${TXBIN} pull --translations --all "$RESOUCE_ID"
 
 # make LINGUAS
 LINGUAS=po/LINGUAS

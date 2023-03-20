@@ -1,11 +1,11 @@
 [main]
 host = https://www.transifex.com
 
-[o:anticapitalista:p:antix-development:r:user-installed-packages]
+[o:anticapitalista:p:antix-development:r:user-installed-packages-mx]
 
 file_filter = po/<lang>.po
 minimum_perc = 5
-resource_name = user-installed-packages
+resource_name = user-installed-packages-mx
 source_file = user-installed-packages.pot
 source_lang = en
 type = PO
