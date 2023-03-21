@@ -1,3 +1,11 @@
+user-installed-packages (23.03.06) mx; urgency=medium
+
+  * Adjust translator comments for plural form translations
+  * Translation refresh with first 9 languages translated
+  * Add tx-complete-log to view translation completeness
+
+ -- fehlix <fehlix@mxlinux.org>  Mon, 20 Mar 2023 17:05:12 -0500
+
 user-installed-packages (23.03.05) mx; urgency=medium
 
   * Adjust string in main window

@@ -139,9 +139,9 @@ uip_list() {
                    sed  "s/:$ARCH/ $SPACE/")
 
         # TRANSLATORS:
-        # Do not translate the count placeholder '%d'.
-        # Singular form: 'You have installed 1 package:'
-        # Plural form: 'You have installed 2 packages:'
+        # There may be more than one sentence that needs to be translated. 
+        # If so, click the tabs with "1" ... "other" to translate them.
+        # Do keep the count placeholder "%d".
         TEXT_LIST=$(ngettext \
                     'You have installed 1 package:' \
                     'You have installed %d packages:' \
