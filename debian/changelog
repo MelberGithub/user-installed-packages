@@ -1,3 +1,11 @@
+user-installed-packages (23.03.07) mx; urgency=medium
+
+  * Adjust more translator comments 
+  * Set meson project name within debian/rules
+  * Translation refresh with now with 13 languages translated
+
+ -- fehlix <fehlix@mxlinux.org>  Tue, 21 Mar 2023 10:14:45 -0500
+
 user-installed-packages (23.03.06) mx; urgency=medium
 
   * Adjust translator comments for plural form translations

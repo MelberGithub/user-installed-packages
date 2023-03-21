@@ -4,9 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# anticapitalista <anticapitalista@riseup.net>, 2023
-# Albertus Perkamentus, 2023
-# Eadwine Rose, 2023
+# Eduard Selma <selma@tinet.cat>, 2023
 # 
 #, fuzzy
 msgid ""
@@ -15,24 +13,24 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
 "POT-Creation-Date: 2023-03-21 15:54+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
-"Last-Translator: Eadwine Rose, 2023\n"
-"Language-Team: Dutch (https://www.transifex.com/anticapitalista/teams/10162/nl/)\n"
+"Last-Translator: Eduard Selma <selma@tinet.cat>, 2023\n"
+"Language-Team: Catalan (https://www.transifex.com/anticapitalista/teams/10162/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Date:"
-msgstr "Datum:"
+msgstr "Data:"
 
 #. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
-msgstr "Gastheer:"
+msgstr "Amfitrió:"
 
 msgid "System:"
-msgstr "Systeem:"
+msgstr "Sistema:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -40,58 +38,55 @@ msgstr "Systeem:"
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
 msgid "User Installed Packages"
-msgstr "Gebruiker Geïnstalleerde Pakketten"
+msgstr "Paquets instal·lats per l'usuari"
 
 msgid "Package name"
-msgstr "Pakket naam"
+msgstr "Nom del paquet"
 
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "Descripció "
 
 msgid "List of user installed packages"
-msgstr "Lijst van door gebruiker geïnstalleerde pakketten"
+msgstr "Llista dels paquets instal·lats per l'usuari"
 
 msgid "List of unavailable packages"
-msgstr "Lijst van niet-beschikbare pakketten"
+msgstr "Llista dels paquets no disponibles"
 
 msgid "The following packages are not available or cannot be installed:"
-msgstr ""
-"De volgende pakketten zijn niet beschikbaar of kunnen niet worden "
-"geïnstalleerd:"
+msgstr "Aquests paquets no estan disponibles o no es poden instal·lar:"
 
 msgid "MX - User Installed Packages"
-msgstr "MX - Gebruiker Geïnstalleerde Pakketten"
+msgstr "MX - User Installed Packages"
 
 msgid ""
 "This app is designed to make it easy to reinstall packages that the user has"
 " added to the default installation and retained."
 msgstr ""
-"Deze app is ontworpen om het gemakkelijk te maken om pakketten die de "
-"gebruiker heeft toegevoegd aan de standaardinstallatie opnieuw te "
-"installeren en te behouden."
+"Aquesta aplicació té la finalitat de facilitar la reinstal·lació dels "
+"paquets afegits per l'usuari a una instal·lació per omissió i retinguts."
 
 msgid "It combines two steps:"
-msgstr "Het combineert twee stappen:"
+msgstr "Combina dos passos:"
 
 msgid "1) quickly and easily create a list of those packages"
-msgstr "1) snel en gemakkelijk een lijst van die pakketten maken"
+msgstr "1) crea ràpida i fàcilment una llista d'aquests paquets"
 
 msgid ""
 "2) use that list in another location to review and reinstall those packages,"
 " if still available"
 msgstr ""
-"2) gebruik die lijst op een andere plaats om die pakketten te bekijken en "
-"opnieuw te installeren, indien nog beschikbaar"
+"2) usa aquesta llista en una altra ubicació per revisar i instal·lar aquests"
+" paquets, si encara estan disponibles"
 
 msgid "Create a list of user installed packages"
-msgstr "Maak een lijst van door de gebruiker geïnstalleerde pakketten"
+msgstr "Crea una llista dels paquets instal·lats per l'usuari"
 
 msgid "Open a previously saved list and install selected packages"
 msgstr ""
-"Open een eerder opgeslagen lijst en installeer de geselecteerde pakketten"
+"Obre una llista prèviament desada i instal·la els paquets seleccionats"
 
 msgid "You have no packages installed!"
-msgstr "Je hebt geen pakketten geïnstalleerd!"
+msgstr "No hi ha paquets instal·lats!"
 
 #. TRANSLATORS:
 #. There may be more than one sentence that needs to be translated.
@@ -99,139 +94,136 @@ msgstr "Je hebt geen pakketten geïnstalleerd!"
 #. Do keep the count placeholder "%d".
 msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
-msgstr[0] "U heeft 1 pakket geïnstalleerd:"
-msgstr[1] "U heeft %d pakketten geïnstalleerd:"
+msgstr[0] "Heu instal·lat 1 paquet:"
+msgstr[1] "Heu instal·lat %d paquets:"
 
 #. TRANSLATORS:
 #. The user clicks the "Save List" button to save the list of packages
 #. installed by the user.
 msgid "Save List"
-msgstr "Lijst Opslaan"
+msgstr "Desa la llista"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
-msgstr ""
-"De UIP-lijst van door de gebruiker geïnstalleerde pakketten kon niet worden "
-"opgeslagen"
+msgstr "No puc desar la llista UIP de paquets instal·lats per l'usuari"
 
 msgid "No file selected."
-msgstr "Geen bestand geselecteerd."
+msgstr "No s'ha triat cap fitxer."
 
 msgid "Select which packages you want to install:"
-msgstr "Selecteer welke pakketten u wilt installeren:"
+msgstr "Escolliu quins paquets voleu instal·lar:"
 
 msgid "Install packages"
-msgstr "Pakketten installeren"
+msgstr "Instal·la paquets"
 
 msgid "Missing Packages"
-msgstr "Ontbrekende Pakketten"
+msgstr "Paquets absents"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
-msgstr "[OK] UIP lijst van ontbrekende pakketten opgeslagen:"
+msgstr "[D'acord] Llista UIP de paquets absents desada:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
-msgstr "UIP-lijst van ontbrekende pakketten kon niet worden opgeslagen."
+msgstr "No puc desar la llista UIP de paquets absents."
 
 msgid "Press Enter to exit"
-msgstr "Druk op Enter om af te sluiten"
+msgstr "Premeu Retorn per sortir"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
-msgstr "Kies een locatie om het bestand op te slaan"
+msgstr "Trieu la ubicació per desar el fitxer"
 
 msgid "File exists. Overwrite?"
-msgstr "Bestand bestaat. Overschrijven?"
+msgstr "El fitxer ja hi és. El voleu sobreescriure? "
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
-msgstr "[OK] UIP lijst opgeslagen:"
+msgstr "[]D'acord] Llista UIP desada:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
-msgstr "UIP-lijst opslaan mislukt:"
+msgstr "Ha fallat en desar el fitxer de la llista UIP:"
 
 msgid "[ERROR]"
-msgstr "[FOUT]"
+msgstr "[ERROR]"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
-msgstr "Selecteer de te laden UIP-lijst"
+msgstr "Escolliu la llista UIP a carregar"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
-msgstr "Geen geldig UIP-lijst bestand:"
+msgstr "No és un fitxer vàlid de llista UIP:"
 
 #. TRANSLATORS:
 #. The selected file is directory not a regular file.
 msgid "Selected file is a directory."
-msgstr "Het geselecteerde bestand is een directory."
+msgstr "El fitxer triat és un directori."
 
 #. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
-msgstr "Geen gewoon bestand"
+msgstr "No és un fitxer normal"
 
 #. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
-msgstr "Bestand is niet leesbaar."
+msgstr "No es pot llegir el fitxer."
 
 #. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
 msgid "file type"
-msgstr "bestandstype"
+msgstr "tipus de fitxer"
 
 #. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
-msgstr "Geen gewoon ASCII-tekstbestand"
+msgstr "No és un fitxer ASCII de text net"
 
 #. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
-msgstr "Geen tekstbestand"
+msgstr "No és un fitxer de text"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The selected file is not a valid UIP-list file with invalid package names.
 msgid "File contains invalid package names"
-msgstr "Bestand bevat ongeldige pakketnamen"
+msgstr "El fitxer conté noms de paquet no vàlids"
 
 #. TRANSLATORS:
 #. The selected file seems not to hold any package names.
 msgid "File contains no package names"
-msgstr "Bestand bevat geen pakketnamen"
+msgstr "El fitxer no conté noms de paquet"
 
 msgid "Select a file"
-msgstr "Selecteer een bestand"
+msgstr "Trieu un fitxer"
 
 #. TRANSLATORS:
 #. The desktop entry comment will be shown within the menu.
 msgid "List user installed packages. Install packages from existing list."
 msgstr ""
-"Lijst van door gebruiker geïnstalleerde pakketten. Installeren van pakketten"
-" uit bestaande lijst."
+"Llista paquets instal·lats per l'usuari. Instal·la paquets de la llista."
 
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "apt;install;package;uip;"
+msgstr "apt;install;package;uip;paquet;"

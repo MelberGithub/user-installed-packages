@@ -6,15 +6,16 @@
 # Translators:
 # anticapitalista <anticapitalista@riseup.net>, 2023
 # Paulo C., 2023
+# marcelo cripe <marcelocripe@gmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-20 21:40+0100\n"
+"POT-Creation-Date: 2023-03-21 15:54+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
-"Last-Translator: Paulo C., 2023\n"
+"Last-Translator: marcelo cripe <marcelocripe@gmail.com>, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/anticapitalista/teams/10162/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 msgid "Date:"
 msgstr "Data:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
 msgstr "Hospedeiro:"
@@ -33,7 +34,8 @@ msgstr "Hospedeiro:"
 msgid "System:"
 msgstr "Sistema:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The packages installed by the user (UIP).
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
@@ -94,21 +96,22 @@ msgstr "Não tem pacotes instalados!"
 #. Do keep the count placeholder "%d".
 msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
-msgstr[0] "Instalou 1 pacote:"
-msgstr[1] "Instalou%d pacotes:"
-msgstr[2] "You have installed %d packages:"
+msgstr[0] "Instalou %d pacote:"
+msgstr[1] "Instalou %d pacotes:"
+msgstr[2] "Instalou %d pacotes:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The user clicks the "Save List" button to save the list of packages
 #. installed by the user.
 msgid "Save List"
 msgstr "Gravar Lista"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
 msgstr ""
-"A lista de pacotes instalados pelo utilizador não conseguir ser gravada"
+"A lista de pacotes instalados pelo utilizador não conseguiu ser gravada"
 
 msgid "No file selected."
 msgstr "Nenhum ficheiro selecionado."
@@ -122,12 +125,14 @@ msgstr "Instalar pacotes"
 msgid "Missing Packages"
 msgstr "Pacotes em falta"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
 msgstr "[OK] Lista UIP de pacotes em falta foi gravada:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
 msgstr "Lista UIP de pacotes em falta não foi gravada."
@@ -136,6 +141,7 @@ msgid "Press Enter to exit"
 msgstr "Prima Enter para sair"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
 msgstr "Selecione local para gravar o ficheiro"
@@ -143,12 +149,14 @@ msgstr "Selecione local para gravar o ficheiro"
 msgid "File exists. Overwrite?"
 msgstr "O ficheiro já existe. Gravar por cima?"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
 msgstr "[OK] lista UIP gravada:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
 msgstr "Falha ao gravar lista UIP:"
@@ -157,52 +165,55 @@ msgid "[ERROR]"
 msgstr "[ERRO]"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
 msgstr "Escolha a lista UIP a carregar"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
 msgstr "Não é um ficheiro UIP-list válido:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is directory not a regular file.
 msgid "Selected file is a directory."
 msgstr "O ficheiro é uma pasta."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
 msgstr "Não é um ficheiro regular"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
 msgstr "O ficheiro não é legível."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
 msgid "file type"
 msgstr "tipo de ficheiro"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
 msgstr "Não é um ficheiro de texto ASCII"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
 msgstr "Não é um ficheiro de texto"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file is not a valid UIP-list file with invalid package names.
 msgid "File contains invalid package names"
 msgstr "O ficheiro contem nomes inválidos de pacotes"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file seems not to hold any package names.
 msgid "File contains no package names"
 msgstr "O ficheiro não contem nomes de pacotes"
@@ -214,10 +225,10 @@ msgstr "Escolha um ficheiro"
 #. The desktop entry comment will be shown within the menu.
 msgid "List user installed packages. Install packages from existing list."
 msgstr ""
-"Listar pacotes instalados pelo utilizador. Instalar pacotes a partir de uma "
-"listagem existente."
+"Listar pacotes instalados pelo utilizador e instalar pacotes a partir de uma"
+" listagem existente."
 
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "apt;install;package;uip;"
+msgstr "apt;instalar;instalação;pacote;aplicação;uip;"

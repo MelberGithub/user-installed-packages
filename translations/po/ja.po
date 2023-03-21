@@ -4,9 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# anticapitalista <anticapitalista@riseup.net>, 2023
-# Albertus Perkamentus, 2023
-# Eadwine Rose, 2023
+# 🎈 BALLOON | FU-SEN, 2023
+# Green, 2023
 # 
 #, fuzzy
 msgid ""
@@ -15,24 +14,24 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
 "POT-Creation-Date: 2023-03-21 15:54+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
-"Last-Translator: Eadwine Rose, 2023\n"
-"Language-Team: Dutch (https://www.transifex.com/anticapitalista/teams/10162/nl/)\n"
+"Last-Translator: Green, 2023\n"
+"Language-Team: Japanese (https://www.transifex.com/anticapitalista/teams/10162/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Date:"
-msgstr "Datum:"
+msgstr "日付："
 
 #. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
-msgstr "Gastheer:"
+msgstr "システムのホスト名："
 
 msgid "System:"
-msgstr "Systeem:"
+msgstr "システム："
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -40,58 +39,50 @@ msgstr "Systeem:"
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
 msgid "User Installed Packages"
-msgstr "Gebruiker Geïnstalleerde Pakketten"
+msgstr "ユーザーインストールパッケージ"
 
 msgid "Package name"
-msgstr "Pakket naam"
+msgstr "パッケージ名"
 
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "説明"
 
 msgid "List of user installed packages"
-msgstr "Lijst van door gebruiker geïnstalleerde pakketten"
+msgstr "ユーザー自身がインストールを行ったパッケージのリスト（一覧）です。"
 
 msgid "List of unavailable packages"
-msgstr "Lijst van niet-beschikbare pakketten"
+msgstr "利用不可能なパッケージのリスト"
 
 msgid "The following packages are not available or cannot be installed:"
-msgstr ""
-"De volgende pakketten zijn niet beschikbaar of kunnen niet worden "
-"geïnstalleerd:"
+msgstr "以下のパッケージは利用不可能、もしくはインストール出来ません。"
 
 msgid "MX - User Installed Packages"
-msgstr "MX - Gebruiker Geïnstalleerde Pakketten"
+msgstr "MX - ユーザーインストールパッケージ (UIP)"
 
 msgid ""
 "This app is designed to make it easy to reinstall packages that the user has"
 " added to the default installation and retained."
-msgstr ""
-"Deze app is ontworpen om het gemakkelijk te maken om pakketten die de "
-"gebruiker heeft toegevoegd aan de standaardinstallatie opnieuw te "
-"installeren en te behouden."
+msgstr "このアプリは、ユーザーが標準インストールに追加して保存しているパッケージを簡単に再インストールできるようにします。"
 
 msgid "It combines two steps:"
-msgstr "Het combineert twee stappen:"
+msgstr "これは、以下2つのステップを組み合わせています。"
 
 msgid "1) quickly and easily create a list of those packages"
-msgstr "1) snel en gemakkelijk een lijst van die pakketten maken"
+msgstr "1) 一連のパッケージリストを素早く簡単に作成します"
 
 msgid ""
 "2) use that list in another location to review and reinstall those packages,"
 " if still available"
-msgstr ""
-"2) gebruik die lijst op een andere plaats om die pakketten te bekijken en "
-"opnieuw te installeren, indien nog beschikbaar"
+msgstr "2) パッケージを確認する目的でリストを使用したり、もし可能であれば再インストールを行います。"
 
 msgid "Create a list of user installed packages"
-msgstr "Maak een lijst van door de gebruiker geïnstalleerde pakketten"
+msgstr "ユーザーがインストールしたパッケージのリストを作成"
 
 msgid "Open a previously saved list and install selected packages"
-msgstr ""
-"Open een eerder opgeslagen lijst en installeer de geselecteerde pakketten"
+msgstr "以前に保存したリストを開き、選択したパッケージをインストール"
 
 msgid "You have no packages installed!"
-msgstr "Je hebt geen pakketten geïnstalleerd!"
+msgstr "パッケージはインストールしていません！"
 
 #. TRANSLATORS:
 #. There may be more than one sentence that needs to be translated.
@@ -99,139 +90,134 @@ msgstr "Je hebt geen pakketten geïnstalleerd!"
 #. Do keep the count placeholder "%d".
 msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
-msgstr[0] "U heeft 1 pakket geïnstalleerd:"
-msgstr[1] "U heeft %d pakketten geïnstalleerd:"
+msgstr[0] "%d 個のパッケージをインストールしています。"
 
 #. TRANSLATORS:
 #. The user clicks the "Save List" button to save the list of packages
 #. installed by the user.
 msgid "Save List"
-msgstr "Lijst Opslaan"
+msgstr "リストの保存"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
-msgstr ""
-"De UIP-lijst van door de gebruiker geïnstalleerde pakketten kon niet worden "
-"opgeslagen"
+msgstr "ユーザーインストールパッケージ（UIP）のリストが保存できません"
 
 msgid "No file selected."
-msgstr "Geen bestand geselecteerd."
+msgstr "ファイルを選択していません。"
 
 msgid "Select which packages you want to install:"
-msgstr "Selecteer welke pakketten u wilt installeren:"
+msgstr "インストールするパッケージを選択します"
 
 msgid "Install packages"
-msgstr "Pakketten installeren"
+msgstr "パッケージのインストール"
 
 msgid "Missing Packages"
-msgstr "Ontbrekende Pakketten"
+msgstr "不足しているパッケージ"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
-msgstr "[OK] UIP lijst van ontbrekende pakketten opgeslagen:"
+msgstr "[OK] 不足しているパッケージリストを保存"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
-msgstr "UIP-lijst van ontbrekende pakketten kon niet worden opgeslagen."
+msgstr "不足しているパッケージリストを保存できませんでした。"
 
 msgid "Press Enter to exit"
-msgstr "Druk op Enter om af te sluiten"
+msgstr "Enter キーを押して終了"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
-msgstr "Kies een locatie om het bestand op te slaan"
+msgstr "UIP を保存するファイルを選択"
 
 msgid "File exists. Overwrite?"
-msgstr "Bestand bestaat. Overschrijven?"
+msgstr "ファイルが存在します。上書きしますか？"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
-msgstr "[OK] UIP lijst opgeslagen:"
+msgstr "[OK] リストを保存しました"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
-msgstr "UIP-lijst opslaan mislukt:"
+msgstr "UIP リストの保存に失敗しました"
 
 msgid "[ERROR]"
-msgstr "[FOUT]"
+msgstr "[エラー]"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
-msgstr "Selecteer de te laden UIP-lijst"
+msgstr "読み込む UIP リストを選択"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
-msgstr "Geen geldig UIP-lijst bestand:"
+msgstr "有効な UIP リストのファイルではありません"
 
 #. TRANSLATORS:
 #. The selected file is directory not a regular file.
 msgid "Selected file is a directory."
-msgstr "Het geselecteerde bestand is een directory."
+msgstr "選択したのはファイルではなくてディレクトリです。"
 
 #. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
-msgstr "Geen gewoon bestand"
+msgstr "通常のファイルではありません"
 
 #. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
-msgstr "Bestand is niet leesbaar."
+msgstr "ファイルを読み込めません。"
 
 #. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
 msgid "file type"
-msgstr "bestandstype"
+msgstr "ファイルのタイプ"
 
 #. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
-msgstr "Geen gewoon ASCII-tekstbestand"
+msgstr "平文 ASCII テキストファイルではありません"
 
 #. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
-msgstr "Geen tekstbestand"
+msgstr "テキストファイルではありません"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The selected file is not a valid UIP-list file with invalid package names.
 msgid "File contains invalid package names"
-msgstr "Bestand bevat ongeldige pakketnamen"
+msgstr "UIP リストのファイルには、無効なパッケージ名を含んでいます"
 
 #. TRANSLATORS:
 #. The selected file seems not to hold any package names.
 msgid "File contains no package names"
-msgstr "Bestand bevat geen pakketnamen"
+msgstr "選択したファイルには一切パッケージ名を含んでいません"
 
 msgid "Select a file"
-msgstr "Selecteer een bestand"
+msgstr "ファイルの選択"
 
 #. TRANSLATORS:
 #. The desktop entry comment will be shown within the menu.
 msgid "List user installed packages. Install packages from existing list."
-msgstr ""
-"Lijst van door gebruiker geïnstalleerde pakketten. Installeren van pakketten"
-" uit bestaande lijst."
+msgstr "ユーザーがインストールしたパッケージのリストを表示します。既存リストからパッケージをインストールします。"
 
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "apt;install;package;uip;"
+msgstr "APT;インストール;パッケージ;ユーザーインストールパッケージ;"
