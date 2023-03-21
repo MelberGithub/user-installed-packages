@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-20 21:40+0100\n"
+"POT-Creation-Date: 2023-03-21 15:54+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Risto Pärkkä, 2023\n"
 "Language-Team: Finnish (https://www.transifex.com/anticapitalista/teams/10162/fi/)\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Date:"
 msgstr "Päivämäärä:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
 msgstr "Isäntä:"
@@ -34,7 +34,8 @@ msgstr "Isäntä:"
 msgid "System:"
 msgstr "Järjestelmä:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The packages installed by the user (UIP).
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
@@ -95,16 +96,17 @@ msgstr "Sinulla ei ole paketteja asennettuna!"
 #. Do keep the count placeholder "%d".
 msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olet asentanut %d pakettia:"
+msgstr[1] "Olet asentanut %d pakettia:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The user clicks the "Save List" button to save the list of packages
 #. installed by the user.
 msgid "Save List"
 msgstr "Tallenna Lista"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
 msgstr "Käyttäjän asentamien pakettien UIP-luetteloa ei voitu tallentaa"
@@ -121,12 +123,14 @@ msgstr "Asenna paketit"
 msgid "Missing Packages"
 msgstr "Puuttuvat Paketit"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
 msgstr "[OK] UIP-luettelo puuttuvista paketeista tallennettu:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
 msgstr "Puuttuvien pakettien UIP-luetteloa ei voitu tallentaa."
@@ -135,6 +139,7 @@ msgid "Press Enter to exit"
 msgstr "Paina Enter poistuaksesi"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
 msgstr "Valitse tiedoston tallennuspaikka"
@@ -142,12 +147,14 @@ msgstr "Valitse tiedoston tallennuspaikka"
 msgid "File exists. Overwrite?"
 msgstr "Tiedosto on olemassa. Korvataanko?"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
 msgstr "[OK] UIP-luettelo tallennettu:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
 msgstr "UIP-luettelon tallennus epäonnistui:"
@@ -156,52 +163,55 @@ msgid "[ERROR]"
 msgstr "[VIRHE]"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
 msgstr "Valitse UIP-luettelo ladattavaksi"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
 msgstr "Ei kelvollinen UIP-luettelotiedosto:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is directory not a regular file.
 msgid "Selected file is a directory."
 msgstr "Valittu tiedosto on hakemisto."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
 msgstr "Ei tavallinen tiedosto"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
 msgstr "Tiedostoa ei voi lukea."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
 msgid "file type"
 msgstr "tiedostotyyppi"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
 msgstr "Ei tavallinen ASCII-tekstitiedosto"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
 msgstr "Ei tekstitiedosto"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file is not a valid UIP-list file with invalid package names.
 msgid "File contains invalid package names"
 msgstr "Tiedosto sisältää virheellisiä paketin nimiä"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file seems not to hold any package names.
 msgid "File contains no package names"
 msgstr "Tiedosto ei sisällä pakettien nimiä"

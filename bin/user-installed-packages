@@ -21,12 +21,13 @@ if [ ! -f $INSTALLED_PACKAGES ]; then
 fi
 
 MSG_DATE=$(gettext 'Date:')
-# TRANSLATORS
+# TRANSLATORS:
 # The hostname of the system.
 MSG_HOST=$(gettext 'Host:')
 MSG_SYSTEM=$(gettext 'System:')
 
-# TRANSLATORS
+# TRANSLATORS:
+# UIP = "User Installed Packages".
 # The packages installed by the user (UIP).
 MSG_TITLE=$(gettext 'User Installed Packages')
 
@@ -139,7 +140,7 @@ uip_list() {
                    sed  "s/:$ARCH/ $SPACE/")
 
         # TRANSLATORS:
-        # There may be more than one sentence that needs to be translated. 
+        # There may be more than one sentence that needs to be translated.
         # If so, click the tabs with "1" ... "other" to translate them.
         # Do keep the count placeholder "%d".
         TEXT_LIST=$(ngettext \
@@ -149,14 +150,15 @@ uip_list() {
                     )
 
         TEXT_LIST="${TEXT_LIST/\%?/${UIP_COUNT}}"
-        # TRANSLATORS
+        # TRANSLATORS:
         # The user clicks the "Save List" button to save the list of packages installed by the user.
         BTN_SAVE=$(gettext 'Save List')
         SAVE_OPTION="--button=$BTN_SAVE:3"
     fi
     BTN_CLOSE="gtk-close"
-    
-    # TRANSLATORS
+
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
     # The packages installed by the user (UIP).
     TITLE_LIST=$(gettext 'User Installed Packages')
 
@@ -185,7 +187,8 @@ uip_list() {
     if selected_file=$(uip_select_save_file "$save_file"); then
         uip_write_file "UIP_DATA" "$selected_file"
     else
-        # TRANSLATORS
+        # TRANSLATORS:
+        # UIP = "User Installed Packages".
         # The list of user installed packages (UIP) failed to save.
         error=$(gettext 'The UIP list of packages installed by the user could not be saved')
         reason=$(gettext 'No file selected.')
@@ -289,7 +292,7 @@ NotUsed
         comm -23 <(printf '%s\n' "${UIP_INSTALL[@]}"         | sort -u) \
                  <(printf '%s\n' "${UIP_NOT_INSTALLABLE[@]}" | sort -u)
         ))
-    
+
     #echo "#-------------------------";  declare -p UIP_INSTALLABLE
     #echo "UIP_NOT_INSTALLABLE[@] = ${UIP_NOT_INSTALLABLE[*]}"
 
@@ -339,25 +342,27 @@ NotUsed
 
             PKG_WIDTH=$(printf '%s\n' "${UIP_NOT_AVAILABLE[@]}" "$PKG_NAME" | wc -L)
             PKG_WIDTH=$(( PKG_WIDTH + 10))
-    
+
             UIP_UNAVAILABLE_HEADER+=$'\n'
             UIP_UNAVAILABLE_HEADER+=$(printf "%-${PKG_WIDTH}s %s\n" "# $PKG_NAME" "$PKG_DESC")
             UIP_UNAVAILABLE_HEADER+=$'\n'
-    
+
             DATA=$UIP_UNAVAILABLE_HEADER
             DATA+="$UIP_MISSING"
-    
+
             local now=$(date '+%y%m%d-%H%M%S')
             local save_file="uip-missing-$now.txt"
             local selected_file
-            # TRANSLATORS
+            # TRANSLATORS:
+            # UIP = "User Installed Packages".
             # The list of missing packages was saved under:
             local ok=$(gettext '[OK] UIP list of missing packages saved:')
 
-            # TRANSLATORS
+            # TRANSLATORS:
+            # UIP = "User Installed Packages".
             # The list of missing packages failed to save.
             local err=$(gettext 'UIP list of missing packages could not be saved.')
-            
+
             if selected_file=$(uip_select_save_file "$save_file"); then
                 uip_write_file "DATA" "$selected_file" "$ok" "$err"
             else
@@ -388,6 +393,7 @@ uip_select_save_file() {
     local filename=${1:-uip-saved-file}
     local save_file selected_file
     # TRANSLATORS:
+    # UIP = "User Installed Packages".
     # The user selects a file to save the list of user installed packages (UIP).
     local save_title=$(gettext 'Select location to save file')
     local ret
@@ -445,11 +451,13 @@ uip_write_file() {
     local ok=$3
     local err=$4
 
-    # TRANSLATORS
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
     # The list of user installed packages (UIP) was saved successfully under:
     : ${ok:=$(gettext '[OK] UIP list saved:')}
 
-    # TRANSLATORS
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
     # The list of user installed packages (UIP) failed to save.
     : ${err:=$(gettext 'UIP-list save file failed:')}
 
@@ -479,6 +487,7 @@ export -f uip_write_file
 uip_select_list_file() {
     local selected_file=""
     # TRANSLATORS:
+    # UIP = "User Installed Packages".
     # The user selects a file with user installed packages (UIP) to be read.
     local title=$(gettext 'Select UIP list to load')
     local ret
@@ -493,13 +502,14 @@ uip_select_list_file() {
 
         # check file is valid or cantains package names
         ERROR=$(gettext '[ERROR]')
-        # TRANSLATORS
+        # TRANSLATORS:
+        # UIP = "User Installed Packages".
         # The selected file appears not to be a valid list of user installed packages (UIP).
         NOT_VALID_FILE_ERROR=$(gettext 'Not a valid UIP-list file:')
 
         if [ -d "$selected_file" ]; then
            # not re regular file
-           # TRANSLATORS
+           # TRANSLATORS:
            # The selected file is directory not a regular file.
            ERRMSG=$(gettext 'Selected file is a directory.')
            ERRMSG="$ERROR $ERRMSG"
@@ -514,7 +524,7 @@ uip_select_list_file() {
         # check file is a regular file
         if [ ! -f "$selected_file" ]; then
            # not re regular file
-           # TRANSLATORS
+           # TRANSLATORS:
            # The selected file is not a regular (text) file.
            ERRMSG=$(gettext 'Not a regular file')
            ERRMSG="$ERROR $ERRMSG"
@@ -528,7 +538,7 @@ uip_select_list_file() {
 
         # check file is a readable file
         if [ ! -r "$selected_file" ]; then
-           # TRANSLATORS
+           # TRANSLATORS:
            # The selected file is not readable file.
            ERRMSG=$(gettext 'File is not readable.')
            ERRMSG="$ERROR $ERRMSG"
@@ -541,7 +551,7 @@ uip_select_list_file() {
         fi
 
         # check file is a text file
-        # TRANSLATORS
+        # TRANSLATORS:
         # The type of the file the user has selected: "file type"
         type_of_the_file=$(gettext 'file type')
 
@@ -549,7 +559,7 @@ uip_select_list_file() {
         if [ -n "${FILETYPE%%text/plain*}" ]; then
             if [ -z "${FILETYPE%%text/*}" ]; then
                # not a plain ASCII text file
-               # TRANSLATORS
+               # TRANSLATORS:
                # The selected file is not a plain ASCII text file.
                ERRMSG=$(gettext 'Not a plain ASCII text file')
                ERRMSG="$ERROR $ERRMSG\n[$type_of_the_file] ${FILETYPE%%;*}"
@@ -561,7 +571,7 @@ uip_select_list_file() {
                continue
             fi
             # not a text file
-            # TRANSLATORS
+            # TRANSLATORS:
             # The selected file is not a text file.
             ERRMSG=$(gettext 'Not a text file')
             ERRMSG="$ERROR $ERRMSG\n[$type_of_the_file] ${FILETYPE%%;*}"
@@ -579,7 +589,8 @@ uip_select_list_file() {
 
         if (( none_pkg_cnt != 0 )); then
            # not a valid UIP-list file
-           # TRANSLATORS
+           # TRANSLATORS:
+           # UIP = "User Installed Packages".
            # The selected file is not a valid UIP-list file with invalid package names.
            ERRMSG=$(gettext 'File contains invalid package names')
            ERRMSG="$ERROR $ERRMSG"
@@ -596,7 +607,7 @@ uip_select_list_file() {
 
         if (( pkg_cnt == 0 )); then
             # not a valid UIP-list file: no packge names
-            # TRANSLATORS
+            # TRANSLATORS:
             # The selected file seems not to hold any package names.
             ERRMSG=$(gettext 'File contains no package names')
             ERRMSG="$ERROR $ERRMSG"

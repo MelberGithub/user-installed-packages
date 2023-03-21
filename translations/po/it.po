@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-20 21:40+0100\n"
+"POT-Creation-Date: 2023-03-21 15:54+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Dede Carli <dede.carli.drums@gmail.com>, 2023\n"
 "Language-Team: Italian (https://www.transifex.com/anticapitalista/teams/10162/it/)\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Date:"
 msgstr "Data:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
 msgstr "Ospite:"
@@ -34,7 +34,8 @@ msgstr "Ospite:"
 msgid "System:"
 msgstr "Sistema:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The packages installed by the user (UIP).
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
@@ -100,13 +101,14 @@ msgstr[0] "Hai installato 1 pacchetto"
 msgstr[1] "Hai installato 1 pacchetto:"
 msgstr[2] "Hai installato 1 pacchetto:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The user clicks the "Save List" button to save the list of packages
 #. installed by the user.
 msgid "Save List"
 msgstr "Salva elenco"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
 msgstr ""
@@ -124,12 +126,14 @@ msgstr "Installa pacchetti"
 msgid "Missing Packages"
 msgstr "Pacchetti mancanti"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
 msgstr "[OK] elenco UIP dei pacchetti mancanti salvato:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
 msgstr "L'elenco UIP dei pacchetti mancanti non può essere salvato."
@@ -138,6 +142,7 @@ msgid "Press Enter to exit"
 msgstr "Premi enter per uscire"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
 msgstr "Seleziona una posizione per salvare il file"
@@ -145,12 +150,14 @@ msgstr "Seleziona una posizione per salvare il file"
 msgid "File exists. Overwrite?"
 msgstr "Il file esiste. Sovrascrivere?"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
 msgstr "[OK] elenco UIP salvato:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
 msgstr "Elenco-UIP salva file fallito:"
@@ -159,52 +166,55 @@ msgid "[ERROR]"
 msgstr "[ERRORE]"
 
 #. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
 msgstr "Seleziona l'elenco UIP da caricare "
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
 msgstr "Non è un file elenco-UIP valido:"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is directory not a regular file.
 msgid "Selected file is a directory."
 msgstr "Il file selezionato è una directory."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
 msgstr "Non è un file regolare"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
 msgstr "Il file non è leggibile."
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
 msgid "file type"
 msgstr "tipo di file"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
 msgstr "Non è un file di testo semplice ASCII"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
 msgstr "Non è un file di testo"
 
-#. TRANSLATORS
+#. TRANSLATORS:
+#. UIP = "User Installed Packages".
 #. The selected file is not a valid UIP-list file with invalid package names.
 msgid "File contains invalid package names"
 msgstr "Il file contiene nomi pacchetto non validi"
 
-#. TRANSLATORS
+#. TRANSLATORS:
 #. The selected file seems not to hold any package names.
 msgid "File contains no package names"
 msgstr "Il file non contiene nomi pacchetto"
