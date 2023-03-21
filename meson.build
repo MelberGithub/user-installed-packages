@@ -1,4 +1,4 @@
-project('user-installed-packages', version: '@VERSION@', meson_version: '>=1.0.0')
+project('@PACKAGE@', version: '@VERSION@', meson_version: '>=1.0.0')
 
 i18n = import('i18n')
 
