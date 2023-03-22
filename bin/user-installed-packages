@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 #Tool to list user installed packages
-#V.0.4 by MX Devs, 08 March 2023
+#V.0.8 by MX Devs, 22 March 2023
 #License: GPL-3.0+
 #Changes: see changelog
 #Version: @VERSION@
@@ -95,13 +95,31 @@ main() {
         --borders=20 --center --width=600 --height=350
         --form --separator=" "
         --text="$TEXT_MAIN" --text-align=left
-        --button="gtk-close"
+        --button="gtk-about":"bash -c uip_about" --button="gtk-help":"bash -c uip_help" --button="gtk-close"
         --field="$BUTTON1:FBTN" 'bash -c uip_list'
         --field="$BUTTON2:FBTN" 'bash -c uip_load'
         )
     "${YAD[@]}"   ## >/dev/null
 
 }
+
+#function uip_about
+
+uip_about() {
+python3 /usr/libexec/user-installed-packages/uip-about.py
+}
+
+export -f uip_about
+
+
+#function uip_help
+
+uip_help() {
+mx-viewer /usr/share/doc/user-installed-packages/user-installed-packages.html
+}
+
+export -f uip_help
+
 
 #function uip_list
 
