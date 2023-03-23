@@ -6,22 +6,18 @@ package_name    = meson.project_name()
 desktop_id      = package_name
 gettext_package = package_name
 
-bin_files       = [ 
-                    package_name,
-                ]
-icon_names      = [ 
-                    package_name,
-                ]
-
-subdir_po = 'translations/po'
+subdir_po      = 'translations/po'
 
 subdir('bin')
+
+subdir('data')
 
 subdir('icons')
 
 subdir(subdir_po)
 
 subdir('xdg')
+
 
 message('\n'.join(['',
 '',

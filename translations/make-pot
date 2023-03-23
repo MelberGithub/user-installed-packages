@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # top level directories:
-# script in bin-dir
-BIN_DIR=../bin
-# desktop file(s) in toplevel data-dir
-DATA_DIR=../xdg
 
 # get package name from changelog - or set otherwise
 CHNGLOG=$(find {,../,../../}debian/changelog  -type f -name changelog -print -quit 2>/dev/null)
@@ -24,6 +20,8 @@ touch $POT
 #SENDBUGS="translations@mxlinux.org"
 SENDBUGS="https://forum.mxlinux.org/viewforum.php?f=96"
 
+# script in bin-dir
+BIN_DIR=../bin
 POTFILES=(
         $BIN_DIR/$PKGNAME
         )
@@ -32,6 +30,8 @@ xgettext --package-name=$PKGNAME --language Shell --join-existing \
           --no-location --no-wrap --add-comments=TRANSLATORS  \
           --output=$POT "${POTFILES[@]}"
 
+# desktop file(s) in toplevel data-dir
+DATA_DIR=../xdg
 POTFILES=(
         $DATA_DIR/$PKGNAME.desktop
         )
@@ -41,6 +41,17 @@ xgettext --package-name=$PKGNAME --language=Desktop --join-existing \
           -k --keyword=Name --keyword=GenericName \
           --keyword=Comment  --keyword=Keywords \
           --output=$POT "${POTFILES[@]}"
+
+
+BIN_DIR=../bin
+POTFILES=(
+        $BIN_DIR/uip-about.py
+        )
+xgettext --package-name=$PKGNAME --language Python --join-existing \
+          --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap --add-comments=TRANSLATORS  \
+          --keyword=_  --output=$POT "${POTFILES[@]}"
+
 
 sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
 

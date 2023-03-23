@@ -130,13 +130,13 @@ msgstr "Pacotes Ausentes"
 #. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
-msgstr "A lista UIP de pacotes ausentes foi salva ou gravada com sucesso:"
+msgstr "A lista dos pacotes ausentes foi salva ou gravada com sucesso:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
-msgstr "A lista UIP dos pacotes ausentes não pôde ser salva."
+msgstr "A lista dos pacotes ausentes não pôde ser salva."
 
 msgid "Press Enter to exit"
 msgstr "Pressione a tecla Enter para sair"
@@ -154,13 +154,17 @@ msgstr "O arquivo já existe. Você quer substitui-lo?"
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
-msgstr "A lista UIP foi salva ou gravada com sucesso:"
+msgstr ""
+"A lista contendo os pacotes instalados pelo usuário foi salva ou gravada com"
+" sucesso:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
-msgstr "Ocorreu uma falha ao salvar ou gravar o arquivo da lista UIP:"
+msgstr ""
+"Ocorreu uma falha ao salvar ou gravar o arquivo da lista dos pacotes "
+"instalados pelo usuário:"
 
 msgid "[ERROR]"
 msgstr "[OCORREU UM ERRO]"
@@ -169,14 +173,17 @@ msgstr "[OCORREU UM ERRO]"
 #. UIP = "User Installed Packages".
 #. The user selects a file with user installed packages (UIP) to be read.
 msgid "Select UIP list to load"
-msgstr "Selecione a lista UIP para ser carregada"
+msgstr ""
+"Selecione a lista dos pacotes instalados pelo usuário para ser carregada"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The selected file appears not to be a valid list of user installed packages
 #. (UIP).
 msgid "Not a valid UIP-list file:"
-msgstr "Não é um arquivo de lista do tipo UIP válido:"
+msgstr ""
+"Não é um arquivo válido que contenha a lista dos pacotes instalados pelo "
+"usuário:"
 
 #. TRANSLATORS:
 #. The selected file is directory not a regular file.

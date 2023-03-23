@@ -1,8 +1,14 @@
+
 fs = import('fs')
+
 icondir = get_option('datadir') / 'icons'
 pixmaps = get_option('datadir') / 'pixmaps'
 
-sizes = [ 8, 16, 22, 24, 32, 48, 64, 96, 128, 256 ]
+icon_names = [
+               package_name,
+             ]
+
+sizes = [ 8, 16, 22, 24, 32, 48, 64, 96, 128, 256, 512 ]
 
 foreach icon_name: icon_names
 

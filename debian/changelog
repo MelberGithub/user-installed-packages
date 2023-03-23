@@ -1,3 +1,16 @@
+user-installed-packages (23.03.08) mx; urgency=medium
+
+  [melber]
+  * Add help file
+  * Add About popup uip-about.py
+  
+  [fehlix]
+  * Addjust meson.build
+  * Restructure uip-about.py
+  * Translation refresh
+
+ -- fehlix <fehlix@mxlinux.org>  Thu, 23 Mar 2023 11:03:16 -0500
+
 user-installed-packages (23.03.07) mx; urgency=medium
 
   * Adjust more translator comments 

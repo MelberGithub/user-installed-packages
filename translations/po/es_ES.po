@@ -2,32 +2,36 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the user-installed-packages package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Casper, 2023
+# Manuel <senpai99@hotmail.com>, 2023
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-23 02:45+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"PO-Revision-Date: 2023-03-20 13:51+0000\n"
+"Last-Translator: Manuel <senpai99@hotmail.com>, 2023\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/anticapitalista/teams/10162/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Date:"
-msgstr ""
+msgstr "Fecha:"
 
 #. TRANSLATORS:
 #. The hostname of the system.
 msgid "Host:"
-msgstr ""
+msgstr "Host:"
 
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -35,13 +39,13 @@ msgstr ""
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
 msgid "User Installed Packages"
-msgstr ""
+msgstr "Paquetes instalados por el usuario"
 
 msgid "Package name"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 msgid "List of user installed packages"
 msgstr ""
@@ -55,7 +59,9 @@ msgstr ""
 msgid "MX - User Installed Packages"
 msgstr ""
 
-msgid "This app is designed to make it easy to reinstall packages that the user has added to the default installation and retained."
+msgid ""
+"This app is designed to make it easy to reinstall packages that the user has"
+" added to the default installation and retained."
 msgstr ""
 
 msgid "It combines two steps:"
@@ -64,7 +70,9 @@ msgstr ""
 msgid "1) quickly and easily create a list of those packages"
 msgstr ""
 
-msgid "2) use that list in another location to review and reinstall those packages, if still available"
+msgid ""
+"2) use that list in another location to review and reinstall those packages,"
+" if still available"
 msgstr ""
 
 msgid "Create a list of user installed packages"
@@ -84,9 +92,11 @@ msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages installed by the user.
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
 msgid "Save List"
 msgstr ""
 
@@ -155,7 +165,8 @@ msgstr ""
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
-#. The selected file appears not to be a valid list of user installed packages (UIP).
+#. The selected file appears not to be a valid list of user installed packages
+#. (UIP).
 msgid "Not a valid UIP-list file:"
 msgstr ""
 
@@ -211,28 +222,4 @@ msgstr ""
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr ""
-
-msgid "MX User Installed Packages"
-msgstr ""
-
-msgid "About MX User Installed Packages"
-msgstr ""
-
-msgid "An app to list and re-install user installed packages."
-msgstr ""
-
-msgid "Changelog"
-msgstr ""
-
-msgid "MX User Installed Packages Changelog"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "License"
-msgstr ""
-
-msgid "MX User Installed Packages License"
 msgstr ""

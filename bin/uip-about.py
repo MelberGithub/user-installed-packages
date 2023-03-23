@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 The purpose of this program is to display the about-box for MX-Fluxbox.
-Copyright (C) 2020 MX Authors
+Copyright (C) 2023 MX Authors
 
 Authors: fehlix
          MX DevTeam <http://mxlinux.org>
@@ -31,26 +31,33 @@ from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QMessageBox, QPushButton
 import shutil
 
-gettext.bindtextdomain('user-installed-packages', '/usr/share/locale')
-gettext.textdomain('user-installed-packages')
-gettext.install('user-installed-packages')
-_ = gettext.gettext
-
 # system
-executable = sys.executable
-abspath_file = os.path.abspath(__file__)
+package_name    = 'user-installed-packages'
+executable      = sys.executable
+real_path       = os.path.realpath(__file__)
+exec_path       = real_path
+link_path       = f"{os.path.dirname(real_path)}/{package_name}"
+
+if os.path.islink(link_path) and os.path.realpath(link_path) == real_path:
+    exec_path = link_path
 
 # files
-changelog_file = "/usr/share/doc/user-installed-packages/changelog.gz"
-changelog_url  = "http://mxrepo.com/mx/repo/pool/main/m/user-installed-packages/current.{debian_codename}"
-license_file   = "/usr/share/doc/user-installed-packages/user-installed-packages.html"
-version_file   = "/etc/mxfb_version"
+license_file   = f"/usr/share/{package_name}/license.html"
+# changelog
+changelog_origin  = "MX repository"
+changelog_uri     = "https://mxrepo.com/mx/repo/pool/@CHANGEPATH@.changelog"
 
-# icons
-aboutBoxIcon = '/usr/share/pixmaps/user-installed-packages.png'
-windowIcon   = '/usr/share/pixmaps/user-installed-packages.png'
+# window icons and class
+class_name   = package_name
+aboutBoxIcon = f'/usr/share/icons/hicolor/64x64/apps/{package_name}.png'
+windowIcon   = f'/usr/share/icons/hicolor/32x32/apps/{package_name}.png'
 
 # translations
+gettext.bindtextdomain(package_name, '/usr/share/locale')
+gettext.textdomain(package_name)
+gettext.install(package_name)
+_ = gettext.gettext
+
 about               = _('MX User Installed Packages')
 aboutTitle          = _('About MX User Installed Packages')
 aboutText           = _('An app to list and re-install user installed packages.')
@@ -58,7 +65,7 @@ changelogButtonText = _('Changelog')
 changelogTitle      = _('MX User Installed Packages Changelog')
 closeButtonText     = _('Close')
 licenseButtonText   = _('License')
-licenseViewerTitle  = _('MX User Installed Packages license')
+licenseViewerTitle  = _('MX User Installed Packages License')
 
 # argv
 key_opts = ['-c', '--changelog', '-l', '--license' ]
@@ -72,24 +79,15 @@ if len(arg_opts) > 0:
         key_default = 'license'
 
 def About(aboutBox):
-    # read fluxbox version from file
-#    try:
-#        with open(version_file,"r") as f:
-#            version = f.read().strip()
-#    except FileNotFoundError:
-#        version = 'n/a'
-    # get packge version as release number
-    cmd = "dpkg-query -f ${Version} -W user-installed-packages"
-    release = run(cmd.split(),capture_output=True, text=True).stdout
-    if not release:
-        release = 'n/a'
+    # get package version
+    cmd = f"dpkg-query -f ${{Version}} -W {package_name}"
+    version = run(cmd.split(),capture_output=True, text=True).stdout
+    if not version:
+        version = 'n/a'
         
-#    <p align=center>Version: {version}</p>
-
     boxText = f'''
     <p align=center><b><h2>{about}</h2></b></p>
-
-    <p align=center>Release: {release}</p>
+    <p align=center>Version: {version}</p>
     <p align=center><h3>{aboutText}</h3></p>
     <p align=center><a href=https://mxlinux.org>https://mxlinux.org</a>
     <br></p><p align=center>Copyright (c) MX Linux<br /><br/></p>
@@ -125,7 +123,9 @@ def showLicence():
     licenseViewer = license_viewer()
     if not licenseViewer:
         return
-    if licenseViewer in ['mx-viewer', 'antix-viewer']:
+    if licenseViewer in ['/usr/bin/python3']:
+        cmd = [licenseViewer, '-m', 'webbrowser', '-n',  license_file]
+    elif licenseViewer in ['mx-viewer', 'antix-viewer']:
         cmd = [licenseViewer, license_file, licenseViewerTitle]
     elif licenseViewer in ['exo-open']:
         cmd = ['exo-open', '--launch', 'WebBrowser', license_file]
@@ -133,15 +133,17 @@ def showLicence():
         cmd = [licenseViewer, license_file]
 
     run(cmd)
-    cmd = [executable, abspath_file, '--license']
+
+    cmd = [executable, exec_path,  '--license']
     Popen(cmd)
     sys.exit(0)
 
 def showChangelog():
     from subprocess import Popen, check_call, run
     from subprocess import DEVNULL, PIPE, CalledProcessError
-    global changelog_file
-    global changelog_url
+
+    changelog_aptpref = "Acquire::Changelogs::URI::Origin"
+    changelog_option  = f"{changelog_aptpref}::{changelog_origin}={changelog_uri}"
 
     # display geometry
     cmd = ['xdotool', 'getdisplaygeometry']
@@ -153,6 +155,7 @@ def showChangelog():
     yad_filler = {
         'changelog_window_icon' : windowIcon,
         'changelog_title'       : changelogTitle,
+        'class_name'            : class_name,
         'close'                 : closeButtonText,
         'height'                : int(height),
         'width'                 : int(width),
@@ -162,6 +165,7 @@ def showChangelog():
           /usr/bin/yad
           --title={changelog_title}
           --window-icon={changelog_window_icon}
+          --class={class_name}
           --width={width}
           --height={height}
           --center
@@ -171,50 +175,26 @@ def showChangelog():
           --borders=5
           --text-info
         """
-    # subsitute placeholder with yad_filler
+    # substitute placeholder with yad_filler
     y = [ x.strip() for x in yad.strip().split('\n') ]
     yad = [ x.format(**yad_filler) for x in y ]
 
-    show = False
-    if not show:
-        # try local changelog file
-        try:
-            with open(changelog_file,"r"):
-                show = True
-        except FileNotFoundError as e:
-            changelog_file = ''
-        if show:
-            pipe1 = Popen(['zcat', changelog_file], stdout=PIPE)
-            pipe2 = Popen(yad, stdin=pipe1.stdout, stdout=PIPE, stderr=PIPE, text=True)
-            pipe1.stdout.close()
-            pipe2.communicate()[0]
+    pipe1 = Popen(['apt-get', '-qq', '-o', changelog_option, 'changelog', package_name],
+                  env={'PAGER':'cat'}, stdout=PIPE, stderr=subprocess.STDOUT,text=True)
+    pipe2 = Popen(yad, stdin=pipe1.stdout, stdout=PIPE, stderr=PIPE, text=True)
+    # if pipe2 exits before pipe1, send SIGPIPE to pipe1 to close
+    pipe1.stdout.close()
+    pipe2.communicate()[0]
 
-    if not show:
-        # try check with curl file exists on sever
-        changelog_url = changelog_url.format(debian_codename=debian_codename())
-        try:
-            cmd = f"curl --output /dev/null --silent --fail -r 0-0 {changelog_url}"
-            cmd = cmd.split()
-            check_call(cmd)
-            show = True
-        except CalledProcessError as e:
-            ret = e.returncode
-        if show:
-            cmd = ['curl', '--silent', changelog_url ]
-            pipe1 = Popen(cmd, stdout=PIPE, text=True)
-            pipe2 = Popen(yad, stdin=pipe1.stdout, stdout=PIPE, stderr=PIPE, text=True)
-            pipe1.stdout.close()
-            pipe2.communicate()[0]
-
-    if show:
-        cmd = [executable, abspath_file, '--changelog']
-        Popen(cmd)
-        sys.exit(0)
+    cmd = [executable, exec_path, '--changelog']
+    Popen(cmd)
+    sys.exit(0)
 
 def license_viewer():
     # list of viewers to check
-    viewer_list = ['mx-viewer', 'antix-viewer']
-
+    viewer_list  = []
+    viewer_list += ['mx-viewer', 'antix-viewer']
+    viewer_list += ['/usr/bin/python3']
     # xfce-handling
     if os.getenv('XDG_CURRENT_DESKTOP') == 'XFCE':
         viewer_list += ['exo-open']
@@ -234,11 +214,6 @@ def license_viewer():
     vl = viewer_list
     viewer = list(filter(lambda x: not v[0] and (f(0, which(x)), v[0])[1], vl))[0]
     return viewer
-
-def debian_codename():
-    cmd = "lsb_release -sc".split()
-    codename = run(cmd, capture_output=True, text=True).stdout.strip()
-    return codename
 
 def displayAbout():
     app = QApplication(sys.argv)

@@ -106,7 +106,15 @@ main() {
 #function uip_about
 
 uip_about() {
-python3 /usr/libexec/user-installed-packages/uip-about.py
+    # ugly hack: run uip-about.py as symlink in order to display icon in dock-like taskbar
+    local uip_about=/usr/libexec/user-installed-packages/uip-about.py
+    local uip_link=/usr/libexec/user-installed-packages/user-installed-packages
+    local real_path=$(realpath "$uip_about" 2>/dev/null)
+    
+    if [ -L "$uip_link" ] && [ x"$real_path" == x"$(realpath "$uip_link" 2>/dev/null)" ]; then
+       uip_about="$uip_link"
+    fi
+    python3 "$uip_about"
 }
 
 export -f uip_about
@@ -115,7 +123,14 @@ export -f uip_about
 #function uip_help
 
 uip_help() {
-mx-viewer /usr/share/doc/user-installed-packages/user-installed-packages.html
+    local uip_help="/usr/share/user-installed-packages/help/user-installed-packages.html"
+    [ -f "$uip_help" ] || return
+    
+    if command -v mx-viewer >/dev/null; then
+        mx-viewer "$uip_help"
+    else
+        python3 -m webbrowser -n "$uip_help"
+    fi
 }
 
 export -f uip_help
