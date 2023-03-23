@@ -1,17 +1,20 @@
 # Transifex resource user-installed-packages-mx translation completness >= 5%
-# generated with tx-complete-log at Tue, 21 Mar 2023 10:16:24 -0500
+# generated with tx-complete-log at Thu, 23 Mar 2023 05:52:15 -0500
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
-     1		  45	   100%    	ca      	ca	Catalan; Valencian
-     2		  45	   100%    	de      	de	German
-     3		  45	   100%    	es      	es	Spanish; Castilian
-     4		  45	   100%    	fi      	fi	Finnish
-     5		  45	   100%    	it      	it	Italian
-     6		  45	   100%    	ja      	ja	Japanese
-     7		  45	   100%    	nl      	nl	Dutch; Flemish
-     8		  45	   100%    	pt      	pt	Portuguese
-     9		  45	   100%    	pt_BR   	pt	Portuguese @ Brazil
-    10		  45	   100%    	sq      	sq	Albanian
-    11		  45	   100%    	sv      	sv	Swedish
-    12		  44	    97%    	nl_BE   	nl	Dutch; Flemish @ Belgium
-    13		   9	    20%    	lt      	lt	Lithuanian
+     1		  45	    84%    	ca      	ca	Catalan; Valencian
+     2		  45	    84%    	de      	de	German
+     3		  45	    84%    	es      	es	Spanish; Castilian
+     4		  45	    84%    	fi      	fi	Finnish
+     5		  45	    84%    	fr      	fr	French
+     6		  45	    84%    	fr_BE   	fr	French @ Belgium
+     7		  45	    84%    	it      	it	Italian
+     8		  45	    84%    	ja      	ja	Japanese
+     9		  45	    84%    	nl      	nl	Dutch; Flemish
+    10		  45	    84%    	pt      	pt	Portuguese
+    11		  45	    84%    	pt_BR   	pt	Portuguese @ Brazil
+    12		  45	    84%    	sq      	sq	Albanian
+    13		  45	    84%    	sv      	sv	Swedish
+    14		  44	    83%    	nl_BE   	nl	Dutch; Flemish @ Belgium
+    15		   9	    16%    	lt      	lt	Lithuanian
+    16		   5	     9%    	es_ES   	es	Spanish; Castilian @ Spain

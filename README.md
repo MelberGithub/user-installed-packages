@@ -8,8 +8,10 @@ It combines two steps:
 ![user-installed-packages](/pix/uip-main.png)
 
 
-build package with "debuild -uc -us"
+Build package with "debuild -uc -us"
 
-build and sign package with "debuild -si"
+Build and sign package with "debuild -si"
+
+Clean build  "debuild -- clean"
 
 Build prerequisit : meson version >= 1.0.0
