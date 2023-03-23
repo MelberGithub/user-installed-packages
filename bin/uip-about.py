@@ -84,7 +84,7 @@ def About(aboutBox):
     version = run(cmd.split(),capture_output=True, text=True).stdout
     if not version:
         version = 'n/a'
-        
+
     boxText = f'''
     <p align=center><b><h2>{about}</h2></b></p>
     <p align=center>Version: {version}</p>
@@ -102,6 +102,11 @@ def About(aboutBox):
     changelogButton = aboutBox.addButton((changelogButtonText), QMessageBox.ActionRole)
     licenseButton   = aboutBox.addButton((licenseButtonText)  , QMessageBox.ActionRole)
     closeButton     = aboutBox.addButton((closeButtonText)    , QMessageBox.RejectRole)
+
+    changelogButton.setIcon(QtGui.QIcon.fromTheme("view-history"))
+    licenseButton.setIcon(QtGui.QIcon.fromTheme("license"))
+    closeButton.setIcon(QtGui.QIcon.fromTheme("window-close"))
+
     aboutBox.setEscapeButton(closeButton)
     if key_default == 'changelog':
         aboutBox.setDefaultButton(changelogButton)
@@ -152,14 +157,17 @@ def showChangelog():
     height = int(H)*2/3
     width  = int(W)*3/5
 
+    closeButton = f"{closeButtonText}!window-close"
+
     yad_filler = {
         'changelog_window_icon' : windowIcon,
         'changelog_title'       : changelogTitle,
         'class_name'            : class_name,
-        'close'                 : closeButtonText,
+        'close'                 : closeButton,
         'height'                : int(height),
         'width'                 : int(width),
         }
+
 
     yad = """
           /usr/bin/yad

@@ -42,16 +42,16 @@ msgid "User Installed Packages"
 msgstr "Paquetes instalados por el usuario"
 
 msgid "Package name"
-msgstr ""
+msgstr "Nombre del paquete"
 
 msgid "Description"
 msgstr "Descripción"
 
 msgid "List of user installed packages"
-msgstr ""
+msgstr "Lista de paquetes instalados por el usuario"
 
 msgid "List of unavailable packages"
-msgstr ""
+msgstr "Lista de paquetes no disponibles"
 
 msgid "The following packages are not available or cannot be installed:"
 msgstr ""

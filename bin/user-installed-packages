@@ -10,6 +10,15 @@ export TEXTDOMAINDIR=/usr/share/locale
 export TEXTDOMAIN="user-installed-packages"
 source gettext.sh
 
+# buttons
+export BTN_ABOUT=$(gettext "About")  ; BTN_ABOUT+='!help-about'
+export BTN_CLOSE=$(gettext "Close")  ; BTN_CLOSE+='!window-close'
+export BTN_HELP=$(gettext "Help")    ; BTN_HELP+='!help-contents'
+export BTN_OK=$(gettext "OK")        ; BTN_OK+='!object-select'
+# TRANSLATORS:
+# The user clicks the "Save List" button to save the list of packages installed by the user.
+export BTN_SAVE=$(gettext 'Save List') ; BTN_SAVE+='!document-save'
+
 #define some gobals
 export UIP_ICON="/usr/share/pixmaps/user-installed-packages.png"
 export UIP_CLASS="user-installed-packages"
@@ -73,6 +82,7 @@ if (( ${#PKG_FILTER[*]} >= 1)); then
     FILTER_REXP="^(${FILTER_LIST// /|})"
     GREP_FILTER="| grep -vE '$FILTER_REXP' "
 fi
+
 export ARCH=$(dpkg --print-architecture)
 
 #MAIN WINDOW
@@ -87,17 +97,19 @@ main() {
 
     TEXT_MAIN="$TEXT_MAIN1\n\n$TEXT_MAIN2\n\n$TEXT_MAIN3\n$TEXT_MAIN4\n"
 
-    BUTTON1=$(gettext 'Create a list of user installed packages')
-    BUTTON2=$(gettext 'Open a previously saved list and install selected packages')
+    BUTTON_LIST=$(gettext 'Create a list of user installed packages')
+    BUTTON_LOAD=$(gettext 'Open a previously saved list and install selected packages')
 
     YAD=(yad
         --title="$TITLE_MAIN" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
         --borders=20 --center --width=600 --height=350
         --form --separator=" "
         --text="$TEXT_MAIN" --text-align=left
-        --button="gtk-about":"bash -c uip_about" --button="gtk-help":"bash -c uip_help" --button="gtk-close"
-        --field="$BUTTON1:FBTN" 'bash -c uip_list'
-        --field="$BUTTON2:FBTN" 'bash -c uip_load'
+        --button="${BTN_ABOUT}:bash -c uip_about"
+        --button="${BTN_HELP}:bash -c uip_help"
+        --button="${BTN_CLOSE}"
+        --field="${BUTTON_LIST}:FBTN" 'bash -c uip_list'
+        --field="${BUTTON_LOAD}:FBTN" 'bash -c uip_load'
         )
     "${YAD[@]}"   ## >/dev/null
 
@@ -110,7 +122,7 @@ uip_about() {
     local uip_about=/usr/libexec/user-installed-packages/uip-about.py
     local uip_link=/usr/libexec/user-installed-packages/user-installed-packages
     local real_path=$(realpath "$uip_about" 2>/dev/null)
-    
+
     if [ -L "$uip_link" ] && [ x"$real_path" == x"$(realpath "$uip_link" 2>/dev/null)" ]; then
        uip_about="$uip_link"
     fi
@@ -125,7 +137,7 @@ export -f uip_about
 uip_help() {
     local uip_help="/usr/share/user-installed-packages/help/user-installed-packages.html"
     [ -f "$uip_help" ] || return
-    
+
     if command -v mx-viewer >/dev/null; then
         mx-viewer "$uip_help"
     else
@@ -146,12 +158,12 @@ uip_list() {
     UIP=($(comm -23 \
        <( eval apt-mark showmanual "$GREP_FILTER" | sed 's/[[:space:]].*//' | sort -u) \
        <( { sed -r "s/[[:space:]].*//;
-                    s/:(all|any|$ARCH)//g;
+                    s/:(${ARCH}|all|any)//g;
                     " "$INSTALLED_PACKAGES";
            dpkg-query --showformat='${Depends}:${Architecture}\n' --show |
            sed -r "s/[[:space:]]*//g;
                    s/[(][^)]*[)]//g;
-                   s/:(all|any|$ARCH)//g;
+                   s/:(${ARCH}|all|any)//g;
                    s/[|,]/\n/g;
                    /^:/d; /^$/d";
           } | sort -u
@@ -183,12 +195,8 @@ uip_list() {
                     )
 
         TEXT_LIST="${TEXT_LIST/\%?/${UIP_COUNT}}"
-        # TRANSLATORS:
-        # The user clicks the "Save List" button to save the list of packages installed by the user.
-        BTN_SAVE=$(gettext 'Save List')
-        SAVE_OPTION="--button=$BTN_SAVE:3"
+        SAVE_OPTION="--button=${BTN_SAVE}:3"
     fi
-    BTN_CLOSE="gtk-close"
 
     # TRANSLATORS:
     # UIP = "User Installed Packages".
@@ -198,10 +206,11 @@ uip_list() {
     YAD=(yad
         --title="$TITLE_LIST" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
         --width=800 --height=600 --borders=20 --center
-        --text-info --fontname="Monospace 10"
+        --text-info
+        --fontname="mono"
         --text="<b>$TEXT_LIST</b>"
         "$SAVE_OPTION"
-        --button="$BTN_CLOSE"
+        --button="${BTN_CLOSE}"
         )
     "${YAD[@]}" <<<"$UIP_LIST"
     RET="$?"
@@ -261,8 +270,8 @@ Read_UIP_Load
         --text="$TEXT_INSTALL"
         --width=800 --height=600 --borders=20
         --center --text-align=left
-        --button="gtk-ok"
-        --button="gtk-close"
+        --button="${BTN_OK}"
+        --button="${BTN_CLOSE}"
         --checklist --list --no-headers --separator=" "
         --column=tick --column=package --column=description
         )
@@ -298,9 +307,9 @@ NotUsed
     UIP_INSTALL_UPGRADABLE=($(
         comm -12 <(printf '%s\n' "${UIP_INSTALL_AVAILABLE[@]}" |
                    sort -u) \
-                 <(LC_ALL=C apt list --upgradable 2>/dev/null |
+                 <(LC_ALL=C apt list -qq -o=Dpkg::Use-Pty=0 --upgradable 2>/dev/null |
                    cut -d ' ' -f1,3 |
-                   sed -r "/^Listing/d; s|/[^[:space:]]*[[:space:]]|:|; s/:(all|any|amd64)//" |
+                   sed -r "s|/[^[:space:]]*[[:space:]]|:|; s/:(${ARCH}|all|any)//" |
                    sort -u)
         ))
     # echo "#-------------------------"; declare -p UIP_INSTALL_UPGRADABLE
@@ -358,16 +367,15 @@ NotUsed
 
         TITLE_MISSING=$(gettext 'Missing Packages')
          TEXT_MISSING=$(gettext 'The following packages are not available or cannot be installed:')
-        TEXT_BTN_SAVE=$(gettext 'Save List')
-        BTN_CLOSE="gtk-close"
 
         YAD=(yad
             --title="$TITLE_MISSING" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
             --width=800 --height=600 --borders=20 --center
-            --text-info --fontname="Monospace 10"
+            --text-info
+            --fontname="mono"
             --text="<b>$TEXT_MISSING</b>"
-            --button="$TEXT_BTN_SAVE":3
-            --button="$BTN_CLOSE"
+            --button="${BTN_SAVE}":3
+            --button="${BTN_CLOSE}"
             )
         "${YAD[@]}" <<<"${UIP_DATA}"
         RET="$?"

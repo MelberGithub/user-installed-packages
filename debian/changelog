@@ -1,3 +1,12 @@
+user-installed-packages (23.03.09) mx; urgency=medium
+
+  * Replace yad gtk-label with translated label text
+  * Replace yad gtk-icons with icons from theme
+  * Add theme icons to buttons within the about popup window
+  * Add file-link to local GPL-3 license file within the license view
+
+ -- fehlix <fehlix@mxlinux.org>  Thu, 23 Mar 2023 17:22:48 -0500
+
 user-installed-packages (23.03.08) mx; urgency=medium
 
   [melber]
