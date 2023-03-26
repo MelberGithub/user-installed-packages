@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# anticapitalista <anticapitalista@riseup.net>, 2023
 # Albertus Perkamentus, 2023
+# anticapitalista <anticapitalista@riseup.net>, 2023
 # Eadwine Rose, 2023
 # 
 #, fuzzy
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Eadwine Rose, 2023\n"
 "Language-Team: Dutch (https://www.transifex.com/anticapitalista/teams/10162/nl/)\n"
@@ -22,6 +22,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Help"
+msgstr "Hulp"
+
+msgid "OK"
+msgstr "OK"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Lijst Opslaan"
 
 msgid "Date:"
 msgstr "Datum:"
@@ -101,12 +119,6 @@ msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
 msgstr[0] "U heeft 1 pakket geïnstalleerd:"
 msgstr[1] "U heeft %d pakketten geïnstalleerd:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Lijst Opslaan"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -235,3 +247,26 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;package;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Gebruiker Geïnstalleerde Pakketten"
+
+msgid "About MX User Installed Packages"
+msgstr "Over MX Gebruiker Geïnstalleerde Pakketten"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Een app om door de gebruiker geïnstalleerde pakketten op te sommen en "
+"opnieuw te installeren."
+
+msgid "Changelog"
+msgstr "Changelog"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX Gebruiker Geïnstalleerde Pakketten Changelog"
+
+msgid "License"
+msgstr "Licentie"
+
+msgid "MX User Installed Packages License"
+msgstr "MX Gebruiker Geïnstalleerde Pakketten Licentie"

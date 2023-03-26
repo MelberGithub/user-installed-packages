@@ -4,8 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# En Kerro <inactive+ekeimaja@transifex.com>, 2023
 # asd asd <ekeimaja@gmail.com>, 2023
+# James Bowlin <BitJam@gmail.com>, 2023
+# En Kerro <inactive+ekeimaja@transifex.com>, 2023
 # Risto Pärkkä, 2023
 # 
 #, fuzzy
@@ -13,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Risto Pärkkä, 2023\n"
 "Language-Team: Finnish (https://www.transifex.com/anticapitalista/teams/10162/fi/)\n"
@@ -22,6 +23,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About"
+msgstr "Tietoja"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Help"
+msgstr "Ohje"
+
+msgid "OK"
+msgstr "OK"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Tallenna Lista"
 
 msgid "Date:"
 msgstr "Päivämäärä:"
@@ -98,12 +117,6 @@ msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
 msgstr[0] "Olet asentanut %d pakettia:"
 msgstr[1] "Olet asentanut %d pakettia:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Tallenna Lista"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -230,3 +243,25 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;package;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Käyttäjän asentamat Paketit"
+
+msgid "About MX User Installed Packages"
+msgstr "Tietoja MX -käyttäjän asennetuista paketeista"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Sovellus, joka listaa ja uudelleen asentaa käyttäjän asentamat paketit. "
+
+msgid "Changelog"
+msgstr "Muutosloki"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX Käyttäjän asentamien pakettien muutosluettelo"
+
+msgid "License"
+msgstr "Lisenssi"
+
+msgid "MX User Installed Packages License"
+msgstr "MX Käyttäjän asentamien pakettien lisenssi"

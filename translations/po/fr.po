@@ -5,6 +5,9 @@
 # 
 # Translators:
 # anticapitalista <anticapitalista@riseup.net>, 2023
+# Geoff Gigg <geoffgigg@hotmail.com>, 2023
+# Emmanuel Brun <brun.manu@gmail.com>, 2023
+# cyril cottet <cyrilusber2001@yahoo.fr>, 2023
 # Wallon Wallon, 2023
 # 
 #, fuzzy
@@ -12,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Wallon Wallon, 2023\n"
 "Language-Team: French (https://www.transifex.com/anticapitalista/teams/10162/fr/)\n"
@@ -21,6 +24,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "About"
+msgstr "A propos"
+
+msgid "Close"
+msgstr "Quitter"
+
+msgid "Help"
+msgstr "Aide"
+
+msgid "OK"
+msgstr "Valider"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Enregistrer la liste"
 
 msgid "Date:"
 msgstr "Date :"
@@ -104,12 +125,6 @@ msgstr[1] "Vous avez installé %d paquets :"
 msgstr[2] "Vous avez installé %d paquets :"
 
 #. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Enregistrer la liste"
-
-#. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
@@ -142,7 +157,7 @@ msgid "UIP list of missing packages could not be saved."
 msgstr "La liste UIP des paquets manquants n'a pas pu être enregistrée."
 
 msgid "Press Enter to exit"
-msgstr "Appuyez sur « Enter » pour quitter"
+msgstr "Appuyez sur Enter pour quitter"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -236,3 +251,26 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;paquet;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Paquets installés par l'utilisateur - MX User Installed Packages"
+
+msgid "About MX User Installed Packages"
+msgstr "A propos de MX User Installed Packages"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Une application pour lister et réinstaller les paquets installés par "
+"l'utilisateur."
+
+msgid "Changelog"
+msgstr "Journal des modifications"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX Journal des modifications des paquets installés par l'utilisateur"
+
+msgid "License"
+msgstr "Licence"
+
+msgid "MX User Installed Packages License"
+msgstr "MX Licence pour User Installed Packages"

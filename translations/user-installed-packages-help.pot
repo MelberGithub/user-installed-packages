@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages-help package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages-help\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-26 22:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "User Installed Packages Help"
+msgstr ""
+
+msgid "This application is intended to facilitate the reinstallation of packages that the user has added to the default installation."
+msgstr ""
+
+msgid "It can display a list of packages manually installed by the user. This list can be saved in a simple text file."
+msgstr ""
+
+msgid "Furthermore, the application allows to load a saved list of packages. The loaded package list is displayed for selection. The user can now select which packages to install."
+msgstr ""
+
+msgid "Especially after a new installation of the system, it is easy to select the desired packages for installation from an existing list of user-installed packages."
+msgstr ""
+
+msgid "There are two options to choose from:"
+msgstr ""
+
+msgid "quickly and easily create a list of those packages"
+msgstr ""
+
+msgid "use that list in another location to review and reinstall those packages, if still available"
+msgstr ""
+
+msgid "Create a list of user installed packages"
+msgstr ""
+
+msgid "A list of user installed packages is displayed."
+msgstr ""
+
+msgid "Note: Packages of installed Linux kernels or NVIDIA graphics driver will not be listed."
+msgstr ""
+
+msgid "Press [Save List] and select the location to save the package list."
+msgstr ""
+
+msgid "Open a previously saved list to install selected packages"
+msgstr ""
+
+msgid "Select the package list you wish to install."
+msgstr ""
+
+msgid "The package list will be displayed."
+msgstr ""
+
+msgid "Uncheck any packages in the list you do not wish to install."
+msgstr ""
+
+msgid "A notification is provided for any missing packages."
+msgstr ""
+
+msgid "Press [OK] and the selected packages will be installed if still available."
+msgstr ""
+
+msgid "Unavailable packages will be listed"
+msgstr ""
+
+msgid "Packages unavaible or cannot be installed will be listed."
+msgstr ""
+
+msgid "Press [Save List] and select location to save the list of missing packages."
+msgstr ""
+
+msgid "Packages available with be installed"
+msgstr ""
+
+msgid "The installation process is started within a new terminal window."
+msgstr ""
+
+msgid "Authentication to perform installtion is required."
+msgstr ""
+
+msgid "Confirmation to perform the installtion is requested. Press [N] to cancel installtion."
+msgstr ""
+
+msgid "To close the terminal window after the installtion process finshed press [Enter]."
+msgstr ""
+
+msgid "Version:"
+msgstr ""
+
+msgid "Last updated:"
+msgstr ""

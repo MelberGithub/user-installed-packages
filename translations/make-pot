@@ -56,7 +56,7 @@ xgettext --package-name=$PKGNAME --language Python --join-existing \
 sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
 
 if [ -f $POT~ ]; then
-    POT_CHANGE=$(diff user-installed-packages.pot user-installed-packages.pot~ | grep -vE '^([0-9]|-)|POT-Creation-Date:' | wc -l)
+    POT_CHANGE=$(diff ${POT} ${POT}~ | grep -vE '^([0-9]|-)|POT-Creation-Date:' | wc -l)
     if (( POT_CHANGE == 0 )); then
        echo "No change in POT-file: $POT"
        echo "Keeping existing POT-file"

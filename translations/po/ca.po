@@ -4,6 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
+# anticapitalista <anticapitalista@riseup.net>, 2023
 # Eduard Selma <selma@tinet.cat>, 2023
 # 
 #, fuzzy
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Eduard Selma <selma@tinet.cat>, 2023\n"
 "Language-Team: Catalan (https://www.transifex.com/anticapitalista/teams/10162/ca/)\n"
@@ -20,6 +21,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About"
+msgstr "Quant a "
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Help"
+msgstr "Ajuda "
+
+msgid "OK"
+msgstr "D'acord"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Desa la llista"
 
 msgid "Date:"
 msgstr "Data:"
@@ -96,12 +115,6 @@ msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
 msgstr[0] "Heu instal·lat 1 paquet:"
 msgstr[1] "Heu instal·lat %d paquets:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Desa la llista"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -227,3 +240,25 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;package;uip;paquet;"
+
+msgid "MX User Installed Packages"
+msgstr "MX User Installed Packages"
+
+msgid "About MX User Installed Packages"
+msgstr "Quant a MX User Installed Packages"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Una aplicació per llistar i reinstal·lar paquets instal·lats per l'usuari."
+
+msgid "Changelog"
+msgstr "Registre de canvis"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "Registre de canvis de MX User Installed Packages"
+
+msgid "License"
+msgstr "Llicència"
+
+msgid "MX User Installed Packages License"
+msgstr "Llicència de MX User Installed Packages"

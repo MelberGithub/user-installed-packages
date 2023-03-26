@@ -1,20 +1,54 @@
 # Transifex resource user-installed-packages-mx translation completness >= 5%
-# generated with tx-complete-log at Thu, 23 Mar 2023 17:34:40 -0500
+# generated with tx-complete-log at Sun, 26 Mar 2023 16:49:05 -0500
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
-     1		  45	    80%    	ca      	ca	Catalan; Valencian
-     2		  45	    80%    	de      	de	German
-     3		  45	    80%    	es      	es	Spanish; Castilian
-     4		  45	    80%    	fi      	fi	Finnish
-     5		  45	    80%    	fr      	fr	French
-     6		  45	    80%    	fr_BE   	fr	French @ Belgium
-     7		  45	    80%    	it      	it	Italian
-     8		  45	    80%    	ja      	ja	Japanese
-     9		  45	    80%    	nl      	nl	Dutch; Flemish
-    10		  45	    80%    	pt      	pt	Portuguese
-    11		  45	    80%    	pt_BR   	pt	Portuguese @ Brazil
-    12		  45	    80%    	sq      	sq	Albanian
-    13		  45	    80%    	sv      	sv	Swedish
-    14		  44	    78%    	nl_BE   	nl	Dutch; Flemish @ Belgium
-    15		   9	    16%    	lt      	lt	Lithuanian
-    16		   8	    14%    	es_ES   	es	Spanish; Castilian @ Spain
+     1		  56	   100%    	ca      	ca	Catalan; Valencian
+     2		  56	   100%    	de      	de	German
+     3		  56	   100%    	es      	es	Spanish; Castilian
+     4		  56	   100%    	es_ES   	es	Spanish; Castilian @ Spain
+     5		  56	   100%    	fi      	fi	Finnish
+     6		  56	   100%    	fr      	fr	French
+     7		  56	   100%    	fr_BE   	fr	French @ Belgium
+     8		  56	   100%    	it      	it	Italian
+     9		  56	   100%    	ja      	ja	Japanese
+    10		  56	   100%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
+    11		  56	   100%    	nl      	nl	Dutch; Flemish
+    12		  56	   100%    	pt_BR   	pt	Portuguese @ Brazil
+    13		  56	   100%    	sq      	sq	Albanian
+    14		  56	   100%    	sv      	sv	Swedish
+    15		  51	    91%    	pt      	pt	Portuguese
+    16		  50	    89%    	nl_BE   	nl	Dutch; Flemish @ Belgium
+    17		  15	    26%    	lt      	lt	Lithuanian
+    18		   8	    14%    	cs      	cs	Czech
+    19		   8	    14%    	da      	da	Danish
+    20		   8	    14%    	el      	el	Greek, Modern (1453-)
+    21		   8	    14%    	gl_ES   	gl	Galician @ Spain
+    22		   8	    14%    	he_IL   	he	Hebrew @ Israel
+    23		   8	    14%    	hu      	hu	Hungarian
+    24		   8	    14%    	ru      	ru	Russian
+    25		   8	    14%    	sl      	sl	Slovenian
+    26		   8	    14%    	tr      	tr	Turkish
+    27		   7	    12%    	hi      	hi	Hindi
+    28		   7	    12%    	pl      	pl	Polish
+    29		   7	    12%    	ro      	ro	Romanian; Moldavian; Moldovan
+    30		   7	    12%    	th      	th	Thai
+    31		   7	    12%    	uk      	uk	Ukrainian
+    32		   7	    12%    	zh_CN   	zh	Chinese @ China
+    33		   7	    12%    	zh_TW   	zh	Chinese @ Taiwan, Province of China
+    34		   6	    10%    	am      	am	Amharic
+    35		   6	    10%    	bg      	bg	Bulgarian
+    36		   6	    10%    	fil_PH  		Filipino @ Philippines
+    37		   6	    10%    	is      	is	Icelandic
+    38		   6	    10%    	sk      	sk	Slovak
+    39		   6	    10%    	vi      	vi	Vietnamese
+    40		   5	     8%    	ar      	ar	Arabic
+    41		   5	     8%    	fa      	fa	Persian
+    42		   5	     8%    	hr      	hr	Croatian
+    43		   5	     8%    	id      	id	Indonesian
+    44		   5	     8%    	kk      	kk	Kazakh
+    45		   4	     7%    	mr      	mr	Marathi
+    46		   4	     7%    	zh_HK   	zh	Chinese @ Hong Kong
+    47		   3	     5%    	et      	et	Estonian
+    48		   3	     5%    	ko      	ko	Korean
+    49		   3	     5%    	nb_NO   	nb	Bokmål, Norwegian; Norwegian Bokmål @ Norway
+    50		   3	     5%    	sr      	sr	Serbian

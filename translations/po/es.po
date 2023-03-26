@@ -5,22 +5,44 @@
 # 
 # Translators:
 # anticapitalista <anticapitalista@riseup.net>, 2023
+# German Lancheros <glancheros2015@gmail.com>, 2023
+# Richard  Holt <richard.holt@gmail.com>, 2023
+# Geoff Gigg <geoffgigg@hotmail.com>, 2023
 # Amigo, 2023
+# Manuel <senpai99@hotmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
-"Last-Translator: Amigo, 2023\n"
+"Last-Translator: Manuel <senpai99@hotmail.com>, 2023\n"
 "Language-Team: Spanish (https://www.transifex.com/anticapitalista/teams/10162/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Help"
+msgstr "Ayuda"
+
+msgid "OK"
+msgstr "Correcto"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Guardar lista"
 
 msgid "Date:"
 msgstr "Fecha:"
@@ -100,12 +122,6 @@ msgstr[1] "Tienes %d paquetes instalados:"
 msgstr[2] "Tienes %d paquetes instalados:"
 
 #. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Guardar lista"
-
-#. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
@@ -127,7 +143,7 @@ msgstr "Paquetes faltantes"
 #. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
-msgstr "[OK] Lista de UIP de paquetes faltantes guardada:"
+msgstr "[OK] Lista UIP de paquetes faltantes guardada:"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -230,3 +246,26 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;instalar;paquete;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Paquetes instalados por el usuario"
+
+msgid "About MX User Installed Packages"
+msgstr "Acerca de MX Paquetes instalados por el usuario"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Una aplicación para enlistar y reinstalar paquetes instalados por el "
+"usuario."
+
+msgid "Changelog"
+msgstr "Registro de cambios"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX Registro de cambios de paquetes instalados por el usuario"
+
+msgid "License"
+msgstr "Licencia"
+
+msgid "MX User Installed Packages License"
+msgstr "Licencia de MX Paquetes instalados por el usuario"
