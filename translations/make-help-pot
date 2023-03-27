@@ -1,0 +1,36 @@
+#!/bin/bash
+
+unset PKGHELP
+source ./make-help-help
+[ -n "$PKGHELP" ] || exit
+POT=${PKGHELP}.pot
+[ -f $POT ] && mv $POT $POT~
+touch $POT
+
+xgettext --package-name=${PKGHELP} --verbose --join-existing \
+         --language Shell  --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap \
+          --add-comments=TRANSLATORS  \
+          --output=$POT - <<<$GETTEXT
+
+if [ -n "$METATITLE" ]; then
+	MSGID_METATITLE='msgid "'"$METATITLE"'"'
+	if ! grep -q "$MSGID_METATITLE" "$POT"; then
+		printf '\nmsgid "%s"\nmsgstr ""\n\n' "$METATITLE" >> "$POT"
+	fi
+fi
+
+sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
+
+if [ -f $POT~ ]; then
+    POT_CHANGE=$(diff $POT $POT~ | grep -vE '^([0-9]|-)|POT-Creation-Date:' | wc -l)
+    if (( POT_CHANGE == 0 )); then
+       echo "No change in POT-file: $POT"
+       echo "Keeping existing POT-file"
+       mv $POT~ $POT
+    else
+       echo "New POT-file generated:  $POT"
+       #mv $POT~ $POT.$(date '+%y%m%d-%H%M%S').bak
+       rm $POT~
+    fi
+fi

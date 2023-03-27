@@ -4,23 +4,45 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
+# fehlix, 2023
+# night1ynx <night1ynxd@gmail.com>, 2023
 # 🎈 BALLOON | FU-SEN, 2023
-# Green, 2023
+# Geoff Gigg <geoffgigg@hotmail.com>, 2023
+# James Bowlin <BitJam@gmail.com>, 2023
+# Green <usergreen@users.osdn.me>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
-"Last-Translator: Green, 2023\n"
+"Last-Translator: Green <usergreen@users.osdn.me>, 2023\n"
 "Language-Team: Japanese (https://www.transifex.com/anticapitalista/teams/10162/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "About"
+msgstr "概要"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Help"
+msgstr "ヘルプ"
+
+msgid "OK"
+msgstr "OK"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "リストの保存"
 
 msgid "Date:"
 msgstr "日付："
@@ -93,12 +115,6 @@ msgid_plural "You have installed %d packages:"
 msgstr[0] "%d 個のパッケージをインストールしています。"
 
 #. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "リストの保存"
-
-#. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
@@ -135,7 +151,7 @@ msgstr "Enter キーを押して終了"
 #. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
-msgstr "UIP を保存するファイルを選択"
+msgstr "ファイルを保存する場所を選択"
 
 msgid "File exists. Overwrite?"
 msgstr "ファイルが存在します。上書きしますか？"
@@ -144,7 +160,7 @@ msgstr "ファイルが存在します。上書きしますか？"
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
-msgstr "[OK] リストを保存しました"
+msgstr "[OK] UIP リストを保存しました"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -220,4 +236,25 @@ msgstr "ユーザーがインストールしたパッケージのリストを表
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "APT;インストール;パッケージ;ユーザーインストールパッケージ;"
+msgstr "apt;APT;uip;インストール;パッケージ;ユーザーインストールパッケージ;"
+
+msgid "MX User Installed Packages"
+msgstr "MX ユーザーインストールパッケージ (UIP)"
+
+msgid "About MX User Installed Packages"
+msgstr "MX ユーザーインストールパッケージについて"
+
+msgid "An app to list and re-install user installed packages."
+msgstr "ユーザーがインストールしたパッケージの一覧を表示したりその再インストールを行います。"
+
+msgid "Changelog"
+msgstr "更新履歴"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX ユーザーインストールパッケージの変更履歴"
+
+msgid "License"
+msgstr "ライセンス"
+
+msgid "MX User Installed Packages License"
+msgstr "MX ユーザーインストールパッケージのライセンス"

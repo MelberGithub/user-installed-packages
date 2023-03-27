@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
+"PO-Revision-Date: 2023-03-20 13:51+0000\n"
+"Last-Translator: Manuel <senpai99@hotmail.com>, 2023\n"
+"Language-Team: Spanish (https://www.transifex.com/anticapitalista/teams/10162/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "This app is designed to make it easy to reinstall packages that the user has added to the default installation and retained."
+msgstr "Esta aplicacion esta disenada para facilitar la reinstalacion de paquetes que el usuario ha anadido a la instalacion por defecto y ha conservado."
+
+msgid "quickly and easily create a list of those packages"
+msgstr "crear rapida y facilmente una lista de esos paquetes"
+
+msgid "use that list in another location to review and reinstall those packages, if still available"
+msgstr "usar esa lista en otro lugar para revisar y reinstalar esos paquetes, si todavia estan disponibles"
+
+msgid "A list of user installed packages is displayed."
+msgstr "Se muestra una lista de los paquetes instalados por el usuario."
+
+msgid "Note: Packages of installed Linux kernels or NVIDIA graphics driver will not be listed."
+msgstr "Nota: Los paquetes de kernels Linux instalados o el driver grafico NVIDIA no seran listados."
+
+msgid "Press [Save List] and select the location to save the package list."
+msgstr "Pulse [Save List] y seleccione la ubicacion para guardar la lista de paquetes."
+
+msgid "Select the package list you wish to install."
+msgstr "Seleccione la lista de paquetes que desea instalar."
+
+msgid "The package list will be displayed."
+msgstr "La lista de paquetes sera mostrada."
+
+msgid "Uncheck any packages in the list you do not wish to install."
+msgstr "Desmarque los paquetes de la lista que no desea instalar."
+
+msgid "A notification is provided for any missing packages."
+msgstr "Se provee una notificacion para cualquier paquete faltante."
+
+msgid "Press [OK] and the selected packages will be installed if still available."
+msgstr "Presione [OK] y los paquetes seleccionados seran instalados si todavia estan disponibles."
+
+msgid "Packages unavaible or cannot be installed will be listed."
+msgstr "Los paquetes no disponibles o que no se pueden instalar seran listados."
+
+msgid "Press [Save List] and select location to save the list of missing packages."
+msgstr "Presione [Save List] y seleccione la ubicacion para guardar la lista de paquetes faltantes."
+
+msgid "The installation process is started within a new terminal window."
+msgstr "El proceso de instalacion se inicia dentro de una nueva ventana de terminal."
+
+msgid "Authentication to perform installtion is required."
+msgstr "Se requiere autenticacion para realizar la instalacion."
+
+msgid "Confirmation to perform the installtion is requested. Press [N] to cancel installtion."
+msgstr "Se requiere confirmacion para realizar la instalacion. Presione [N] para cancelar la instalacion."
+
+msgid "To close the terminal window after the installtion process finshed press [Enter]."
+msgstr "Para cerrar la ventana de la terminal despues de que el proceso de instalacion termine presione [Enter]."
+
+msgid "Version:"
+msgstr "Version:"
+
+msgid "Last updated:"
+msgstr "Ultima actualizacion:"
+
+msgid "User Installed Packages Help"
+msgstr "Ayuda de Paquetes Instalados por el Usuario"
+
+msgid "Create a list of user installed packages"
+msgstr "Crear una lista de paquetes instalados por el usuario"
+
+msgid "Open a previously saved list to install selected packages"
+msgstr "Abrir una lista previamente guardada para instalar los paquetes seleccionados"
+
+msgid "Unavailable packages will be listed"
+msgstr "Los paquetes no disponibles seran listados"
+
+msgid "Packages available with be installed"
+msgstr "Paquetes disponibles con ser instalados"
+
+msgid "This application is intended to facilitate the reinstallation of packages that the user has added to the default installation."
+msgstr "Esta aplicacion esta pensada para facilitar la reinstalacion de paquetes que el usuario ha anadido a la instalacion por defecto."
+
+msgid "It can display a list of packages manually installed by the user. This list can be saved in a simple text file."
+msgstr "Puede mostrar una lista de paquetes instalados manualmente por el usuario. Esta lista puede ser guardada en un simple archivo de texto."
+
+msgid "Furthermore, the application allows to load a saved list of packages. The loaded package list is displayed for selection. The user can now select which packages to install."
+msgstr "Ademas, la aplicacion permite cargar una lista de paquetes guardada. La lista de paquetes cargada se muestra para su seleccion. El usuario puede ahora seleccionar que paquetes instalar."
+
+msgid "Especially after a new installation of the system, it is easy to select the desired packages for installation from an existing list of user-installed packages."
+msgstr "Especialmente despues de una nueva instalacion del sistema, es facil seleccionar los paquetes deseados para su instalacion desde una lista existente de paquetes instalados por el usuario."
+
+msgid "There are two options to choose from:"
+msgstr "Hay dos opciones para elegir:"

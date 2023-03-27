@@ -4,6 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
+# James Bowlin <BitJam@gmail.com>, 2023
 # Moo, 2023
 # 
 #, fuzzy
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Moo, 2023\n"
 "Language-Team: Lithuanian (https://www.transifex.com/anticapitalista/teams/10162/lt/)\n"
@@ -20,6 +21,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+msgid "About"
+msgstr "Apie"
+
+msgid "Close"
+msgstr "Užverti"
+
+msgid "Help"
+msgstr "Žinynas"
+
+msgid "OK"
+msgstr "Gerai"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Įrašyti sąrašą"
 
 msgid "Date:"
 msgstr "Data:"
@@ -93,12 +112,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Įrašyti sąrašą"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -222,4 +235,25 @@ msgstr ""
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
+msgstr ""
+
+msgid "MX User Installed Packages"
+msgstr ""
+
+msgid "About MX User Installed Packages"
+msgstr ""
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+
+msgid "Changelog"
+msgstr "Keitinių žurnalas"
+
+msgid "MX User Installed Packages Changelog"
+msgstr ""
+
+msgid "License"
+msgstr "Licencija"
+
+msgid "MX User Installed Packages License"
 msgstr ""

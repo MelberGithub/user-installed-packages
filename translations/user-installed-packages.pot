@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-23 19:03+0100\n"
+"POT-Creation-Date: 2023-03-27 00:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,6 +133,9 @@ msgid "UIP list of missing packages could not be saved."
 msgstr ""
 
 msgid "Press Enter to exit"
+msgstr ""
+
+msgid "Installing selected packages please authenticate"
 msgstr ""
 
 #. TRANSLATORS:

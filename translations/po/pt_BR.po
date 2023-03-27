@@ -5,6 +5,8 @@
 # 
 # Translators:
 # anticapitalista <anticapitalista@riseup.net>, 2023
+# Guilherme Peev dos Santos <guilherme.peev@gmail.com>, 2023
+# Danylo Sa <kaiserblast@gmail.com>, 2023
 # marcelo cripe <marcelocripe@gmail.com>, 2023
 # 
 #, fuzzy
@@ -12,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: marcelo cripe <marcelocripe@gmail.com>, 2023\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/anticapitalista/teams/10162/pt_BR/)\n"
@@ -21,6 +23,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Close"
+msgstr "Fechar "
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "OK"
+msgstr "OK"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Salvar a Lista"
 
 msgid "Date:"
 msgstr "Data:"
@@ -58,7 +78,7 @@ msgstr ""
 "Os seguintes pacotes não estão disponíveis e não podem ser instalados:"
 
 msgid "MX - User Installed Packages"
-msgstr "Pacotes do MX Instalados pelo Usuário"
+msgstr "Pacotes Instalados pelo Usuário no MX"
 
 msgid ""
 "This app is designed to make it easy to reinstall packages that the user has"
@@ -100,12 +120,6 @@ msgid_plural "You have installed %d packages:"
 msgstr[0] "Você instalou %d pacote:"
 msgstr[1] "Você instalou %d pacotes:"
 msgstr[2] "Você instalou %d pacotes:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Salvar a Lista"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -240,3 +254,27 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;instalar;instalação;pacote;aplicativo;aplicação;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "Pacotes Instalados pelo Usuário no MX"
+
+msgid "About MX User Installed Packages"
+msgstr "Sobre o programa Pacotes Instalados pelo Usuário no MX"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"É um aplicativo que serve para listar e reinstalar os pacotes instalados "
+"pelo usuário."
+
+msgid "Changelog"
+msgstr "Relatório de alterações"
+
+msgid "MX User Installed Packages Changelog"
+msgstr ""
+"Registro das alterações do programa Pacotes Instalados pelo Usuário no MX"
+
+msgid "License"
+msgstr "Licença"
+
+msgid "MX User Installed Packages License"
+msgstr "Licença do programa Pacotes Instalados pelo Usuário no MX"

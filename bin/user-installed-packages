@@ -6,8 +6,9 @@
 #Version: @VERSION@
 
 #set up translation
+export PACKAGE_NAME="user-installed-packages"
 export TEXTDOMAINDIR=/usr/share/locale
-export TEXTDOMAIN="user-installed-packages"
+export TEXTDOMAIN=${PACKAGE_NAME}
 source gettext.sh
 
 # buttons
@@ -15,6 +16,8 @@ export BTN_ABOUT=$(gettext "About")  ; BTN_ABOUT+='!help-about'
 export BTN_CLOSE=$(gettext "Close")  ; BTN_CLOSE+='!window-close'
 export BTN_HELP=$(gettext "Help")    ; BTN_HELP+='!help-contents'
 export BTN_OK=$(gettext "OK")        ; BTN_OK+='!object-select'
+
+
 # TRANSLATORS:
 # The user clicks the "Save List" button to save the list of packages installed by the user.
 export BTN_SAVE=$(gettext 'Save List') ; BTN_SAVE+='!document-save'
@@ -25,8 +28,7 @@ export UIP_CLASS="user-installed-packages"
 
 export INSTALLED_PACKAGES="/usr/share/antiX/installed-packages.txt"
 if [ ! -f $INSTALLED_PACKAGES ]; then
-    echo "[EXIT]: File not found '$INSTALLED_PACKAGES'"
-    exit 1
+    echo "[WARN]: File not found '$INSTALLED_PACKAGES'"
 fi
 
 MSG_DATE=$(gettext 'Date:')
@@ -135,7 +137,20 @@ export -f uip_about
 #function uip_help
 
 uip_help() {
-    local uip_help="/usr/share/user-installed-packages/help/user-installed-packages.html"
+    local dir="/usr/share/user-installed-packages"
+    local help="help.html"
+    #local uip_help="/usr/share/user-installed-packages/help.html"
+    local uip_help="$dir/$help"
+    local language="${LANGUAGE//:/ } "
+    language+="${LC_ALL%%.*} ${LC_ALL%%_*} " 
+    language+="${LC_MESSAGES%%.*} ${LC_MESSAGES%%_*} "
+    language+="${LANG%%.*} ${LANG%%_*}"
+    for lang in ${language}; do
+        if [ -f "$dir/$lang/$help" ]; then
+            uip_help="$dir/$lang/$help"
+            break
+        fi
+    done
     [ -f "$uip_help" ] || return
 
     if command -v mx-viewer >/dev/null; then
@@ -159,7 +174,7 @@ uip_list() {
        <( eval apt-mark showmanual "$GREP_FILTER" | sed 's/[[:space:]].*//' | sort -u) \
        <( { sed -r "s/[[:space:]].*//;
                     s/:(${ARCH}|all|any)//g;
-                    " "$INSTALLED_PACKAGES";
+                    " "$INSTALLED_PACKAGES" 2>/dev/null;
            dpkg-query --showformat='${Depends}:${Architecture}\n' --show |
            sed -r "s/[[:space:]]*//g;
                    s/[(][^)]*[)]//g;
@@ -346,6 +361,7 @@ NotUsed
         UIP_UNAVAILABLE_HEADER+=$'\n'
         UIP_UNAVAILABLE_HEADER+=$(printf "%-${PKG_WIDTH}s %s\n" "# $PKG_NAME" "$PKG_DESC")
         UIP_UNAVAILABLE_HEADER+=$'\n'
+        UIP_UNAVAILABLE_HEADER+=$'\n'
 
         UIP_MISSING=$(
                     for pkg in "${UIP_NOT_AVAILABLE[@]}" ; do
@@ -384,10 +400,6 @@ NotUsed
             PKG_WIDTH=$(printf '%s\n' "${UIP_NOT_AVAILABLE[@]}" "$PKG_NAME" | wc -L)
             PKG_WIDTH=$(( PKG_WIDTH + 10))
 
-            UIP_UNAVAILABLE_HEADER+=$'\n'
-            UIP_UNAVAILABLE_HEADER+=$(printf "%-${PKG_WIDTH}s %s\n" "# $PKG_NAME" "$PKG_DESC")
-            UIP_UNAVAILABLE_HEADER+=$'\n'
-
             DATA=$UIP_UNAVAILABLE_HEADER
             DATA+="$UIP_MISSING"
 
@@ -420,8 +432,8 @@ NotUsed
 
     HOLDMESSAGE=$(gettext 'Press Enter to exit')
 
-    #Install packages in separate terminal
-    CMD="echo $TITLE_INSTALL; echo apt install ; sudo -k; sudo -v && sudo apt install --ignore-missing"
+    INSTALL_MESSAGE=$(gettext "Installing selected packages please authenticate")
+    CMD="echo $INSTALL_MESSAGE; pkexec apt install --ignore-missing"
     HLD="echo; echo $HOLDMESSAGE; read x"
     # echo x-terminal-emulator -e bash -c "$CMD ${UIP_INSTALLABLE[*]}; $HLD"
     x-terminal-emulator -e bash -c "$CMD ${UIP_INSTALLABLE[*]}; $HLD"

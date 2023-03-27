@@ -6,6 +6,7 @@ XSBC-Original-Maintainer: Dolphin Oracle <dolphinoracle@gmail.com>
 Build-Depends:
  debhelper-compat (= 13),
  gnome-pkg-tools (>= 0.21),
+ python3-markdown (>=3.3.4),
  meson (>= 1.0.0),
 Standards-Version: 3.9.6
 Homepage: http://mxlinux.org

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Henry Oquist <henryoquist@nomalm.se>, 2023\n"
 "Language-Team: Swedish (https://www.transifex.com/anticapitalista/teams/10162/sv/)\n"
@@ -20,6 +20,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "Help"
+msgstr "Hjälp"
+
+msgid "OK"
+msgstr "OK"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Spara Lista"
 
 msgid "Date:"
 msgstr "Datum:"
@@ -95,12 +113,6 @@ msgid "You have installed 1 package:"
 msgid_plural "You have installed %d packages:"
 msgstr[0] "Du har installerat 1 paket:"
 msgstr[1] "Du har installerat %d paket:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Spara Lista"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -226,3 +238,24 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;package;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Användarinstallerade Paket"
+
+msgid "About MX User Installed Packages"
+msgstr "Om MX Användarinstallerade Paket"
+
+msgid "An app to list and re-install user installed packages."
+msgstr "En app för att lista och återinstallera användarinstallerade paket."
+
+msgid "Changelog"
+msgstr "Ändringslogg"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "MX Användarinstallerade Paket Ändringslogg"
+
+msgid "License"
+msgstr "Licens"
+
+msgid "MX User Installed Packages License"
+msgstr "MX Användarinstallerade Paket Licens"

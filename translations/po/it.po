@@ -4,8 +4,10 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Pierluigi Mario <pierluigimariomail@gmail.com>, 2023
 # anticapitalista <anticapitalista@riseup.net>, 2023
+# James Bowlin <BitJam@gmail.com>, 2023
+# Pierluigi Mario <pierluigimariomail@gmail.com>, 2023
+# Guybrush88 <erpizzo@alice.it>, 2023
 # Dede Carli <dede.carli.drums@gmail.com>, 2023
 # 
 #, fuzzy
@@ -13,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-21 15:54+0100\n"
+"POT-Creation-Date: 2023-03-23 19:03+0100\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Dede Carli <dede.carli.drums@gmail.com>, 2023\n"
 "Language-Team: Italian (https://www.transifex.com/anticapitalista/teams/10162/it/)\n"
@@ -22,6 +24,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Help"
+msgstr "Aiuto"
+
+msgid "OK"
+msgstr "Ok"
+
+#. TRANSLATORS:
+#. The user clicks the "Save List" button to save the list of packages
+#. installed by the user.
+msgid "Save List"
+msgstr "Salva elenco"
 
 msgid "Date:"
 msgstr "Data:"
@@ -100,12 +120,6 @@ msgid_plural "You have installed %d packages:"
 msgstr[0] "Hai installato 1 pacchetto"
 msgstr[1] "Hai installato 1 pacchetto:"
 msgstr[2] "Hai installato 1 pacchetto:"
-
-#. TRANSLATORS:
-#. The user clicks the "Save List" button to save the list of packages
-#. installed by the user.
-msgid "Save List"
-msgstr "Salva elenco"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -233,3 +247,25 @@ msgstr ""
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
 msgstr "apt;install;package;uip;"
+
+msgid "MX User Installed Packages"
+msgstr "MX Pacchetti utente installati"
+
+msgid "About MX User Installed Packages"
+msgstr "Informazioni su MX Pacchetti utente installati"
+
+msgid "An app to list and re-install user installed packages."
+msgstr ""
+"Un'app per elencare e reinstallare i pacchetti installati dall'utente."
+
+msgid "Changelog"
+msgstr "Changelog"
+
+msgid "MX User Installed Packages Changelog"
+msgstr "Registro delle modifiche di MX Pacchetti utente installati"
+
+msgid "License"
+msgstr "Licenza"
+
+msgid "MX User Installed Packages License"
+msgstr "Licenza di MX Pacchetti utente installati"
