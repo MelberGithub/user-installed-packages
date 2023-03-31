@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# gettext pot helper
+# meant to be sourced by  make-pot and make-help
+ 
+# get package name from changelog - or set otherwise
+CHNGLOG=$(find {,../,../../}debian/changelog  -type f -name changelog -print -quit 2>/dev/null)
+PKGNAME=$(dpkg-parsechangelog -l "$CHNGLOG" -SSource)
+PKGDATE=$(dpkg-parsechangelog -l "$CHNGLOG" -SDATE)
+PKGVERS=$(dpkg-parsechangelog -l "$CHNGLOG" -SVersion)
+PKGHELP="${PKGNAME}-help"
+
+PKGDATE=$(TZ=UCT date '+%F %T %Z'  --date="$PKGDATE")
+
+HELPMD="help.md"
+HELPMD=$(find {.,{.,..,../..}/help}/${HELPMD}  -type f -name ${HELPMD} -print -quit 2>/dev/null)
+BASEDIR=$(realpath --relative-to=. $(dirname $HELPMD))
+
+TXDIR=$(realpath --relative-to=. ${BASEDIR}/../translations)
+PODIR="${TXDIR}"/help-po
+ 
+TEMPMO=tmp-mo
+[ -d $TEMPMO ] && rm -r $TEMPMO
+[ -d $TEMPMO ] || mkdir $TEMPMO
+
+export TEXTDOMAIN="${PKGHELP}"
+export TEXTDOMAINDIR=$(realpath $TEMPMO)
+METATITLE=$(sed -nr '/^#+/{s:::; s:\s+$::; p;q}' "$HELPMD") 
+SENDBUGS="https://forum.mxlinux.org/viewforum.php?f=96"
+
+
+GETTEXT="cat<<EOF"
+GETTEXT+=$'\n'
+GETTEXT+=$( { 
+    cat "$HELPMD";
+    } |
+    sed -r '
+        # remove leading spaces
+        #
+        s/^[[:space:]]+//;
+        
+        # remove any trailing spaces
+        #
+        s/[[:space:]]+$//;
+        
+        # join multi-line paragraphs into one line
+        #
+        /^[[:alpha:]]/,/^$/{/^$/!{H;d}; /^$/{x; s:\n: :g; s/^[[:space:]]+//; s/[[:space:]]+$//; s/$/\n/;}};
+        
+        # do this only for lines not starting with Version or Last updated:
+        #
+        /^(Version:?|Last updated:?)/!{
+            
+            # add translator keyword to markdown comments
+            #
+           /^[[]comment[]]: # [(]/{ s//# TRANSLATORS:\n# /; s/[)][[:space:]]*$//; n;}
+
+            # wrap headline '#', bulletpoints '*' and numbered list '1.' 
+            # and normal paragraph strings into gettext translations
+            # delete "bad" chars  with tr -d "...." 
+            #
+           s/^((#+)|([*]|[0-9]+[.]) |)(([*]+)?([[:alnum:]][^\n*]*)([*]+)?([\n]*$))/\1\5$(gettext "\6" |tr -d "\\$<>\\`")\7\8/;
+
+            # wrap "Version" and "Last updated." into gettext translations
+            # delete "bad" chars  with tr -d "...."
+            #
+           /^((<sub>)*)(Version:?|Last updated:?)/s/(Version:?|Last updated:?)/$(gettext "\1" |tr -d "\\$<>\\`")/g;
+            
+            # wrap markdown header marks '#' into printf 
+            #
+           s/^(#+)/$(printf "\1")/;
+           }; 
+
+        # wrap "Version" and "Last updated" into gettext translations
+        # delete "bad" chars  with tr -d "...."
+        #
+        /^(Version:?|Last updated:?)/s/(Version:?|Last updated:?)/$(gettext "\1" |tr -d "\\$<>\\`")/g;
+        '
+    )
+
+GETTEXT+=$'\n'"EOF"
+

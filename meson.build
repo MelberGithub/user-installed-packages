@@ -8,16 +8,15 @@ gettext_package = package_name
 
 subdir_po      = 'translations/po'
 
-subdir('bin')
-
 subdir('data')
+
+subdir('exec')
+
+subdir('help')
 
 subdir('icons')
 
 subdir(subdir_po)
-
-subdir('xdg')
-
 
 message('\n'.join(['',
 '',

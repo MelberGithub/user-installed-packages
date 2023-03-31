@@ -12,7 +12,6 @@ POT=$PKGNAME.pot
 [ -f $POT ] && mv $POT $POT~
 touch $POT
 
-
 # no-location: don't generate new POT if only location has changed
 # translator comments in scripts: only thos with TRANSLATOR tag
 #
@@ -21,7 +20,7 @@ touch $POT
 SENDBUGS="https://forum.mxlinux.org/viewforum.php?f=96"
 
 # script in bin-dir
-BIN_DIR=../bin
+BIN_DIR=../exec
 POTFILES=(
         $BIN_DIR/$PKGNAME
         )
@@ -31,7 +30,7 @@ xgettext --package-name=$PKGNAME --language Shell --join-existing \
           --output=$POT "${POTFILES[@]}"
 
 # desktop file(s) in toplevel data-dir
-DATA_DIR=../xdg
+DATA_DIR=../data
 POTFILES=(
         $DATA_DIR/$PKGNAME.desktop
         )
@@ -43,7 +42,7 @@ xgettext --package-name=$PKGNAME --language=Desktop --join-existing \
           --output=$POT "${POTFILES[@]}"
 
 
-BIN_DIR=../bin
+BIN_DIR=../exec
 POTFILES=(
         $BIN_DIR/uip-about.py
         )
@@ -51,6 +50,22 @@ xgettext --package-name=$PKGNAME --language Python --join-existing \
           --msgid-bugs-address="$SENDBUGS" \
           --no-location --no-wrap --add-comments=TRANSLATORS  \
           --keyword=_  --output=$POT "${POTFILES[@]}"
+
+BIN_DIR=../exec
+POTFILES=(
+        $BIN_DIR/uip-about.py
+        )
+
+
+DATA_DIR=../data
+POTFILES=(
+        $DATA_DIR/org.mxlinux.user-installed-packages.policy
+        )
+ITS=/usr/share/gettext/its/polkit.its
+xgettext --package-name=$PKGNAME --its=$ITS --join-existing  \
+          --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap --add-comments  \
+          --output=$POT "${POTFILES[@]}"
 
 
 sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
@@ -62,7 +77,46 @@ if [ -f $POT~ ]; then
        echo "Keeping existing POT-file"
        mv $POT~ $POT
     else
-        echo "New POT-file generated:  $POT"
-       rm $POT~
+       echo "New POT-file generated:  $POT"
+       echo "Old POT-file: $POT~"
+       #rm $POT~
     fi
 fi
+
+unset PKGHELP
+
+source ./pot-gettext
+
+[ -n "$PKGHELP" ] || exit
+POT=${PKGHELP}.pot
+[ -f $POT ] && mv $POT $POT~
+touch $POT
+
+xgettext --package-name=${PKGHELP} --verbose --join-existing \
+         --language Shell  --msgid-bugs-address="$SENDBUGS" \
+          --no-location --no-wrap \
+          --add-comments=TRANSLATOR  \
+          --output=$POT - <<<$GETTEXT
+
+if [ -n "$METATITLE" ]; then
+    MSGID_METATITLE='msgid "'"$METATITLE"'"'
+    if ! grep -q "$MSGID_METATITLE" "$POT"; then
+        printf '\nmsgid "%s"\nmsgstr ""\n\n' "$METATITLE" >> "$POT"
+    fi
+fi
+
+sed -i 's/charset=CHARSET/charset=UTF-8/' $POT
+
+if [ -f $POT~ ]; then
+    POT_CHANGE=$(diff $POT $POT~ | grep -vE '^([0-9]|-)|POT-Creation-Date:' | wc -l)
+    if (( POT_CHANGE == 0 )); then
+       echo "No change in POT-file: $POT"
+       echo "Keeping existing POT-file"
+       mv $POT~ $POT
+    else
+       echo "New POT-file generated:  $POT"
+       echo "Old POT-file: $POT~"
+       #rm $POT~
+    fi
+fi
+[ -n "$TEMPMO" ] && [ -d "$TEMPMO" ] && rm -r "$TEMPMO"

@@ -1,49 +1,54 @@
 
-fs = import('fs')
-
-icondir = get_option('datadir') / 'icons'
-pixmaps = get_option('datadir') / 'pixmaps'
-
-icon_names = [
-               package_name,
-             ]
+inames = [
+         package_name,
+         ]
 
 sizes = [ 8, 16, 22, 24, 32, 48, 64, 96, 128, 256, 512 ]
 
-foreach icon_name: icon_names
+icon_dir = get_option('datadir') / 'icons'
+pix_maps = get_option('datadir') / 'pixmaps'
 
-    png = '@0@.png'.format(icon_name)
-    foreach s: sizes
-        sd = s.to_string()
-        if not fs.is_dir(sd)
-            continue
+fs = import('fs')
+foreach iname: inames
+
+    ipng = '@0@.png'.format(iname)
+    isvg = '@0@.svg'.format(iname)
+
+    if not fs.is_file(isvg)
+        continue
+    endif
+
+    foreach size: sizes
+        s = size.to_string()
+        spng = '@0@-@1@.png'.format(iname, s)
+        install_data(
+                configure_file(
+                    input:  isvg,
+                    output: spng,
+                    command: [ 'inkscape',
+                            '-h', s,
+                            '-w', s,
+                            '-o', spng,
+                            '@INPUT@',
+                            ],
+                    ),
+                rename: ipng,
+                install_dir: icon_dir / 'hicolor' / '@0@x@0@'.format(s) / 'apps',
+                )
+
+        if size == 64
+            install_symlink(
+                    ipng,
+                    install_dir : get_option('datadir') / 'pixmaps',
+                    pointing_to : '../icons/hicolor' / '@0@x@0@'.format(s) / 'apps' / ipng,
+                    )
         endif
-        
-        if not fs.is_file(sd / png)
-            continue
-        endif
-        
-        sxs = '@0@x@0@'.format(s.to_string())
-        install_data(sd / png,
-            install_dir: icondir / 'hicolor' / sxs / 'apps')
-        
-        if s == 64
-            install_data(sd / png,
-                install_dir: pixmaps)
-        endif
+
     endforeach
 
-    sd  = 'scalable'
-    svg = '@0@.svg'.format(icon_name)
-    if not fs.is_dir(sd)
-        continue
-    endif
-    if not fs.is_file(sd / svg)
-        continue
-    endif
-    install_data(sd / svg,
-            install_dir: icondir / 'hicolor' / sd)
-    install_data(sd / svg,
-            install_dir: icondir / 'hicolor' / sd / 'apps')
+    install_data(
+        isvg,
+        install_dir: icon_dir / 'hicolor' / 'scalable' / 'apps'
+        )
 
 endforeach

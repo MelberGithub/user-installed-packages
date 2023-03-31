@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# genrate localized help.html based on markdown help.md
+
+HELPMD="help.md"
+HELPMD=$(find {.,{.,..,../..}/help}/${HELPMD}  -type f -name ${HELPMD} -print -quit 2>/dev/null)
+BASEDIR=$(realpath --relative-to=. $(dirname $HELPMD))
+TXDIR=$(realpath --relative-to=. ${BASEDIR}/../translations)
+POTLIB="pot-gettext"
+
+if [ -r "${TXDIR}/${POTLIB}" ]; then
+	source "${TXDIR}/${POTLIB}"
+else
+	echo "Error: POTLIB $POTLIB no found"
+	exit 1
+fi
+
+[ -n "$BASEDIR" ] && [ -d "$BASEDIR" ] || exit
+[ -n "$TEMPMO"  ] && [ -d "$TEMPMO"  ] || exit
+[ -n "$PODIR"   ] && [ -d "$PODIR"   ] || exit
+[ -n "$HELPMD"  ] && [ -f "$HELPMD"  ] || exit
+
+IMG_DIR_NAME="img"
+IMG_DIR="$BASEDIR/$IMG_DIR_NAME"
+
+HELP_NAME="help"
+HTML_NAME="help.html"
+
+export BAD_CHARS="<>"
+
+HEAD_TITLE=$METATITLE
+
+
+BASENAME=$(basename "$BASEDIR")
+HELP_DIR="$BASEDIR/$HELP_NAME"
+[ -d "$HELP_DIR" ] || mkdir "$HELP_DIR"
+
+POLANG=($( ls "$PODIR"/*.po 2>/dev/null))
+POLANG=(${POLANG[@]##*/})
+POLANG=(${POLANG[@]%.po})
+
+ltr_code() {
+    [  "${1-x}" ] && echo 'ltr' && return
+    declare -A rtl=(
+        ar      Arabic
+        arc     Aramaic
+        dv      Divehi
+        fa      Persian
+        ha      Hausa
+        he      Hebrew
+        khw     Khowar
+        ks      Kashmiri
+        ku      Kurdish
+        ps      Pashto
+        ur      Urdu
+        yi      Yiddish
+        )
+    [ "${A[$1]+x}" ] && echo 'rtl' || echo 'ltr'
+}
+
+
+for lang in "en" "${POLANG[@]}"; do
+    if [ "$lang" = "en" ]; then
+        HREF=""
+        HTML_LANG="en-US"
+        HTML_LTR="ltr"
+        HTML_FILE="$BASEDIR/${HTML_NAME}"
+        echo $(realpath --relative-to . "$HTML_FILE")
+    else
+        [ -d "${HELP_DIR}/$lang" ] || mkdir "${HELP_DIR}/$lang"
+        HREF="../../"
+        HTML_LANG="${lang//_/-}"
+        HTML_LTR=$(ltr_code ${lang%%_*})
+        HTML_FILE="${HELP_DIR}/$lang/${HTML_NAME}"
+        echo $(realpath --relative-to . "$HTML_FILE")
+
+        PO="$PODIR"/$lang.po
+        [ -e $PO ] || continue
+        [ -d $TEMPMO/$lang ]  || mkdir $TEMPMO/$lang
+        ln -s . $TEMPMO/$lang/LC_MESSAGES
+        MO=$TEMPMO/$lang/$TEXTDOMAIN.mo
+        msgfmt -o $MO $PO
+    fi
+
+    TX_MARKDOWN=$(
+    bash -c "unset LC_ALL
+        export LANGUAGE=$lang
+        export TEXTDOMAIN=${TEXTDOMAIN}
+        export TEXTDOMAINDIR=${TEXTDOMAINDIR}
+        ${GETTEXT}" |
+        sed -e "
+            /^#[[:space:]]*TRANSLATOR/,/^[^#]/{ /^#/d; };
+            s/@VERSION@/${PKGVERS}/;
+            s/@DATE@/${PKGDATE}/;
+            "
+        )
+
+    cat <<EOF | sed 's/^[[:space:]]*//' > "$HTML_FILE"
+    <!DOCTYPE html>
+    <html lang="${HTML_LANG}" dir="${HTML_LTR}">
+    <head>
+    <base href="${HREF}">
+    <title>$(unset LC_ALL; export LANGUAGE=$lang; gettext "${HEAD_TITLE}" | tr -d "$BAD_CHARS")</title>
+    </head>
+    <body>
+EOF
+
+    for img in $(grep -oP '(?<=[(]img/).*.(png|jpg)(?=[)])' < help.md); do  
+        if [ -f "$IMG_DIR/$lang/$img" ]; then
+            TX_MARKDOWN=$(sed "s:img/$img:img/$lang/$img:" <<<$TX_MARKDOWN )
+        elif [ -f "$IMG_DIR/${lang%%_*}/$img" ]; then
+            TX_MARKDOWN=$(sed "s:img/$img:img/${lang%%_*}/$img:" <<<$TX_MARKDOWN)
+        fi
+    done
+       
+    python3 -m markdown <<<$TX_MARKDOWN >> "$HTML_FILE"
+
+    cat <<EOF | sed 's/^[[:space:]]*//' >> "$HTML_FILE"
+
+    </body>
+    </html>
+EOF
+
+done
+
+[ -n "$TEMPMO" ] && [ -d "$TEMPMO" ] && rm -r "$TEMPMO"

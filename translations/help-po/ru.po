@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages-help package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Andrei Stepanov, 2023
+# Vladimir O <vldoduv@yandex.ru>, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages-help\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-27 19:23+0200\n"
+"PO-Revision-Date: 2023-03-27 16:20+0000\n"
+"Last-Translator: Vladimir O <vldoduv@yandex.ru>, 2023\n"
+"Language-Team: Russian (https://www.transifex.com/anticapitalista/teams/10162/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "User Installed Packages Help"
+msgstr "Справка по Установленным пользователем пакетам"
+
+msgid ""
+"This application is intended to facilitate the re-installation of packages "
+"that the user has added to the default installation."
+msgstr ""
+"Это приложение облегчает переустановку пакетов, которые пользователь добавил"
+" к базовому набору."
+
+msgid ""
+"It can display a list of packages manually installed by the user that can be"
+" saved in a simple text file. Furthermore, the application allows loading a "
+"saved list of packages for review and selection to be reinstalled. Such a "
+"procedure is especially easy and useful after a new system installation."
+msgstr ""
+"Оно позволяет вывести перечень пакетов вручную установленных пользователем, "
+"сохранить его в виде простого текстового файла. Более того, сохраненный "
+"список пакетов можно загрузить для сверки и отбора тех, которые требуется "
+"переустановить. Подобная возможность крайне удобна после новой установки "
+"системы."
+
+msgid "There are two options to choose from:"
+msgstr "На выбор доступны две опции:"
+
+msgid "quickly and easily create a list of those packages."
+msgstr "быстро и легко создать список тех пакетов."
+
+msgid ""
+"use that list in another location to review and reinstall those packages, if"
+" still available."
+msgstr ""
+"использовать тот список в другом месте для отбора и переустановки пакетов "
+"если они по-прежнему доступны."
+
+msgid "Create a list of user-installed packages"
+msgstr "Создать список пакетов, установленных пользователем"
+
+msgid "A list of user-installed packages is displayed."
+msgstr "Отображается список установленных пользователем пакетов."
+
+msgid ""
+"Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
+"not be listed."
+msgstr ""
+"Примечание: Пакеты установленных ядер Linux или графических драйверов NVIDIA"
+" не будут перечислены."
+
+msgid ""
+"Press [Save List] and select the location where the package list should be "
+"saved."
+msgstr "Нажмите [Сохранить Список] и укажите место для этого файла."
+
+msgid "Open a previously saved list to install selected packages"
+msgstr "Откройте ранее сохраненный список чтобы установить выбранные пакеты"
+
+msgid "Select the package list you wish to install."
+msgstr "Выберите список пакетов, который хотите установить."
+
+msgid ""
+"Uncheck any packages in the displayed list that you do not wish to install."
+msgstr ""
+"Снимите флажки со всех пакетов в отображаемом списке, которые вы не хотите "
+"устанавливать."
+
+msgid ""
+"A notification is provided for any missing packages that can no longer be "
+"installed."
+msgstr ""
+"В случае если некоторые пакеты недоступны для установки будет выдано "
+"предупреждение."
+
+msgid "Press [OK] and the selected packages will be installed."
+msgstr "Нажмите [OK] чтобы выполнить установку выбранных пакетов."
+
+msgid "Unavailable packages will be listed"
+msgstr "Недоступные пакеты будут перечислены"
+
+msgid "Packages that are unavailable or uninstallable will be listed."
+msgstr ""
+"Пакеты, которые недоступны или не могут быть установлены, будут перечислены."
+
+msgid ""
+"Such a situation arises when the main package or one of its dependencies can"
+" not function within the new system."
+msgstr ""
+"Такая ситуация возникает, когда основной пакет или одна из его зависимостей "
+"не может функционировать в новой системе."
+
+msgid ""
+"Press [Save List] and select the location to save the list of unavailable "
+"packages."
+msgstr ""
+"Нажмите [Сохранить Список] и укажите местоположение чтобы сохранить перечень"
+" недоступных пакетов."
+
+msgid "Packages available will be installed"
+msgstr "Будут установлены доступные пакеты"
+
+msgid "The installation process is started within a new terminal window."
+msgstr "Процесс установки начнется в новом окне терминала."
+
+msgid "Authentication and confirmation are required to perform installation."
+msgstr "Для выполнения установки потребуются аутентификация и подтверждение."
+
+#. TRANSLATORS:
+#. A question "Do you want to continue? [Y/n]" is displayed in the terminal
+#. window. The question could be displayed translated, including [Y/N] for
+#. translated [Yes/No].
+msgid "Press [N] to cancel."
+msgstr "Нажмите [N] для отмены."
+
+msgid ""
+"To close the terminal window after the installation process finishes, press "
+"[Enter]."
+msgstr ""
+"Чтобы закрыть окно терминала после завершения установки, нажмите [Enter]."
+
+msgid "Version:"
+msgstr "Версия:"
+
+msgid "Last updated:"
+msgstr "Последнее обновление:"

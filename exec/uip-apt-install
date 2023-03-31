@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+# apt install policy wrapper
+# part of user-installed-packages
+# to allow localized authentication messages displayed
+
+/usr/bin/apt install "$@"
