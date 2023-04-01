@@ -1,0 +1,764 @@
+#! /usr/bin/bash
+#Tool to list user installed packages
+#V.0.8 by MX Devs, 22 March 2023
+#License: GPL-3.0+
+#Changes: see changelog
+#Version: @VERSION@
+
+#set up translation
+export PACKAGE_NAME="user-installed-packages"
+export TEXTDOMAINDIR=/usr/share/locale
+export TEXTDOMAIN=${PACKAGE_NAME}
+source gettext.sh
+
+# buttons
+export BTN_ABOUT=$(gettext "About")  ; BTN_ABOUT+='!help-about'
+export BTN_CLOSE=$(gettext "Close")  ; BTN_CLOSE+='!window-close'
+export BTN_HELP=$(gettext "Help")    ; BTN_HELP+='!help-contents'
+export BTN_OK=$(gettext "OK")        ; BTN_OK+='!object-select'
+
+
+# TRANSLATORS:
+# The user clicks the "Save List" button to save the list of packages installed by the user.
+export BTN_SAVE=$(gettext 'Save List') ; BTN_SAVE+='!document-save'
+
+#define some gobals
+export UIP_ICON="user-installed-packages"
+[ -e "$UIP_ICON" ] && UIP_ICON=/usr/share/pixmaps/${UIP_ICON}.png
+export UIP_CLASS="user-installed-packages"
+
+export INSTALLED_PACKAGES="/usr/share/antiX/installed-packages.txt"
+if [ ! -f $INSTALLED_PACKAGES ]; then
+    echo "[WARN]: File not found '$INSTALLED_PACKAGES'"
+fi
+
+MSG_DATE=$(gettext 'Date:')
+# TRANSLATORS:
+# The hostname of the system.
+MSG_HOST=$(gettext 'Host:')
+MSG_SYSTEM=$(gettext 'System:')
+
+# TRANSLATORS:
+# UIP = "User Installed Packages".
+# The packages installed by the user (UIP).
+MSG_TITLE=$(gettext 'User Installed Packages')
+
+export PKG_NAME=$(gettext 'Package name')
+export PKG_DESC=$(gettext 'Description')
+
+MSG_LIST=$(gettext 'List of user installed packages')
+export UIP_LIST_HEADER=$(
+    printf "# UIP - %s\n" "$MSG_TITLE"
+    printf "# %-10s %s\n" "$MSG_DATE" "$(date -R)"
+    printf "# %-10s %s\n" "$MSG_HOST" "$(hostname)"
+    printf "# %-10s %s\n" "$MSG_SYSTEM" "$(cat /etc/mx-version 2>/dev/null ||
+                                           cat /etc/antix-version 2>/dev/null)"
+    printf "#\n"
+    printf "# %s\n" "$MSG_LIST"
+    )
+
+MSG_LIST=$(gettext 'List of unavailable packages')
+MSG_UNAVAILABLE=$(gettext 'The following packages are not available or cannot be installed:')
+
+export UIP_UNAVAILABLE_HEADER=$(
+    printf "# UIP - %s\n" "$MSG_TITLE"
+    printf "# %s\n" "$MSG_LIST"
+    printf "# %-10s %s\n" "$MSG_DATE" "$(date -R)"
+    printf "# %-10s %s\n" "$MSG_HOST" "$(hostname)"
+    printf "# %-10s %s\n" "$MSG_SYSTEM" "$(cat /etc/mx-version 2>/dev/null ||
+                                           cat /etc/antix-version 2>/dev/null)"
+    printf "#\n"
+    printf "# %s\n" "$MSG_UNAVAILABLE"
+    )
+
+# package filter list: package to be ignored
+# regexp or package name starts with
+PKG_FILTER=(
+    linux-image
+    linux-headers
+    nvidia
+    )
+
+export GREP_FILTER=
+if (( ${#PKG_FILTER[*]} >= 1)); then
+    FILTER_LIST="${PKG_FILTER[*]}"
+    FILTER_REXP="^(${FILTER_LIST// /|})"
+    GREP_FILTER="| grep -vE '$FILTER_REXP' "
+fi
+
+export ARCH=$(dpkg --print-architecture)
+
+#MAIN WINDOW
+main() {
+
+    TITLE_MAIN=$(gettext 'MX - User Installed Packages')
+
+    TEXT_MAIN1=$(gettext 'This app is designed to make it easy to reinstall packages that the user has added to the default installation and retained.')
+    TEXT_MAIN2=$(gettext 'It combines two steps:')
+    TEXT_MAIN3=$(gettext '1) quickly and easily create a list of those packages')
+    TEXT_MAIN4=$(gettext '2) use that list in another location to review and reinstall those packages, if still available')
+
+    TEXT_MAIN="$TEXT_MAIN1\n\n$TEXT_MAIN2\n\n$TEXT_MAIN3\n$TEXT_MAIN4\n"
+
+    BUTTON_LIST=$(gettext 'Create a list of user installed packages')
+    BUTTON_LOAD=$(gettext 'Open a previously saved list and install selected packages')
+
+    YAD=(yad
+        --title="$TITLE_MAIN" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+#        --title="$TITLE_MAIN" --class="$UIP_CLASS" --window-icon=user-installed-packages
+        --borders=20 --center --width=600 --height=350
+        --form --separator=" "
+        --text="$TEXT_MAIN" --text-align=left
+        --button="${BTN_ABOUT}:bash -c uip_about"
+        --button="${BTN_HELP}:bash -c uip_help"
+        --button="${BTN_CLOSE}"
+        --field="${BUTTON_LIST}:FBTN" 'bash -c uip_list'
+        --field="${BUTTON_LOAD}:FBTN" 'bash -c uip_load'
+        )
+    
+    "${YAD[@]}"   ## >/dev/null
+
+}
+
+#function uip_about
+
+uip_about() {
+    # ugly hack: run uip-about.py as symlink in order to display icon in dock-like taskbar
+    local uip_about=/usr/libexec/user-installed-packages/uip-about.py
+    local uip_link=/usr/libexec/user-installed-packages/user-installed-packages
+    local real_path=$(realpath "$uip_about" 2>/dev/null)
+
+    if [ -L "$uip_link" ] && [ x"$real_path" == x"$(realpath "$uip_link" 2>/dev/null)" ]; then
+       uip_about="$uip_link"
+    fi
+    python3 "$uip_about"
+}
+
+export -f uip_about
+
+
+#function uip_help
+
+uip_help() {
+    local dir="/usr/share/user-installed-packages"
+    local help="help.html"
+    #local uip_help="/usr/share/user-installed-packages/help.html"
+    local uip_help="$dir/$help"
+    local language="${LANGUAGE//:/ } "
+    language+="${LC_ALL%%.*} ${LC_ALL%%_*} " 
+    language+="${LC_MESSAGES%%.*} ${LC_MESSAGES%%_*} "
+    language+="${LANG%%.*} ${LANG%%_*}"
+    for lang in ${language}; do
+        if [ -f "$dir/help/$lang/$help" ]; then
+            uip_help="$dir/help/$lang/$help"
+            break
+        fi
+    done
+    [ -f "$uip_help" ] || return
+
+    if command -v mx-viewer >/dev/null; then
+        mx-viewer "$uip_help"
+    else
+        python3 -m webbrowser -n "$uip_help"
+    fi
+}
+
+export -f uip_help
+
+
+#function uip_list
+
+uip_list() {
+
+    #create list
+    NOW=$(date +%y"%m%d")
+
+    UIP=($(comm -23 \
+       <( eval apt-mark showmanual "$GREP_FILTER" | sed 's/[[:space:]].*//' | sort -u) \
+       <( { sed -r "s/[[:space:]].*//;
+                    s/:(${ARCH}|all|any)//g;
+                    " "$INSTALLED_PACKAGES" 2>/dev/null;
+           dpkg-query --showformat='${Depends}:${Architecture}\n' --show |
+           sed -r "s/[[:space:]]*//g;
+                   s/[(][^)]*[)]//g;
+                   s/:(${ARCH}|all|any)//g;
+                   s/[|,]/\n/g;
+                   /^:/d; /^$/d";
+          } | sort -u
+         )
+    ))
+
+    UIP_COUNT="${#UIP[*]}"
+    if (( UIP_COUNT == 0 )); then
+       TEXT_LIST=$(gettext 'You have no packages installed!')
+       UIP_LIST=""
+       SAVE_OPTION=""
+    else
+        PKG_WIDTH=$(printf "%s\n" "${UIP[@]}" | wc -L )
+        PKG_WIDTH=$((PKG_WIDTH +6))
+        PADDS="          "
+        SPACE=$(printf '%s' "${PADDS:0:${#ARCH}}")
+        FORMAT='${binary:Package;-'"$PKG_WIDTH"'}  ${binary:Summary}\n'
+        UIP_LIST=$(dpkg-query -f "$FORMAT" -W "${UIP[@]}" |
+                   sed  "s/:$ARCH/ $SPACE/")
+
+        # TRANSLATORS:
+        # There may be more than one sentence that needs to be translated.
+        # If so, click the tabs with "1" ... "other" to translate them.
+        # Do keep the count placeholder "%d".
+        TEXT_LIST=$(ngettext \
+                    'You have installed 1 package:' \
+                    'You have installed %d packages:' \
+                    ${UIP_COUNT}
+                    )
+
+        TEXT_LIST="${TEXT_LIST/\%?/${UIP_COUNT}}"
+        SAVE_OPTION="--button=${BTN_SAVE}:3"
+    fi
+
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
+    # The packages installed by the user (UIP).
+    TITLE_LIST=$(gettext 'User Installed Packages')
+
+    YAD=(yad
+        --title="$TITLE_LIST" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+        --width=800 --height=600 --borders=20 --center
+        --text-info
+        --fontname="mono"
+        --text="<b>$TEXT_LIST</b>"
+        "$SAVE_OPTION"
+        --button="${BTN_CLOSE}"
+        )
+    "${YAD[@]}" <<<"$UIP_LIST"
+    RET="$?"
+
+    (( RET != 3)) && exit
+
+    UIP_DATA=$UIP_LIST_HEADER
+    UIP_DATA+=$'\n'
+    UIP_DATA+=$(printf "%-${PKG_WIDTH}s  %s\n" "# $PKG_NAME" "$PKG_DESC")
+    UIP_DATA+=$'\n'
+    UIP_DATA+=$'\n'
+    UIP_DATA+=$UIP_LIST
+
+    local now=$(date '+%Y.%m.%d_%H%M%S')
+    local save_file="uip-list-$now.txt"
+    if selected_file=$(uip_select_save_file "$save_file"); then
+        uip_write_file "UIP_DATA" "$selected_file"
+    else
+        # TRANSLATORS:
+        # UIP = "User Installed Packages".
+        # The list of user installed packages (UIP) failed to save.
+        error=$(gettext 'The UIP list of packages installed by the user could not be saved')
+        reason=$(gettext 'No file selected.')
+        error+=$'\n'
+        error+="$reason"
+        local title=$(gettext 'User Installed Packages')
+        echo "uip_notify :'$title: '$error'"
+        uip_notify "$title" "$error"
+    fi
+
+}
+export -f uip_list
+
+
+uip_load() {
+
+    UIP_LOAD_FILE=$(uip_select_list_file "") || exit
+
+    UIP_CHECK_LOADED=()
+    unset UIP_HASH_LOADED
+    declare -A UIP_HASH_LOADED
+    local pkg desc chk
+    chk="TRUE"
+
+    while read -r pkg desc; do
+        UIP_CHECK_LOADED+=( "$chk" "$pkg" "$desc")
+        UIP_HASH_LOADED["$pkg"]="$desc"
+    done <<Read_UIP_Load
+         $(sed -nr '/^[[:space:]]*#/d; /^[[:space:]]*$/d; s/[[:space:]]+/ /g; p' "$UIP_LOAD_FILE")
+Read_UIP_Load
+
+     TEXT_INSTALL="$(gettext 'Select which packages you want to install:')"
+    TITLE_INSTALL="$(gettext 'Install packages')"
+
+    YAD=(yad
+        --title="$TITLE_INSTALL" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+        --text="$TEXT_INSTALL"
+        --width=800 --height=600 --borders=20
+        --center --text-align=left
+        --button="${BTN_OK}"
+        --button="${BTN_CLOSE}"
+        --checklist --list --no-headers --separator=" "
+        --column=tick --column=package --column=description
+        )
+
+    UIP_LOADED_INSTALL=($("${YAD[@]}" "${UIP_CHECK_LOADED[@]}" |
+                          cut -d ' ' -f2 | sort -u))
+    RET=$?
+    (( RET != 0 )) && exit
+    (( "${#UIP_LOADED_INSTALL[@]}" == 0 )) && exit
+    #echo "#-------------------------";  declare -p UIP_LOADED_INSTALL
+
+    UIP_INSTALL_AVAILABLE=($(apt-cache -q madison "${UIP_LOADED_INSTALL[@]}" |
+                             grep Packages    |
+                             awk '{print $1}' |
+                             sort -u))
+    #echo "#-------------------------";  declare -p UIP_INSTALL_AVAILABLE
+    UIP_NOT_AVAILABLE=($(
+        comm -23 <(printf "%s\n" "${UIP_LOADED_INSTALL[@]}"    | sort -u ) \
+                 <(printf "%s\n" "${UIP_INSTALL_AVAILABLE[@]}" | sort -u )
+        ))
+    #echo "#-------------------------";  declare -p UIP_NOT_AVAILABLE
+
+:<<'NotUsed'
+    UIP_INSTALL_UPGRADABLE=($(
+        comm -12 <(printf '%s\n' "${UIP_INSTALL_AVAILABLE[@]}" |
+                   sort -u) \
+                 <(apt-show-versions -u -b |
+                   sed -r "s:/.*::; s/:(all|any|$(dpkg --print-architecture))//" |
+                   sort -u)
+        ))
+NotUsed
+
+    UIP_INSTALL_UPGRADABLE=($(
+        comm -12 <(printf '%s\n' "${UIP_INSTALL_AVAILABLE[@]}" |
+                   sort -u) \
+                 <(LC_ALL=C apt list -qq -o=Dpkg::Use-Pty=0 --upgradable 2>/dev/null |
+                   cut -d ' ' -f1,3 |
+                   sed -r "s|/[^[:space:]]*[[:space:]]|:|; s/:(${ARCH}|all|any)//" |
+                   sort -u)
+        ))
+    # echo "#-------------------------"; declare -p UIP_INSTALL_UPGRADABLE
+
+    UIP_INSTALL=($(
+        comm -23 <(printf '%s\n' "${UIP_INSTALL_AVAILABLE[@]}"  | sort -u) \
+                 <(printf '%s\n' "${UIP_INSTALL_UPGRADABLE[@]}" | sort -u)
+        ))
+    # echo "#-------------------------";  declare -p UIP_INSTALL
+
+    UIP_NOT_INSTALLABLE=($(
+        LC_ALL=C apt-get -s install  "${UIP_INSTALL[@]}" 2>&1 |
+        sed -n '/^The following packages have unmet dependencies/,/^E:/{
+                /^[[:space:]]/! d
+                s/^[[:space:]]//
+                s/[[:space:]]:.*//
+                p}'
+    ))
+    # echo "#-------------------------";  declare -p UIP_NOT_INSTALLABLE
+
+    UIP_INSTALLABLE=($(
+        comm -23 <(printf '%s\n' "${UIP_INSTALL[@]}"         | sort -u) \
+                 <(printf '%s\n' "${UIP_NOT_INSTALLABLE[@]}" | sort -u)
+        ))
+
+    #echo "#-------------------------";  declare -p UIP_INSTALLABLE
+    #echo "UIP_NOT_INSTALLABLE[@] = ${UIP_NOT_INSTALLABLE[*]}"
+
+    if (( ${#UIP_NOT_AVAILABLE[@]} >= 1 )) || (( ${#UIP_NOT_INSTALLABLE[@]} >= 1 )); then
+
+        PKG_WIDTH=$(printf '%s\n' "${UIP_NOT_AVAILABLE[@]}"  "${UIP_NOT_INSTALLABLE[@]}" "$PKG_NAME" | wc -L)
+        PKG_WIDTH=$(( PKG_WIDTH + 10))
+
+        UIP_UNAVAILABLE_HEADER+=$'\n'
+        UIP_UNAVAILABLE_HEADER+=$(printf "%-${PKG_WIDTH}s %s\n" "# $PKG_NAME" "$PKG_DESC")
+        UIP_UNAVAILABLE_HEADER+=$'\n'
+        UIP_UNAVAILABLE_HEADER+=$'\n'
+
+        UIP_MISSING=$(
+                    for pkg in "${UIP_NOT_AVAILABLE[@]}" ; do
+                        desc=${UIP_HASH_LOADED["$pkg"]}
+                        printf "%-${PKG_WIDTH}s %s\n" "$pkg" "$desc"
+                    done
+                    )
+
+        UIP_UNAVAILABLE=$(
+                    for pkg in "${UIP_NOT_INSTALLABLE[@]}"; do
+                        desc=${UIP_HASH_LOADED["$pkg"]}
+                        printf "%-${PKG_WIDTH}s %s\n" "$pkg" "$desc"
+                    done
+                    )
+
+        UIP_DATA=$UIP_MISSING
+        UIP_DATA+=$'\n'
+        UIP_DATA+=$UIP_UNAVAILABLE
+
+        TITLE_MISSING=$(gettext 'Missing Packages')
+         TEXT_MISSING=$(gettext 'The following packages are not available or cannot be installed:')
+
+        YAD=(yad
+            --title="$TITLE_MISSING" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+            --width=800 --height=600 --borders=20 --center
+            --text-info
+            --fontname="mono"
+            --text="<b>$TEXT_MISSING</b>"
+            --button="${BTN_SAVE}":3
+            --button="${BTN_CLOSE}"
+            )
+        "${YAD[@]}" <<<"${UIP_DATA}"
+        RET="$?"
+        if (( RET == 3 )); then
+
+            PKG_WIDTH=$(printf '%s\n' "${UIP_NOT_AVAILABLE[@]}" "$PKG_NAME" | wc -L)
+            PKG_WIDTH=$(( PKG_WIDTH + 10))
+
+            DATA=$UIP_UNAVAILABLE_HEADER
+            DATA+="$UIP_MISSING"
+
+            local now=$(date '+%y%m%d-%H%M%S')
+            local save_file="uip-missing-$now.txt"
+            local selected_file
+            # TRANSLATORS:
+            # UIP = "User Installed Packages".
+            # The list of missing packages was saved under:
+            local ok=$(gettext '[OK] UIP list of missing packages saved:')
+
+            # TRANSLATORS:
+            # UIP = "User Installed Packages".
+            # The list of missing packages failed to save.
+            local err=$(gettext 'UIP list of missing packages could not be saved.')
+
+            if selected_file=$(uip_select_save_file "$save_file"); then
+                uip_write_file "DATA" "$selected_file" "$ok" "$err"
+            else
+                reason=$(gettext 'No file selected.')
+                err+=$'\n'
+                err+="$reason"
+                local title=$(gettext 'User Installed Packages')
+                echo "uip_notify :'$title: '$err'"
+                uip_notify "$title" "$error"
+            fi
+
+        fi
+    fi
+
+    HOLDMESSAGE=$(gettext 'Press Enter to exit')
+    INSTALL_MESSAGE=$(gettext "Installing selected packages, please authenticate")
+    CMD="echo $INSTALL_MESSAGE; "
+    local polkit_pattern='polkit-kde-auth|polkit-gnome-au|lxqt-policykit-'
+    if [ -x /usr/bin/pkexec ] && pgrep -u $(id -u) "$polkit_pattern" >/dev/null; then
+        if [ -x /usr/libexec/user-installed-packages/uip-apt-install ]; then
+            CMD+="/usr/bin/pkexec /usr/libexec/user-installed-packages/uip-apt-install --ignore-missing "
+        else
+            CMD+="/usr/bin/pkexec apt install --ignore-missing "
+        fi
+    else
+        CMD+="sudo -k; sudo -v && sudo LANGUAGE=$LANGUAGE apt install --ignore-missing "
+    fi
+    HLD="echo; echo $HOLDMESSAGE; read x"
+    #Install packages in separate terminal
+    TERMINAL_BASENAME=$(basename -s .wrapper  $(realpath $(which x-terminal-emulator)))
+    case "$TERMINAL_BASENAME"  in
+        xfce4-terminal)
+            xfce4-terminal --disable-server -x bash -c "$CMD ${UIP_INSTALLABLE[*]}; $HLD"
+            ;;
+            *)
+            x-terminal-emulator -e bash -c "$CMD ${UIP_INSTALLABLE[*]}; $HLD"
+            ;;
+    esac
+}
+export -f uip_load
+
+uip_select_save_file() {
+    # parameter
+    # 1 : filename as string
+    local filename=${1:-uip-saved-file}
+    local save_file selected_file
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
+    # The user selects a file to save the list of user installed packages (UIP).
+    local save_title=$(gettext 'Select location to save file')
+    local ret
+    while true; do
+        selected_file=$(uip_file_chooser "$filename" "$save_title")
+        ret=$?
+        (( ret != 0 )) && return $ret
+
+        if [ -z "$selected_file" ] ; then
+            echo "[Warn]: No file selected" >&2
+            return 1
+        fi
+
+        if [ -f "$selected_file" ]; then
+
+            FILE_EXISTS=$(gettext 'File exists. Overwrite?')
+            YAD=(yad
+                --title="" --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+                --borders=20 --center --width=200
+                --skip-taskbar --on-top
+                --text-align=center
+                --text="<b>$FILE_EXISTS</b>\n"
+            )
+            "${YAD[@]}"
+            RET=$?
+            if ((RET==0)); then
+                save_file="$selected_file"
+                break
+            else
+                save_file=
+                continue
+            fi
+        fi
+
+        save_file="$selected_file"
+        break
+    done
+    RET=$?
+    printf '%s' "$save_file"
+    return $RET
+
+}
+export -f uip_select_save_file
+
+# write data file
+uip_write_file() {
+    # parameter
+    # 1: the name of parameter holding the data
+    # 2: the file path
+    # 3: ok_message
+    # 4: error_message
+    local -n data=$1   # name reference
+    local file=$2      # file path
+
+    local ok=$3
+    local err=$4
+
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
+    # The list of user installed packages (UIP) was saved successfully under:
+    : ${ok:=$(gettext '[OK] UIP list saved:')}
+
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
+    # The list of user installed packages (UIP) failed to save.
+    : ${err:=$(gettext 'UIP-list save file failed:')}
+
+
+    local title=$(gettext 'User Installed Packages')
+    ERR=$(bash -c 'echo "'"${data}"'" > "'"$file"'"' 2>&1)
+    RET=$?
+    if (( RET ==0 )); then
+       OK="$ok"
+       OK+=$'\n'
+       OK+="$file"
+       uip_notify "$title" "$OK"
+    else
+       ERROR=$(gettext '[ERROR]')
+       echo "$ERROR $ERR" >&2
+       ERRMSG="$ERROR: ${ERR##*:}";
+       error="$ERROR: $err\n$file\n$ERRMSG"
+       echo "$error" >&2
+       UIP_NOTIFY_TIMEOUT=30000
+       uip_notify "$title" "$error"
+    fi
+    return $RET
+
+}
+export -f uip_write_file
+
+uip_select_list_file() {
+    local selected_file=""
+    local uip_files
+    eval uip_files=($(find . -maxdepth 3 -type f -name 'uip-list*.txt' -printf "'%p'\n"))
+    (( ${#uip_files[@]} !=0 )) &&  selected_file=$(ls -1t "${uip_files[@]}" | head -1)
+    
+    # TRANSLATORS:
+    # UIP = "User Installed Packages".
+    # The user selects a file with user installed packages (UIP) to be read.
+    local title=$(gettext 'Select UIP list to load')
+    local ret
+    while true; do
+        selected_file=$(uip_file_chooser "$selected_file" "$title")
+        ret=$?
+        (( ret != 0 )) && return $ret
+        if [ -z "$selected_file" ] ; then
+            echo "[Warn]: No file selected" >&2
+            return 1
+        fi
+
+        # check file is valid or cantains package names
+        ERROR=$(gettext '[ERROR]')
+        # TRANSLATORS:
+        # UIP = "User Installed Packages".
+        # The selected file appears not to be a valid list of user installed packages (UIP).
+        NOT_VALID_FILE_ERROR=$(gettext 'Not a valid UIP-list file:')
+
+        if [ -d "$selected_file" ]; then
+           # not re regular file
+           # TRANSLATORS:
+           # The selected file is directory not a regular file.
+           ERRMSG=$(gettext 'Selected file is a directory.')
+           ERRMSG="$ERROR $ERRMSG"
+           error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+           echo "$error"  >&2
+           UIP_NOTIFY_TIMEOUT=16000
+           uip_notify "$title" "$error"
+           selected_file=
+           continue
+        fi
+
+        # check file is a regular file
+        if [ ! -f "$selected_file" ]; then
+           # not re regular file
+           # TRANSLATORS:
+           # The selected file is not a regular (text) file.
+           ERRMSG=$(gettext 'Not a regular file')
+           ERRMSG="$ERROR $ERRMSG"
+           error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+           echo "$error"  >&2
+           UIP_NOTIFY_TIMEOUT=8000
+           uip_notify "$title" "$error"
+           selected_file=
+           continue
+        fi
+
+        # check file is a readable file
+        if [ ! -r "$selected_file" ]; then
+           # TRANSLATORS:
+           # The selected file is not readable file.
+           ERRMSG=$(gettext 'File is not readable.')
+           ERRMSG="$ERROR $ERRMSG"
+           error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+           echo "$error"  >&2
+           UIP_NOTIFY_TIMEOUT=8000
+           uip_notify "$title" "$error"
+           selected_file=
+           continue
+        fi
+
+        # check file is a text file
+        # TRANSLATORS:
+        # The type of the file the user has selected: "file type"
+        type_of_the_file=$(gettext 'file type')
+
+        FILETYPE=$(file -bi "$selected_file" )
+        if [ -n "${FILETYPE%%text/plain*}" ]; then
+            if [ -z "${FILETYPE%%text/*}" ]; then
+               # not a plain ASCII text file
+               # TRANSLATORS:
+               # The selected file is not a plain ASCII text file.
+               ERRMSG=$(gettext 'Not a plain ASCII text file')
+               ERRMSG="$ERROR $ERRMSG\n[$type_of_the_file] ${FILETYPE%%;*}"
+               error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+               echo "$error"  >&2
+               UIP_NOTIFY_TIMEOUT=16000
+               uip_notify "$title" "$error"
+               selected_file=
+               continue
+            fi
+            # not a text file
+            # TRANSLATORS:
+            # The selected file is not a text file.
+            ERRMSG=$(gettext 'Not a text file')
+            ERRMSG="$ERROR $ERRMSG\n[$type_of_the_file] ${FILETYPE%%;*}"
+            error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+            echo "$error"  >&2
+            UIP_NOTIFY_TIMEOUT=16000
+            uip_notify "$title" "$error"
+            selected_file=
+            continue
+        fi
+
+       # check file containes lines starting with non-valid package name pattern
+       local none_pkg_cnt=$(sed 's/^[[:space:]]*//; /^#/d; /^$/d' "$selected_file" |
+                             grep -c -vE '^[a-z0-9._:+-]+([[:space:]]|$)')
+
+        if (( none_pkg_cnt != 0 )); then
+           # not a valid UIP-list file
+           # TRANSLATORS:
+           # UIP = "User Installed Packages".
+           # The selected file is not a valid UIP-list file with invalid package names.
+           ERRMSG=$(gettext 'File contains invalid package names')
+           ERRMSG="$ERROR $ERRMSG"
+           error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+           echo "$error"  >&2
+           UIP_NOTIFY_TIMEOUT=16000
+           uip_notify "$title" "$error"
+           selected_file=
+           continue
+        fi
+
+        # check file containes lines starting with valid package name pattern
+        local pkg_cnt=$(grep -c -E '^[a-z0-9._:+-]+([[:space:]]|$)' "$selected_file")
+
+        if (( pkg_cnt == 0 )); then
+            # not a valid UIP-list file: no packge names
+            # TRANSLATORS:
+            # The selected file seems not to hold any package names.
+            ERRMSG=$(gettext 'File contains no package names')
+            ERRMSG="$ERROR $ERRMSG"
+            error="$ERROR: $NOT_VALID_FILE_ERROR\n$selected_file\n$ERRMSG"
+            echo "$error"  >&2
+            UIP_NOTIFY_TIMEOUT=16000
+            uip_notify "$title" "$error"
+            selected_file=
+            continue
+        fi
+
+        break
+    done
+    selected_file="$selected_file"
+    printf '%s' "$selected_file"
+    return $RET
+
+}
+export -f uip_select_list_file
+
+uip_file_chooser() {
+    # parameter
+    # 1 : filename as string or empty
+    local name=${1}
+    local select_title=${2:-$(gettext 'Select a file')}
+    local selected_file filename
+    if [ -z "$name" ]; then
+        filename="."
+    else
+        if [ -r "$name" ]; then
+           local realpath=$(realpath "$name")
+           local basename=$(basename "$realpath")
+           local dirname=$(dirname "$realpath")
+           cd "$dirname"
+           filename="./$basename"
+        else
+           filename="./$name"
+        fi
+    fi
+    YAD=(yad
+        --title="$select_title"
+        --class="$UIP_CLASS" --window-icon="$UIP_ICON"
+        --width=800 --height=500 --borders=20 --center
+        --file --save
+        --filename="$filename"
+        )
+    selected_file=$( "${YAD[@]}" )
+    RET=$?
+    if [ -z "$selected_file" ]; then
+        RET=1
+    else
+        if [ -d "$selected_file" ] && [ -n "$name" ]; then
+            selected_file="$selected_file/$name"
+        fi
+    fi
+    printf '%s' "$selected_file"
+    return $RET
+}
+export -f uip_file_chooser
+
+uip_notify() {
+    local title=$1 msg=$2
+
+    local icon=${UIP_NOTIFY_ICON:=$UIP_ICON}
+    local timeout=${UIP_NOTIFY_TIMEOUT:=10000}
+
+   if [ -x /usr/bin/notify-send ]; then
+      /usr/bin/notify-send -i "$icon" -t $timeout "$title" "$msg"
+   fi
+}
+export -f uip_notify
+
+#--------
+main "$@"
+#--------
+
+

@@ -6,6 +6,7 @@ export DH_QUIET=1
 
 PACKAGE := $(shell dpkg-parsechangelog -SSource)
 VERSION := $(shell dpkg-parsechangelog -SVersion)
+
 $(shell sed -i 's/@PACKAGE@/$(PACKAGE)/; s/@VERSION@/$(VERSION)/' meson.build)
 
 execute_after_dh_builddeb:
@@ -13,6 +14,8 @@ execute_after_dh_builddeb:
 
 override_dh_auto_clean:
 	dh_auto_clean
+	@rm    help/help.html 2>/dev/null || :
+	@rm -r help/help      2>/dev/null || :
 	@sed -i 's/$(PACKAGE)/@PACKAGE@/; s/$(VERSION)/@VERSION@/' meson.build || :
 
 override_dh_usrlocal:

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: user-installed-packages\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-23 19:03+0100\n"
+"POT-Creation-Date: 2023-03-27 20:37+0200\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Wallon Wallon, 2023\n"
 "Language-Team: French (Belgium) (https://www.transifex.com/anticapitalista/teams/10162/fr_BE/)\n"
@@ -56,7 +56,7 @@ msgstr "Système:"
 #. TRANSLATORS:
 #. The desktop entry name will be displayed within the menu.
 msgid "User Installed Packages"
-msgstr "Paquets installés par l'utilisateur"
+msgstr "Paquets installés par l’utilisateur"
 
 msgid "Package name"
 msgstr "Nom du paquet"
@@ -65,7 +65,7 @@ msgid "Description"
 msgstr "Description"
 
 msgid "List of user installed packages"
-msgstr "Liste des paquets installés par l'utilisateur"
+msgstr "Liste des paquets installés par l’utilisateur"
 
 msgid "List of unavailable packages"
 msgstr "Liste des paquets indisponibles"
@@ -76,14 +76,14 @@ msgstr ""
 
 msgid "MX - User Installed Packages"
 msgstr ""
-"MX - Paquets installés par l'utilisateur - MX - User Installed Packages"
+"MX - Paquets installés par l’utilisateur - MX - User Installed Packages"
 
 msgid ""
 "This app is designed to make it easy to reinstall packages that the user has"
 " added to the default installation and retained."
 msgstr ""
 "Cette application est conçue pour faciliter la réinstallation des paquets "
-"que l'utilisateur a ajoutés à l'installation par défaut et qu'il a "
+"que l’utilisateur a ajoutés à l’installation par défaut et qu’il a "
 "conservés."
 
 msgid "It combines two steps:"
@@ -97,10 +97,10 @@ msgid ""
 " if still available"
 msgstr ""
 "2) utiliser cette liste dans un autre emplacement pour examiner et "
-"réinstaller ces paquets, s'ils sont toujours disponibles."
+"réinstaller ces paquets, s’ils sont toujours disponibles."
 
 msgid "Create a list of user installed packages"
-msgstr "Créer une liste des paquets installés par l'utilisateur"
+msgstr "Créer une liste des paquets installés par l’utilisateur"
 
 msgid "Open a previously saved list and install selected packages"
 msgstr ""
@@ -108,7 +108,7 @@ msgstr ""
 "sélectionnés"
 
 msgid "You have no packages installed!"
-msgstr "Aucun paquet n'est installé!"
+msgstr "Aucun paquet n’est installé!"
 
 #. TRANSLATORS:
 #. There may be more than one sentence that needs to be translated.
@@ -125,7 +125,7 @@ msgstr[2] "Vous avez installé %d paquets:"
 #. The list of user installed packages (UIP) failed to save.
 msgid "The UIP list of packages installed by the user could not be saved"
 msgstr ""
-"La liste UIP des paquets installés par l'utilisateur n'a pas pu être "
+"La liste UIP des paquets installés par l’utilisateur n’a pas pu être "
 "enregistrée."
 
 msgid "No file selected."
@@ -150,19 +150,22 @@ msgstr "[OK] La liste UIP des paquets manquants est enregistrée:"
 #. UIP = "User Installed Packages".
 #. The list of missing packages failed to save.
 msgid "UIP list of missing packages could not be saved."
-msgstr "La liste UIP des paquets manquants n'a pas pu être enregistrée."
+msgstr "La liste UIP des paquets manquants n’a pas pu être enregistrée."
 
 msgid "Press Enter to exit"
 msgstr "Appuyez sur Enter pour quitter"
+
+msgid "Installing selected packages, please authenticate"
+msgstr "Installation des paquets sélectionnés, veuillez vous authentifier"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
 #. The user selects a file to save the list of user installed packages (UIP).
 msgid "Select location to save file"
-msgstr "Sélectionnez l'emplacement pour enregistrer le fichier"
+msgstr "Sélectionnez l’emplacement pour enregistrer le fichier"
 
 msgid "File exists. Overwrite?"
-msgstr "Le fichier existe déjà. L'écraser?"
+msgstr "Le fichier existe déjà. L’écraser?"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -174,7 +177,7 @@ msgstr "[OK] La liste UIP est enregistrée:"
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) failed to save.
 msgid "UIP-list save file failed:"
-msgstr "Échec de l'enregistrement du fichier de la liste UIP:"
+msgstr "Échec de l’enregistrement du fichier de la liste UIP:"
 
 msgid "[ERROR]"
 msgstr "[ERREUR]"
@@ -200,12 +203,12 @@ msgstr "Le fichier choisi est un répertoire."
 #. TRANSLATORS:
 #. The selected file is not a regular (text) file.
 msgid "Not a regular file"
-msgstr "Ce n'est pas un fichier normal"
+msgstr "Ce n’est pas un fichier normal"
 
 #. TRANSLATORS:
 #. The selected file is not readable file.
 msgid "File is not readable."
-msgstr "Le fichier n'est pas lisible."
+msgstr "Le fichier n’est pas lisible."
 
 #. TRANSLATORS:
 #. The type of the file the user has selected: "file type"
@@ -215,12 +218,12 @@ msgstr "type de fichier"
 #. TRANSLATORS:
 #. The selected file is not a plain ASCII text file.
 msgid "Not a plain ASCII text file"
-msgstr "Ce n'est pas un fichier texte ASCII"
+msgstr "Ce n’est pas un fichier texte ASCII"
 
 #. TRANSLATORS:
 #. The selected file is not a text file.
 msgid "Not a text file"
-msgstr "Ce n'est pas un fichier texte"
+msgstr "Ce n’est pas un fichier texte"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -240,16 +243,16 @@ msgstr "Choisir un fichier"
 #. The desktop entry comment will be shown within the menu.
 msgid "List user installed packages. Install packages from existing list."
 msgstr ""
-"Liste des paquets installés par l'utilisateur. Installer des paquets à "
-"partir d'une liste existante."
+"Liste des paquets installés par l’utilisateur. Installer des paquets à "
+"partir d’une liste existante."
 
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "apt;install;paquet;uip;"
+msgstr "apt;install;package;uip;"
 
 msgid "MX User Installed Packages"
-msgstr "MX Paquets installés par l'utilisateur - MX User Installed Packages"
+msgstr "MX Paquets installés par l’utilisateur - MX User Installed Packages"
 
 msgid "About MX User Installed Packages"
 msgstr "A propos de MX User Installed Packages"
@@ -257,16 +260,23 @@ msgstr "A propos de MX User Installed Packages"
 msgid "An app to list and re-install user installed packages."
 msgstr ""
 "Une application pour lister et réinstaller les paquets installés par "
-"l'utilisateur."
+"l’utilisateur."
 
 msgid "Changelog"
 msgstr "Journal des modifications"
 
 msgid "MX User Installed Packages Changelog"
-msgstr "MX Journal des modifications des paquets installés par l'utilisateur"
+msgstr "MX Journal des modifications des paquets installés par l’utilisateur"
 
 msgid "License"
 msgstr "Licence"
 
 msgid "MX User Installed Packages License"
 msgstr "MX Licence pour User Installed Packages"
+
+msgid "Authentication is required to install selected packages"
+msgstr ""
+"L’authentification est requise pour installer les paquets sélectionnés"
+
+msgid "Install selected packages"
+msgstr "Installer les paquets sélectionnés"

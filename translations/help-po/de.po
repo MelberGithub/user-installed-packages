@@ -1,15 +1,19 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the user-installed-packages package.
+# This file is distributed under the same license as the user-installed-packages-help package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# delix02, 2023
+# fehlix, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: user-installed-packages\n"
+"Project-Id-Version: user-installed-packages-help\n"
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
-"POT-Creation-Date: 2023-03-23 19:03+0100\n"
-"PO-Revision-Date: 2023-03-20 13:51+0000\n"
+"POT-Creation-Date: 2023-03-27 19:23+0200\n"
+"PO-Revision-Date: 2023-03-27 16:20+0000\n"
 "Last-Translator: fehlix, 2023\n"
 "Language-Team: German (https://www.transifex.com/anticapitalista/teams/10162/de/)\n"
 "MIME-Version: 1.0\n"
@@ -18,89 +22,134 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "This app is designed to make it easy to reinstall packages that the user has added to the default installation and retained."
-msgstr "Diese Anwendung wurde entwickelt, um die Neuinstallation von Paketen zu erleichtern, die der Benutzer zur Standardinstallation hinzugefügt und behalten hat."
+msgid "User Installed Packages Help"
+msgstr "Hilfe für benutzerinstallierte Pakete"
 
-msgid "quickly and easily create a list of those packages"
-msgstr "schnell und einfach eine Liste dieser Pakete erstellen"
+msgid ""
+"This application is intended to facilitate the re-installation of packages "
+"that the user has added to the default installation."
+msgstr ""
+"Diese Anwendung soll die Neuinstallation von Paketen erleichtern, die der "
+"Benutzer zur Standardinstallation hinzugefügt hat."
 
-msgid "use that list in another location to review and reinstall those packages, if still available"
-msgstr "diese Liste an einem anderen Ort zu verwenden, um diese Pakete zu überprüfen und neu zu installieren, falls noch verfügbar"
+msgid ""
+"It can display a list of packages manually installed by the user that can be"
+" saved in a simple text file. Furthermore, the application allows loading a "
+"saved list of packages for review and selection to be reinstalled. Such a "
+"procedure is especially easy and useful after a new system installation."
+msgstr ""
+"Es kann eine Liste der vom Benutzer manuell installierten Pakete anzeigen, "
+"die in einer einfachen Textdatei gespeichert werden kann. Außerdem "
+"ermöglicht die Anwendung das Laden einer gespeicherten Liste von Paketen zur"
+" Überprüfung und Auswahl für eine Neuinstallation. Ein solches Verfahren ist"
+" besonders einfach und nützlich nach einer neuen Systeminstallation."
 
-msgid "A list of user installed packages is displayed."
-msgstr "Eine Liste der vom Benutzer installierten Pakete wird angezeigt."
+msgid "There are two options to choose from:"
+msgstr "Es stehen zwei Optionen zur Auswahl:"
 
-msgid "Note: Packages of installed Linux kernels or NVIDIA graphics driver will not be listed."
-msgstr "Hinweis: Pakete von installierten Linux-Kerneln oder NVIDIA-Grafiktreibern werden nicht aufgelistet."
+msgid "quickly and easily create a list of those packages."
+msgstr "Schnell und einfach eine Liste dieser Pakete erstellen."
 
-msgid "Press [Save List] and select the location to save the package list."
-msgstr "Drücken Sie [Liste speichern] und wählen Sie den Speicherort für die Paketliste."
+msgid ""
+"use that list in another location to review and reinstall those packages, if"
+" still available."
+msgstr ""
+"Verwende diese Liste an einem anderen Ort, um diese Pakete zu überprüfen und"
+" neu zu installieren, falls sie noch verfügbar sind."
+
+msgid "Create a list of user-installed packages"
+msgstr "Erstellen einer Liste der vom Benutzer installierten Pakete"
+
+msgid "A list of user-installed packages is displayed."
+msgstr "Es wird eine Liste der vom Benutzer installierten Pakete angezeigt."
+
+msgid ""
+"Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
+"not be listed."
+msgstr ""
+"Hinweis: Pakete von installierten Linux-Kernels oder NVIDIA-Grafiktreibern "
+"werden nicht aufgelistet."
+
+msgid ""
+"Press [Save List] and select the location where the package list should be "
+"saved."
+msgstr ""
+"Klicke auf [Liste speichern] und wähle den Ort aus, an dem die Paketliste "
+"gespeichert werden soll."
+
+msgid "Open a previously saved list to install selected packages"
+msgstr ""
+"Öffne eine zuvor gespeicherte Liste, um ausgewählte Pakete zu installieren"
 
 msgid "Select the package list you wish to install."
-msgstr "Wählen Sie die Paketliste aus, die Sie installieren möchten."
+msgstr "Wähle die Paketliste aus, die installiert werden soll."
 
-msgid "The package list will be displayed."
-msgstr "Die Paketliste wird angezeigt."
+msgid ""
+"Uncheck any packages in the displayed list that you do not wish to install."
+msgstr ""
+"Entferne die Markierung aller Pakete in der angezeigten Liste, die nicht "
+"installiert werden sollen."
 
-msgid "Uncheck any packages in the list you do not wish to install."
-msgstr "Deaktivieren Sie alle Pakete in der Liste, die Sie nicht installieren möchten."
+msgid ""
+"A notification is provided for any missing packages that can no longer be "
+"installed."
+msgstr ""
+"Für fehlende Pakete, die nicht mehr installiert werden können, wird eine "
+"Benachrichtigung bereitgestellt."
 
-msgid "A notification is provided for any missing packages."
-msgstr "Es wird eine Benachrichtigung über fehlende Pakete angezeigt."
+msgid "Press [OK] and the selected packages will be installed."
+msgstr "Klicken Sie auf [OK] und die ausgewählten Pakete werden installiert."
 
-msgid "Press [OK] and the selected packages will be installed if still available."
-msgstr "Drücken Sie [OK] und die ausgewählten Pakete werden installiert, sofern noch verfügbar."
+msgid "Unavailable packages will be listed"
+msgstr "Nicht verfügbare Pakete werden aufgelistet"
 
-msgid "Packages unavaible or cannot be installed will be listed."
-msgstr "Nicht installierbare oder nicht installierbare Pakete werden aufgelistet."
+msgid "Packages that are unavailable or uninstallable will be listed."
+msgstr ""
+"Pakete, die nicht verfügbar oder nicht installierbar sind, werden "
+"aufgelistet."
 
-msgid "Press [Save List] and select location to save the list of missing packages."
-msgstr "Drücken Sie [Liste speichern] und wählen Sie den Speicherort für die Liste der fehlenden Pakete."
+msgid ""
+"Such a situation arises when the main package or one of its dependencies can"
+" not function within the new system."
+msgstr ""
+"Eine solche Situation tritt ein, wenn das Hauptpaket oder eine seiner "
+"Abhängigkeiten im neuen System nicht funktionieren kann."
+
+msgid ""
+"Press [Save List] and select the location to save the list of unavailable "
+"packages."
+msgstr ""
+"Klicken Sie auf [Liste speichern] und wählen Sie den Ort, an dem die Liste "
+"der nicht verfügbaren Pakete gespeichert werden soll."
+
+msgid "Packages available will be installed"
+msgstr "Verfügbare Pakete werden installiert"
 
 msgid "The installation process is started within a new terminal window."
-msgstr "Der Installationsprozess wird in einem neuen Terminalfenster gestartet."
+msgstr ""
+"Der Installationsvorgang wird in einem neuen Terminalfenster gestartet."
 
-msgid "Authentication to perform installtion is required."
-msgstr "Eine Authentifizierung zur Durchführung der Installation ist erforderlich."
+msgid "Authentication and confirmation are required to perform installation."
+msgstr ""
+"Zur Durchführung der Installation sind eine Authentifizierung und eine "
+"Bestätigung erforderlich."
 
-msgid "Confirmation to perform the installtion is requested. Press [N] to cancel installtion."
-msgstr "Es wird eine Bestätigung für die Durchführung der Installation verlangt. Drücken Sie [N], um die Installation abzubrechen."
+#. TRANSLATORS:
+#. A question "Do you want to continue? [Y/n]" is displayed in the terminal
+#. window. The question could be displayed translated, including [Y/N] for
+#. translated [Yes/No].
+msgid "Press [N] to cancel."
+msgstr "Zum Abbrechen auf [N] drücken."
 
-msgid "To close the terminal window after the installtion process finshed press [Enter]."
-msgstr "Um das Terminalfenster nach Abschluss der Installation zu schließen, drücken Sie [Enter]."
+msgid ""
+"To close the terminal window after the installation process finishes, press "
+"[Enter]."
+msgstr ""
+"Um das Terminalfenster nach Abschluss der Installation zu schließen, drücken"
+" Sie [Enter]."
 
 msgid "Version:"
 msgstr "Version:"
 
 msgid "Last updated:"
 msgstr "Zuletzt aktualisiert:"
-
-msgid "User Installed Packages Help"
-msgstr "Hilfe für benutzerinstallierte Pakete"
-
-msgid "Create a list of user installed packages"
-msgstr "Eine Liste der vom Benutzer installierten Pakete erstellen"
-
-msgid "Open a previously saved list to install selected packages"
-msgstr "Öffne eine zuvor gespeicherte Liste, um ausgewählte Pakete zu installieren"
-
-msgid "Unavailable packages will be listed"
-msgstr "Nicht verfügbare Pakete werden aufgelistet"
-
-msgid "Packages available with be installed"
-msgstr "Verfügbare Pakete, die installiert werden können"
-
-msgid "This application is intended to facilitate the reinstallation of packages that the user has added to the default installation."
-msgstr "Diese Anwendung ist dazu gedacht, die Neuinstallation von Paketen zu erleichtern, die der Benutzer zur Standardinstallation hinzugefügt hat."
-
-msgid "It can display a list of packages manually installed by the user. This list can be saved in a simple text file."
-msgstr "Sie kann eine Liste der vom Benutzer manuell installierten Pakete anzeigen. Diese Liste kann in einer einfachen Textdatei gespeichert werden."
-
-msgid "Furthermore, the application allows to load a saved list of packages. The loaded package list is displayed for selection. The user can now select which packages to install."
-msgstr "Außerdem erlaubt die Anwendung das Laden einer gespeicherten Paketliste. Die geladene Paketliste wird zur Auswahl angezeigt. Der Benutzer kann nun auswählen, welche Pakete er installieren möchte."
-
-msgid "Especially after a new installation of the system, it is easy to select the desired packages for installation from an existing list of user-installed packages."
-msgstr "Besonders nach einer Neuinstallation des Systems ist es einfach, aus einer bestehenden Liste der vom Benutzer installierten Pakete die gewünschten Pakete zur Installation auszuwählen."
-
-msgid "There are two options to choose from:"
-msgstr "Es stehen zwei Optionen zur Auswahl:"

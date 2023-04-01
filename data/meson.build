@@ -1,44 +1,39 @@
-fs = import('fs')
 
-img_files = [
-            'img/uip-main.png',
-            'img/uip-list.png',
-            'img/uip-load.png',
-            'img/uip-missing.png',
-            'img/uip-apt-install.png',
-            ]
+html_files      = [
+                'license.html',
+                ]
 
-help_html = 'help.html'
-
-html_files = [
-            'license.html',
-            'help.md',
-            help_html
-            ]
-
+policy_files    = [
+                'org.mxlinux.user-installed-packages.policy',
+                ]
 
 install_data(
-    html_files,
-    install_dir: get_option('datadir') / package_name
-)
-install_data(
-    img_files,
-    install_dir: get_option('datadir') / package_name / 'img'
+        html_files,
+        install_dir: get_option('datadir') / package_name
 )
 
-locale = [
-        'am', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'es_ES',
-        'es', 'et', 'fa', 'fil_PH', 'fi', 'fr_BE', 'fr', 'gl_ES',
-        'he_IL', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kk',
-        'ko', 'lt', 'mr', 'nb_NO', 'nb', 'nl_BE', 'nl', 'pl',
-        'pt_BR', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv',
-        'th', 'tr', 'uk', 'vi', 'zh_CN', 'zh_HK', 'zh_TW'
-        ]
+merged_file = i18n.merge_file(
+        input: 'org.mxlinux.user-installed-packages.policy',
+        output: 'org.mxlinux.user-installed-packages.policy',
+        type: 'xml',
+        po_dir: '..' / subdir_po,
+        install_dir: get_option('datadir') / 'polkit-1/actions',
+        install: true,
+)
 
-foreach l: locale
-    if not fs.is_file(l / help_html)
-        continue
-    endif
-    install_data( l / help_html,
-    install_dir:  get_option('datadir') / package_name / l )
-endforeach
+i18n.merge_file(
+    input: configure_file(
+        input: '@0@.desktop'.format(desktop_id),
+        output: '@0@.desktop.i18n'.format(desktop_id),
+        capture: true,
+        command: ['sed', '/^#/d', '@INPUT@']
+        ),
+    install: true,
+    install_dir: get_option('datadir') / 'applications',
+    output: '@0@.desktop'.format(desktop_id),
+    po_dir: '..' / subdir_po,
+    type: 'desktop',
+)
+
+
+

@@ -1,81 +1,152 @@
 #!/bin/bash
 
-#  fehlix test project do not use
-#: ${ORGANIZATION:=fehlix}
-#: ${PROJECT:=testproject-do-not-use}
-#: ${MINIMUM_PERC:=0}
+
+# fetch translations from transifex
+#
+
+PACKAGE="user-installed-packages"
+
+unset PO_DIRS
+declare -A PO_DIRS=(
+    ${PACKAGE}-help-mx  help-po
+    ${PACKAGE}-mx       po
+)
+unset MIN_PERC
+declare -A MIN_PERC=(
+    ${PACKAGE}-help-mx  100
+    ${PACKAGE}-mx        30
+)
+
+unset RESOURCES
+declare -a RESOURCES=( "${!PO_DIRS[@]}" )
+
+# need 'latest' transifex client
+[ -z "$TXBIN" ] && [ -f ./tx ] && [ -x ./tx ] && TXBIN=./tx 
+: ${TXBIN:=$(which tx)}
+[ ! -x "$TXBIN" ] && echo "Need 'tx' transifex client! exit" && exit 1
+
+# prepare transifex
+[ -d .tx        ] || mkdir -p .tx
+[ -f .tx/config ] && rm  .tx/config
+
+
+echodo() {
+    echo "${@}"
+    ${@}
+}
+
+# need 'latest' transifex client
+: ${TXBIN:=$(which tx)}
+[ ! -x "$TXBIN" ] && echo "Need 'tx' transifex client! exit" && exit 1
+
+which isoquery >/dev/null || {
+    echo "Need 'isoquery'. Install with: apt install isoquery";
+    exit 1;
+    }
 
 # set transifex organization and project name - if not set in environment already
 : ${ORGANIZATION:=anticapitalista}
 : ${PROJECT:=antix-development}
-# set transifex resource name here if it is not the package name
-RESOURCE=user-installed-packages-mx
-
-# set minium translations completion in percent to pull translation
-: ${MINIMUM_PERC:=5}
-
-echodo() { echo "${@}";  ${@}; }
-
-# need 'latest' transifex client
-: ${TXBIN:=$(which tx)}
-[ ! -x "$TXBIN" ] && echo "Error: transifex client not found!" && exit 1
-
-# get package name from changelog
-CHNGLOG=$(find {,../,../../}debian/changelog  -type f -name changelog -print -quit 2>/dev/null)
-PKGNAME=$(dpkg-parsechangelog -l "$CHNGLOG" -SSource)
-# set transifex resource to package name if not defined yet
-: ${RESOURCE:=$PKGNAME}
-
-# prepare transifex 
-[ -d .tx         ] || mkdir -p .tx
-[ -f  .tx/config ] && rm  .tx/config
 
 cat <<EOF > .tx/config
 [main]
 host = https://www.transifex.com
 
-[o:${ORGANIZATION}:p:${PROJECT}:r:${RESOURCE}]
-
-file_filter = po/<lang>.po
-minimum_perc = ${MINIMUM_PERC:=5}
-resource_name = ${RESOURCE}
-source_file = $PKGNAME.pot
-source_lang = en
-type = PO
 EOF
 
-# remove existing - if any yet
-[ -d po ] && echodo rm po/*.po 2>/dev/null
-[ -d po ] || echodo mkdir po
+for RESOURCE in ${RESOURCES[@]}; do
 
-# set transifex resource_id
-RESOUCE_ID="${PROJECT}.${RESOURCE}"
+    POTFILE=${RESOURCE%-mx}.pot
+    PODIR=${PO_DIRS[${RESOURCE}]}
 
-#echodo ${TXBIN} pull --force  --all "$RESOUCE_ID"
-echodo ${TXBIN} pull --translations --all "$RESOUCE_ID"
+    cat <<EOF >> .tx/config
+[o:${ORGANIZATION}:p:${PROJECT}:r:${RESOURCE}]
 
-# make LINGUAS
-LINGUAS=po/LINGUAS
-[ -f $LINGUAS ] && echodo rm $LINGUAS
-touch $LINGUAS
+file_filter   = ${PODIR}/<lang>.po
+minimum_perc  = ${MIN_PERC[${RESOURCE}]}
+resource_name = ${RESOURCE}
+source_file   = ${POTFILE}
+source_lang   = en
+type          = PO
 
-cat<<LINGUAS | tee $LINGUAS
-# LINGUAS with minimum completion percent ${MINIMUM_PERC}% generated at $(LANG=C.UTF-8 TZ=EST date -R)
+EOF
+
+done
+
+
+for RESOURCE in ${RESOURCES[@]}; do
+    RESOUCE_ID="${PROJECT}.${RESOURCE}"
+    POTFILE=${RESOURCE%-mx}.pot
+    PODIR=${PO_DIRS[${RESOURCE}]}
+    # remove existing *.po - if any yet
+    [ -d ${PODIR} ] && rm ${PODIR}/*.po 2>/dev/null
+    [ -d ${PODIR} ] || mkdir ${PODIR}
+
+    echodo ${TXBIN} pull --translations --all "$RESOUCE_ID"
+
+done
+
+
+for RESOURCE in ${RESOURCES[@]}; do
+    RESOUCE_ID="${PROJECT}.${RESOURCE}"
+    POTFILE=${RESOURCE%-mx}.pot
+    PODIR=${PO_DIRS[${RESOURCE}]}
+
+    # make LINGUAS
+    LINGUAS=${PODIR}/LINGUAS
+    [ -f $LINGUAS ] && rm $LINGUAS
+    touch $LINGUAS
+
+echo
+    cat<<LINGUAS | tee $LINGUAS
+# LINGUAS for ${RESOURCE}
+# with minimum completion percent ${MIN_PERC[${RESOURCE}]}%
+# generated at $(LANG=C.UTF-8 TZ=EST date -R)
 #
 LINGUAS
 
-for po in po/*.po; do
-    [ -e "$po" ] || continue
-    lang=${po##*/}
-    lang=${lang%.po}
-    printf '%s ' "${lang}"
-    echo "${lang}" >> $LINGUAS
-done
-echo
+    for po in "$PODIR"/*.po; do
+        [ -e "$po" ] || continue
+        lang=${po##*/}
+        lang=${lang%.po}
+        printf '%s ' "${lang}"
+        echo "${lang}" >> $LINGUAS
+    done
+    echo
 
-# prepare meson build
-if [ ! -f po/meson.build ]; then
-    cat <<EOF > po/meson.build
-i18n.gettext(gettext_package, preset: 'glib' )
-EOF
-fi
+    # prepare meson build
+    if [ ! -f "$PODIR"/meson.build ]; then
+        echo "i18n.gettext(gettext_package, preset: 'glib' )" > "$PODIR"/meson.build
+    fi
+
+    LOG=$PODIR/TX-COMPLETE.LOG
+
+    echo
+    echo "# Transifex resource $RESOURCE "                              | tee    $LOG
+    echo "# with minimum completion percent ${MIN_PERC[${RESOURCE}]}%"  | tee  -a  $LOG
+    echo "# generated at $(TZ=EST date -R)"                             | tee -a $LOG
+
+    printf '%6s\t\t%4s\t%7s\t\t%s\t\t%s\n' "Nr." "Cnt." "Compl." "Code" "Language" | tee -a $LOG
+    printf '%6s\t\t%4s\t%7s\t\t%s\t\t%s\n' "---" "----" "------" "----" "--------" | tee -a $LOG
+
+    T=$(grep -cw ^msgid $POTFILE) ;
+    ((T--))
+    for P in $PODIR/*.po ; do
+        [ -e "$P" ] || continue
+        L=${P##*/};
+        L=${L%.po};
+        ll=${L%%_*}
+        rr=${L##*_}
+        [[ -n ${L##*_*} ]] && rr=
+        L="$(printf '%-8s' ${L})";
+
+        Z=$(msggrep --no-wrap -T -e '..' $P  | grep -cw ^msgid);
+        ((Z>0)) && ((Z--))
+        printf '\t%4d\t%6d%%    \t%s\t%s%s\n' $Z $((Z*100/T)) "$L" \
+            "$( isoquery --iso=639-${#ll} -n $ll | sed 's/L\t\t//' | cut -f3- )"  \
+            "${rr:+ @ $(isoquery -i 3166-1 $rr   | cut -f4 )}";
+    done | sort -t $'\t' -k2nr,2 -k4,4 | cat -n | tee -a $LOG
+
+done
+
+exit

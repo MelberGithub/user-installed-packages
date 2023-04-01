@@ -1,51 +1,68 @@
 #!/bin/bash
 
-#  fehlix test project do not use
-#: ${ORGANIZATION:=fehlix}
-#: ${PROJECT:=testproject-do-not-use}
+PACKAGE="user-installed-packages"
 
-# set transifex organization and project name - if not set in environment alredy
+unset PO_DIRS
+declare -A PO_DIRS=(
+    ${PACKAGE}-help-mx  help-po
+    ${PACKAGE}-mx       po
+)
+unset MIN_PERC
+declare -A MIN_PERC=(
+    ${PACKAGE}-help-mx  100
+    ${PACKAGE}-mx        30
+)
+
+unset RESOURCES
+declare -a RESOURCES=( "${!PO_DIRS[@]}" )
+
+
+# need 'latest' transifex client
+[ -z "$TXBIN" ] && [ -f ./tx ] && [ -x ./tx ] && TXBIN=./tx 
+: ${TXBIN:=$(which tx)}
+[ ! -x "$TXBIN" ] && echo "Need 'tx' transifex client! exit" && exit 1
+
+# prepare transifex
+[ -d .tx        ] || mkdir -p .tx
+[ -f .tx/config ] && rm  .tx/config
+
+# set transifex organization and project name - if not set in environment already
 : ${ORGANIZATION:=anticapitalista}
 : ${PROJECT:=antix-development}
 
-# set transifex resource name here  if it is not the package name
-RESOURCE=user-installed-packages-mx
-
-
-echodo() { echo "${@}";  ${@}; }
-
-# need 'latest' transifex client
-: ${TXBIN:=$(which tx)}
-[ ! -x "$TXBIN" ] && echo "Error: transifex client not found!" && exit 1
-
-# get package name from changelog
-CHNGLOG=$(find {,../,../../}debian/changelog  -type f -name changelog -print -quit 2>/dev/null)
-PKGNAME=$(dpkg-parsechangelog -l "$CHNGLOG" -SSource)
-# set transifex resource to package name if not defined yet
-: ${RESOURCE:=$PKGNAME}
-
-# prepare transifex 
-[ -d .tx         ] || mkdir -p .tx
-[ -f .tx/config  ] && rm  .tx/config
-
-
-cat <<EOF | tee .tx/config
+cat <<EOF > .tx/config
 [main]
 host = https://www.transifex.com
 
-[o:${ORGANIZATION}:p:${PROJECT}:r:${RESOURCE}]
-
-file_filter = po/<lang>.po
-minimum_perc = ${MINIMUM_PERC:=5}
-resource_name = ${RESOURCE}
-source_file = $PKGNAME.pot
-source_lang = en
-type = PO
 EOF
 
-# set transifex resource_id
-RESOUCE_ID="${PROJECT}.${RESOURCE}"
+for RESOURCE in ${RESOURCES[@]}; do
 
-echo "" 
-echo "To push pot-file source to transifex run:" 
-echo ${TXBIN} push --source  "$RESOUCE_ID"
+    POTFILE=${RESOURCE%-mx}.pot
+    PODIR=${PO_DIRS[${RESOURCE}]}
+
+    cat <<EOF >> .tx/config
+[o:${ORGANIZATION}:p:${PROJECT}:r:${RESOURCE}]
+
+file_filter   = ${PODIR}/<lang>.po
+minimum_perc  = ${MIN_PERC[${RESOURCE}]}
+resource_name = ${RESOURCE}
+source_file   = ${POTFILE}
+source_lang   = en
+type          = PO
+
+EOF
+
+done
+
+echo "#---- .tx/config -----"
+cat .tx/config
+
+for RESOURCE in ${RESOURCES[@]}; do
+    POTFILE=${RESOURCE%-mx}.pot
+    RESOUCE_ID="${PROJECT}.${RESOURCE}"
+    echo "" 
+    echo "To push pot-file ${POTFILE} to transifex" 
+    echo "Run:" 
+    echo ${TXBIN} push --source  "$RESOUCE_ID"
+done

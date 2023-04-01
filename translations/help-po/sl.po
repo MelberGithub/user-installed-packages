@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages-help package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Arnold Marko <arnold.marko@gmail.com>, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages-help\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-27 19:23+0200\n"
+"PO-Revision-Date: 2023-03-27 16:20+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2023\n"
+"Language-Team: Slovenian (https://www.transifex.com/anticapitalista/teams/10162/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+msgid "User Installed Packages Help"
+msgstr "Uporabniško nameščeni paketi pomoči"
+
+msgid ""
+"This application is intended to facilitate the re-installation of packages "
+"that the user has added to the default installation."
+msgstr ""
+"Aplikacija je narejena za enostavno ponovno nameščanje paletov, ki jih je "
+"uporabnik dodal in obdržal v privzeti namestitvi."
+
+msgid ""
+"It can display a list of packages manually installed by the user that can be"
+" saved in a simple text file. Furthermore, the application allows loading a "
+"saved list of packages for review and selection to be reinstalled. Such a "
+"procedure is especially easy and useful after a new system installation."
+msgstr ""
+"Lahko prikaže seznam paketov, ki jih je uporabnik ročno namestil, in tega "
+"shrani v enostavno datoteko z besedilom. Aplikacija tudi dovoljuje nalaganje"
+" shranjenih paketov za pregled in ponovno namestitev. Takšen postopek je "
+"zelo enostaven in uporaben pri nameščanju novega sistema."
+
+msgid "There are two options to choose from:"
+msgstr "Na voljo sta dve možnosti:"
+
+msgid "quickly and easily create a list of those packages."
+msgstr "hitro in enostavno ustvarjanje seznama teh paketov,"
+
+msgid ""
+"use that list in another location to review and reinstall those packages, if"
+" still available."
+msgstr ""
+"uporaba tega seznama na drugem mestu za pregled in ponovno namestitev, če so"
+" še na voljo."
+
+msgid "Create a list of user-installed packages"
+msgstr "Ustvari "
+
+msgid "A list of user-installed packages is displayed."
+msgstr "Prikazan je seznam uporabniško nameščenih paketov."
+
+msgid ""
+"Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
+"not be listed."
+msgstr ""
+"Opomba; Paketi Linux jedra ali NVIDIA grafičnih gonilnikov ne bodo "
+"prikazani."
+
+msgid ""
+"Press [Save List] and select the location where the package list should be "
+"saved."
+msgstr ""
+"Pritisnite [Shrani seznam] in izberite lokacijo, kamor naj se seznam paktov "
+"shrani."
+
+msgid "Open a previously saved list to install selected packages"
+msgstr "Odpri shranjen seznam za namestitev izbranih paketov"
+
+msgid "Select the package list you wish to install."
+msgstr "Izberite seznam paketov, ki jih želite namestiti."
+
+msgid ""
+"Uncheck any packages in the displayed list that you do not wish to install."
+msgstr ""
+"Odznačite vse pakete na prikazanem seznamu, ki jih ne želite namestiti."
+
+msgid ""
+"A notification is provided for any missing packages that can no longer be "
+"installed."
+msgstr ""
+"Prikaže se obvestilo za vse manjkajoče pakete, ki jih ni več mogoče "
+"namestiti."
+
+msgid "Press [OK] and the selected packages will be installed."
+msgstr "Pritisnite [V redu] in izbrani paketi bodo nameščeni."
+
+msgid "Unavailable packages will be listed"
+msgstr "Prikazani bodo paketi, ki niso na voljo."
+
+msgid "Packages that are unavailable or uninstallable will be listed."
+msgstr "Prikazani bodo paketi, ki niso na voljo ali jih ni mogoče namestiti."
+
+msgid ""
+"Such a situation arises when the main package or one of its dependencies can"
+" not function within the new system."
+msgstr ""
+"Takšna situacija se pojavi, ko glavni paket ali katera od njegovih "
+"odvisnosti ne more delovati na novem sistemu."
+
+msgid ""
+"Press [Save List] and select the location to save the list of unavailable "
+"packages."
+msgstr ""
+"Pritisnite [Shrani seznam] in izberite lokacijo, kamor naj se shrani seznam "
+"paktov, ki niso na voljo."
+
+msgid "Packages available will be installed"
+msgstr "Paketi, ki so na voljo, bodo nameščeni."
+
+msgid "The installation process is started within a new terminal window."
+msgstr "Namestitev se zažene v novem oknu terminala."
+
+msgid "Authentication and confirmation are required to perform installation."
+msgstr "Namestitev zahteva overitev in njeno potrditev."
+
+#. TRANSLATORS:
+#. A question "Do you want to continue? [Y/n]" is displayed in the terminal
+#. window. The question could be displayed translated, including [Y/N] for
+#. translated [Yes/No].
+msgid "Press [N] to cancel."
+msgstr "Pritisnite [N] za prekinitev."
+
+msgid ""
+"To close the terminal window after the installation process finishes, press "
+"[Enter]."
+msgstr "Za zapiranje terminala po koncu namestitve, pritisnite [Enter]."
+
+msgid "Version:"
+msgstr "Različica:"
+
+msgid "Last updated:"
+msgstr "Zadnja posodobitev:"

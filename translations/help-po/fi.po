@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages-help package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# En Kerro <inactive+ekeimaja@transifex.com>, 2023
+# Risto Pärkkä, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages-help\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-27 19:23+0200\n"
+"PO-Revision-Date: 2023-03-27 16:20+0000\n"
+"Last-Translator: Risto Pärkkä, 2023\n"
+"Language-Team: Finnish (https://www.transifex.com/anticapitalista/teams/10162/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "User Installed Packages Help"
+msgstr "Käyttäjän asetamat paketit ohjeet"
+
+msgid ""
+"This application is intended to facilitate the re-installation of packages "
+"that the user has added to the default installation."
+msgstr ""
+"Tämän sovelluksen tarkoituksena on helpottaa käyttäjän lisäämien pakettien "
+"asennusta oletusasennukseen."
+
+msgid ""
+"It can display a list of packages manually installed by the user that can be"
+" saved in a simple text file. Furthermore, the application allows loading a "
+"saved list of packages for review and selection to be reinstalled. Such a "
+"procedure is especially easy and useful after a new system installation."
+msgstr ""
+"Se voi näyttää luettelon käyttäjän asentamasta paketeista, jotka voidaan "
+"tallentaa yksinkertaiseen tekstitiedostoon. Lisäksi sovellus sallii "
+"tallennetun luettelon lataamisen tarkistettavaksi ja valintaa varten "
+"asennettaviksi. Tällainen menettely on erityisen helppo ja hyödyllinen uuden"
+" järjestelmän asennuksen jälkeen."
+
+msgid "There are two options to choose from:"
+msgstr "Valittavana on kaksi vaihtoehtoa:"
+
+msgid "quickly and easily create a list of those packages."
+msgstr "Luo nopeasti ja helposti luettelo näistä paketeista."
+
+msgid ""
+"use that list in another location to review and reinstall those packages, if"
+" still available."
+msgstr ""
+"Käytä tätä luetteloa toisessa paikassa tarkistaaksesi ja asenna nämä paketit"
+" uudelleen, jos ne ovat edelleen saatavilla."
+
+msgid "Create a list of user-installed packages"
+msgstr "Luo luettelo käyttäjän asentamista paketeista"
+
+msgid "A list of user-installed packages is displayed."
+msgstr "Näyttöön tulee luettelo käyttäjän asetamista paketeista."
+
+msgid ""
+"Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
+"not be listed."
+msgstr ""
+"HUOMAUTUS: Asennetun Linux -ytimen tai NVIDIA -grafiikkaohjaimien paketteja "
+"ei ole lueteltu."
+
+msgid ""
+"Press [Save List] and select the location where the package list should be "
+"saved."
+msgstr ""
+"Paina [Tallenna luettelo] ja valitse sijainti, johon pakettiluettelo tulisi "
+"tallentaa."
+
+msgid "Open a previously saved list to install selected packages"
+msgstr "Avaa aiemmin tallennettu luettelo asentaaksesi valitut paketit"
+
+msgid "Select the package list you wish to install."
+msgstr "Valitse pakettiluettelo, jonka haluat asentaa."
+
+msgid ""
+"Uncheck any packages in the displayed list that you do not wish to install."
+msgstr ""
+"Poista näytöllä olevassa luettelosta kaikki paketit, joita et halua asentaa."
+
+msgid ""
+"A notification is provided for any missing packages that can no longer be "
+"installed."
+msgstr ""
+"Ilmoitus annetaan puuttuville paketeille, joita ei enää voida asentaa."
+
+msgid "Press [OK] and the selected packages will be installed."
+msgstr "Paina [OK] ja valitut paketit asennetaan."
+
+msgid "Unavailable packages will be listed"
+msgstr "Listataan ei saatavilla olevia paketteja"
+
+msgid "Packages that are unavailable or uninstallable will be listed."
+msgstr "Listataan paketit, joita ei ole käytettävissä tai poistettavissa."
+
+msgid ""
+"Such a situation arises when the main package or one of its dependencies can"
+" not function within the new system."
+msgstr ""
+"Tällainen tilanne syntyy, kun pääpaketti tai yksi sen riippuvuuksista ei voi"
+" toimia uudessa järjestelmässä."
+
+msgid ""
+"Press [Save List] and select the location to save the list of unavailable "
+"packages."
+msgstr ""
+"Paina [Tallenna luettelo] ja valitse sijainti tallentaaksesi luettelon "
+"käytettävissä olevista paketeista."
+
+msgid "Packages available will be installed"
+msgstr "Saatavilla olevat paketit asennetaan"
+
+msgid "The installation process is started within a new terminal window."
+msgstr "Asennusprosessi käynnistetään uudessa pääteikkunassa."
+
+msgid "Authentication and confirmation are required to perform installation."
+msgstr "Asennuksen suorittamiseen tarvitaan todennus ja vahvistus."
+
+#. TRANSLATORS:
+#. A question "Do you want to continue? [Y/n]" is displayed in the terminal
+#. window. The question could be displayed translated, including [Y/N] for
+#. translated [Yes/No].
+msgid "Press [N] to cancel."
+msgstr "Paina [N] peruuttaaksesi."
+
+msgid ""
+"To close the terminal window after the installation process finishes, press "
+"[Enter]."
+msgstr ""
+"Sulje pääteikkuna asennusprosessin valmistumisen jälkeen painamalla [ENTER]."
+
+msgid "Version:"
+msgstr "Versio: "
+
+msgid "Last updated:"
+msgstr "Viimeksi päivitetty:"

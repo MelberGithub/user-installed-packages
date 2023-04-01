@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the user-installed-packages-help package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Besnik Bleta <besnik@programeshqip.org>, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: user-installed-packages-help\n"
+"Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
+"POT-Creation-Date: 2023-03-27 19:23+0200\n"
+"PO-Revision-Date: 2023-03-27 16:20+0000\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2023\n"
+"Language-Team: Albanian (https://www.transifex.com/anticapitalista/teams/10162/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "User Installed Packages Help"
+msgstr "Ndihmë mbi Paketa të Instaluara Nga Përdoruesi"
+
+msgid ""
+"This application is intended to facilitate the re-installation of packages "
+"that the user has added to the default installation."
+msgstr ""
+"Ky aplikacion është menduar të lehtësojë riinstalimin e paketave që "
+"përdoruesi ka shtuar te instalimi parazgjedhje."
+
+msgid ""
+"It can display a list of packages manually installed by the user that can be"
+" saved in a simple text file. Furthermore, the application allows loading a "
+"saved list of packages for review and selection to be reinstalled. Such a "
+"procedure is especially easy and useful after a new system installation."
+msgstr ""
+"Mund të shfaqë një listë të paketave të instaluara dorazi nga përdoruesi, e "
+"cila mund të ruhet si një kartelë e thjeshtë text. Më tej, aplikacioni lejon"
+" ngarkimin e një liste të ruajtur paketash, për shqyrtim dhe përzgjedhje për"
+" riinstalim. Një procedurë e tillë është veçanërisht e lehtë dhe e dobishme,"
+" pas një instalimi të ri sistemi."
+
+msgid "There are two options to choose from:"
+msgstr "Ka dy mundësi prej nga të zgjidhni:"
+
+msgid "quickly and easily create a list of those packages."
+msgstr "krijoni shpejt e shpejt dhe kollaj një listë të këtyre paketave."
+
+msgid ""
+"use that list in another location to review and reinstall those packages, if"
+" still available."
+msgstr ""
+"përdoreni atë listë në një tjetër vend, për të shqyrtuar dhe riinstaluar "
+"këto paketa, nëse gjenden ende."
+
+msgid "Create a list of user-installed packages"
+msgstr "Krijoni një listë paketash të instaluara nga përdoruesi"
+
+msgid "A list of user-installed packages is displayed."
+msgstr "Është shfaqur një listë paketash të instaluara nga përdoruesi."
+
+msgid ""
+"Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
+"not be listed."
+msgstr ""
+"Shënim: Paketat e instaluara për kernela Linux, ose përudhësish NVIDIA për "
+"karta grafike nuk do të paraqiten."
+
+msgid ""
+"Press [Save List] and select the location where the package list should be "
+"saved."
+msgstr ""
+"Klikoni mbi [Ruaje Listën] dhe përzgjidhni vendin ku duhet të ruhet lista e "
+"paketave."
+
+msgid "Open a previously saved list to install selected packages"
+msgstr "Hap një listë ruajtur më parë për instalim paketash të përzgjedhura"
+
+msgid "Select the package list you wish to install."
+msgstr "Përzgjidhni listën e paketave që dëshironi të instalohen."
+
+msgid ""
+"Uncheck any packages in the displayed list that you do not wish to install."
+msgstr ""
+"Hiquni shenjën cilësdo paketë të shfaqur te lista të cilat s’dëshironi të "
+"instalohen."
+
+msgid ""
+"A notification is provided for any missing packages that can no longer be "
+"installed."
+msgstr ""
+"Për çfarëdo pakete që mungon dhe që s’mund të instalohet më, shfaqet një "
+"njoftim."
+
+msgid "Press [OK] and the selected packages will be installed."
+msgstr "Shtypni [OK] dhe paketat e përzgjedhura do të instalohen."
+
+msgid "Unavailable packages will be listed"
+msgstr "Paketat jo të gatshme do të paraqiten"
+
+msgid "Packages that are unavailable or uninstallable will be listed."
+msgstr "Paketa që s’kapen dot, ose janë të painstalueshme, do të shfaqen."
+
+msgid ""
+"Such a situation arises when the main package or one of its dependencies can"
+" not function within the new system."
+msgstr ""
+"Rrethana të tilla shfaqen kur paketa kryesore, ose një nga varësitë e saj "
+"s’mund të funksionojnë brenda sistemit të ri."
+
+msgid ""
+"Press [Save List] and select the location to save the list of unavailable "
+"packages."
+msgstr ""
+"Klikoni mbi [Ruaje Listën] dhe përzgjidhni vendin ku të ruhet lista e "
+"paketave që s’mund të merren."
+
+msgid "Packages available will be installed"
+msgstr "Paketat e gatshme do të instalohen"
+
+msgid "The installation process is started within a new terminal window."
+msgstr "Procesi i instalimit fillohet brenda një dritareje të re terminali."
+
+msgid "Authentication and confirmation are required to perform installation."
+msgstr "Që të kryhet instalimi, duhet bërë mirëfilltësimi dhe ripohimi."
+
+#. TRANSLATORS:
+#. A question "Do you want to continue? [Y/n]" is displayed in the terminal
+#. window. The question could be displayed translated, including [Y/N] for
+#. translated [Yes/No].
+msgid "Press [N] to cancel."
+msgstr "Shtypni [N] që të anulohet."
+
+msgid ""
+"To close the terminal window after the installation process finishes, press "
+"[Enter]."
+msgstr ""
+"Që të mbyllet dritarja e terminalit pasi të përfundojë procesi i instalimit,"
+" shtypni tastin [Enter]."
+
+msgid "Version:"
+msgstr "Version:"
+
+msgid "Last updated:"
+msgstr "Përditësuar së fundi më:"
