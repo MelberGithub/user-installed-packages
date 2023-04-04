@@ -4,7 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Wallon Wallon, 2023
+# José Vieira <jvieira33@sapo.pt>, 2023
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2023
+# Paulo C., 2023
 # 
 #, fuzzy
 msgid ""
@@ -13,23 +15,23 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://forum.mxlinux.org/viewforum.php?f=96\n"
 "POT-Creation-Date: 2023-03-27 19:23+0200\n"
 "PO-Revision-Date: 2023-03-27 16:20+0000\n"
-"Last-Translator: Wallon Wallon, 2023\n"
-"Language-Team: French (https://app.transifex.com/anticapitalista/teams/10162/fr/)\n"
+"Last-Translator: Paulo C., 2023\n"
+"Language-Team: Portuguese (https://app.transifex.com/anticapitalista/teams/10162/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "User Installed Packages Help"
-msgstr "Aide sur les paquets installés par l’utilisateur"
+msgstr "Ajuda do Pacotes Instalados pelo Utilizador"
 
 msgid ""
 "This application is intended to facilitate the re-installation of packages "
 "that the user has added to the default installation."
 msgstr ""
-"Cette application est destinée à faciliter la réinstallation des paquets que"
-" l’utilisateur a ajoutés à l’installation par défaut."
+"Esta aplicação pretende facilitar a reinstalação de pacotes que o utilizador"
+" tenha adicionado ao sistema padrão."
 
 msgid ""
 "It can display a list of packages manually installed by the user that can be"
@@ -37,119 +39,110 @@ msgid ""
 "saved list of packages for review and selection to be reinstalled. Such a "
 "procedure is especially easy and useful after a new system installation."
 msgstr ""
-"Elle peut afficher une liste de paquets installés manuellement par "
-"l’utilisateur, qui peut être sauvegardée dans un simple fichier texte. En "
-"outre, l’application permet de charger une liste sauvegardée de paquets pour"
-" examen et sélection en vue d’une réinstallation. Une telle procédure est "
-"particulièrement facile et utile après une nouvelle installation du système."
+"Pode exibir a lista de pacotes instalados manualmente pelo utilizador, que "
+"pode ser gravada num simples ficheiro de texto. Além disso, a aplicação "
+"permite carregar uma lista gravada de pacotes para ser revista e selecionar "
+"o que será instalado. Tal procedimento é especialmente fácil e útil após uma"
+" nova instalação do sistema."
 
 msgid "There are two options to choose from:"
-msgstr "Vous avez le choix entre deux options :"
+msgstr "Tem duas opções:"
 
 msgid "quickly and easily create a list of those packages."
-msgstr "créer rapidement et facilement une liste de ces paquets."
+msgstr "criar, rápida e facilmente a liste de todos esses pacotes."
 
 msgid ""
 "use that list in another location to review and reinstall those packages, if"
 " still available."
 msgstr ""
-"utiliser cette liste à un autre emplacement pour examiner et réinstaller ces"
-" paquets, s’ils sont encore disponibles."
+"usar essa lista noutro local, para a rever e reinstalar esses pacotes, se "
+"disponíveis."
 
 msgid "Create a list of user-installed packages"
-msgstr "Créer une liste des paquets installés par l’utilisateur"
+msgstr "Criar a lista de pacotes instalados pelo utilizador"
 
 msgid "A list of user-installed packages is displayed."
-msgstr "La liste des paquets installés par l’utilisateur peut être consultée."
+msgstr "Uma lista de pacotes instalados pelo utilizador será exibida."
 
 msgid ""
 "Note: Packages of installed Linux kernels or NVIDIA graphics drivers will "
 "not be listed."
 msgstr ""
-"Remarque : les paquets de noyaux Linux ou de pilotes graphiques NVIDIA "
-"installés ne seront pas répertoriés."
+"Nota: Pacotes de kernels Linux ou drivers gráficos NVIDIA não serão "
+"listados."
 
 msgid ""
 "Press [Save List] and select the location where the package list should be "
 "saved."
 msgstr ""
-"Appuyez sur [Enregistrer la liste] et choisissez l’emplacement où la liste "
-"des paquets doit être sauvegardée."
+"Prima [Gravar Lista] e selecione o local onde a lista de pacotes será "
+"gravada."
 
 msgid "Open a previously saved list to install selected packages"
-msgstr ""
-"Ouvrir une liste précédemment enregistrée pour installer les paquets "
-"sélectionnés"
+msgstr "abrir uma lista para instalar pacotes selecionados"
 
 msgid "Select the package list you wish to install."
-msgstr "Choisissez la liste des paquets à installer."
+msgstr "Selecione a lista de pacotes que deseja instalar."
 
 msgid ""
 "Uncheck any packages in the displayed list that you do not wish to install."
-msgstr ""
-"Décochez les paquets de la liste affichée que vous ne souhaitez pas "
-"installer."
+msgstr "Desmarque os pacotes listados que não deseja instalar."
 
 msgid ""
 "A notification is provided for any missing packages that can no longer be "
 "installed."
 msgstr ""
-"Une notification est fournie pour tout paquet manquant qui ne peut plus être"
-" installé."
+"É exibida uma notificação para cada pacote em falta, que não pode ser "
+"instalado."
 
 msgid "Press [OK] and the selected packages will be installed."
-msgstr "Appuyez sur [Valider] et les paquets sélectionnés seront installés."
+msgstr "Prima [OK] e os pacotes selecionados serão instalados."
 
 msgid "Unavailable packages will be listed"
-msgstr "Les paquets indisponibles seront répertoriés"
+msgstr "Pacotes não disponíveis serão listados"
 
 msgid "Packages that are unavailable or uninstallable will be listed."
-msgstr ""
-"Les paquets indisponibles ou qui ne peuvent pas être installés seront "
-"répertoriés."
+msgstr "Pacotes não disponíveis ou não instaláveis serão listados."
 
 msgid ""
 "Such a situation arises when the main package or one of its dependencies can"
 " not function within the new system."
 msgstr ""
-"Une telle situation se produit lorsque le paquet principal ou l’une de ses "
-"dépendances ne peut pas fonctionner dans le nouveau système."
+"Tal ocorre quando o pacote principal, ou uma dependência sua, não funciona "
+"dentro do novo sistema."
 
 msgid ""
 "Press [Save List] and select the location to save the list of unavailable "
 "packages."
 msgstr ""
-"Appuyez sur [Enregistrer la liste] et choisissez l’emplacement où "
-"enregistrer la liste des paquets indisponibles."
+"Prima [Gravar Lista] e escolha o local onde será gravada a lista pacotes não"
+" disponíveis."
 
 msgid "Packages available will be installed"
-msgstr "Les paquets disponibles seront installés"
+msgstr "Os pacotes disponíveis serão instalados"
 
 msgid "The installation process is started within a new terminal window."
 msgstr ""
-"Le processus d’installation est lancé dans une nouvelle fenêtre du terminal."
+"O processo de instalação inicia-se dentro de uma nova janela de terminal."
 
 msgid "Authentication and confirmation are required to perform installation."
-msgstr ""
-"L’authentification et la confirmation sont nécessaires pour effectuer "
-"l’installation."
+msgstr "É necessário autenticação e confirmação para efetuar a instalação."
 
 #. TRANSLATORS:
 #. A question "Do you want to continue? [Y/n]" is displayed in the terminal
 #. window. The question could be displayed translated, including [Y/N] for
 #. translated [Yes/No].
 msgid "Press [N] to cancel."
-msgstr "Appuyez sur [N] pour annuler."
+msgstr "Prima [N] para cancelar."
 
 msgid ""
 "To close the terminal window after the installation process finishes, press "
 "[Enter]."
 msgstr ""
-"Pour fermer la fenêtre du terminal une fois le processus d’installation "
-"terminé, appuyez sur [Enter]."
+"Para fechar a janela do terminal após a instalação terminar, prima [Enter]."
 
 msgid "Version:"
-msgstr "Version :"
+msgstr "Versão:"
 
 msgid "Last updated:"
-msgstr "Dernière mise à jour :"
+msgstr "Última atualização:"

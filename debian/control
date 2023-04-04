@@ -4,17 +4,18 @@ Priority: optional
 Maintainer: fehlix <fehlix@mxlinux.org>
 XSBC-Original-Maintainer: Dolphin Oracle <dolphinoracle@gmail.com>
 Build-Depends:
- debhelper-compat (= 13),
+ debhelper-compat (=13),
  gnome-pkg-tools (>= 0.21),
- python3-markdown (>=3.3.4),
- meson (>= 1.0.0),
+ librsvg2-bin (>=2.50),
+ meson (>=1.0),
+ python3-markdown (>=3.3),
 Standards-Version: 3.9.6
 Homepage: http://mxlinux.org
 
 Package: user-installed-packages
 Architecture: all
 Depends: 
- apt (>=2.2.4),
+ apt (>=2.2),
  file,
  libnotify-bin,
  python3-pyqt5,
