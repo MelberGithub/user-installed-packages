@@ -50,10 +50,10 @@ changelog_uri     = "https://mxrepo.com/mx/repo/pool/@CHANGEPATH@.changelog"
 # window icons and class
 class_name   = package_name
 icon_name    = package_name
-aboutBoxIcon = f'/usr/share/icons/hicolor/64x64/apps/{icon_name}.png'
+aboutBoxIcon = f"/usr/share/pixmaps/{icon_name}.svg"
 windowIcon   = icon_name
 if os.path.exists(windowIcon):
-    windowIcon   = f"/usr/share/pixmaps/{icon_name}.png"
+    windowIcon   = f"/usr/share/pixmaps/{icon_name}.svg"
 
 # translations
 gettext.bindtextdomain(package_name, '/usr/share/locale')
@@ -72,7 +72,7 @@ licenseViewerTitle  = _('MX User Installed Packages License')
 
 # argv
 key_opts = ['-c', '--changelog', '-l', '--license' ]
-arg_opts = [x.lstrip('-') for x in sys.argv if x in key_opts ]
+arg_opts = [x.lstrip('-') for x in sys.argv if x in key_opts]
 key_default = 'close'
 
 if len(arg_opts) > 0:

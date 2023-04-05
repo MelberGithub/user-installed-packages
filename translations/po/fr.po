@@ -18,7 +18,7 @@ msgstr ""
 "POT-Creation-Date: 2023-03-27 20:37+0200\n"
 "PO-Revision-Date: 2023-03-20 13:51+0000\n"
 "Last-Translator: Wallon Wallon, 2023\n"
-"Language-Team: French (https://www.transifex.com/anticapitalista/teams/10162/fr/)\n"
+"Language-Team: French (https://app.transifex.com/anticapitalista/teams/10162/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -148,7 +148,7 @@ msgstr "Paquets manquants"
 #. UIP = "User Installed Packages".
 #. The list of missing packages was saved under:
 msgid "[OK] UIP list of missing packages saved:"
-msgstr "[OK] La liste UIP des paquets manquants est enregistrée :"
+msgstr "[Validé] La liste UIP des paquets manquants est enregistrée :"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -175,7 +175,7 @@ msgstr "Le fichier existe déjà. L’écraser ?"
 #. UIP = "User Installed Packages".
 #. The list of user installed packages (UIP) was saved successfully under:
 msgid "[OK] UIP list saved:"
-msgstr "[OK] La liste UIP est enregistrée :"
+msgstr "[Validé] La liste UIP est enregistrée :"
 
 #. TRANSLATORS:
 #. UIP = "User Installed Packages".
@@ -253,7 +253,7 @@ msgstr ""
 #. TRANSLATORS:
 #. Keywords to search in the menu. Hint: Add translated keywords to existing.
 msgid "apt;install;package;uip;"
-msgstr "apt;install;package;uip;"
+msgstr "apt;install;package;uip;paquet;installé;utilisateur;"
 
 msgid "MX User Installed Packages"
 msgstr "MX Paquets installés par l’utilisateur - MX User Installed Packages"

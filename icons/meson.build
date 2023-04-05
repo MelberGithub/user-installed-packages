@@ -20,27 +20,30 @@ foreach iname: inames
 
     foreach size: sizes
         s = size.to_string()
-        spng = '@0@-@1@.png'.format(iname, s)
+        ssvg = '@0@-@1@.svg'.format(iname, s)
+        
         install_data(
                 configure_file(
                     input:  isvg,
-                    output: spng,
-                    command: [ 'inkscape',
+                    output: ssvg,
+                    command: [ 'rsvg-convert',
+                            '-a',
+                            '-f', 'svg',
                             '-h', s,
                             '-w', s,
-                            '-o', spng,
+                            '-o', ssvg,
                             '@INPUT@',
                             ],
                     ),
-                rename: ipng,
+                rename: isvg,
                 install_dir: icon_dir / 'hicolor' / '@0@x@0@'.format(s) / 'apps',
                 )
 
         if size == 64
             install_symlink(
-                    ipng,
+                    isvg,
                     install_dir : get_option('datadir') / 'pixmaps',
-                    pointing_to : '../icons/hicolor' / '@0@x@0@'.format(s) / 'apps' / ipng,
+                    pointing_to : '../icons/hicolor' / '@0@x@0@'.format(s) / 'apps' / isvg,
                     )
         endif
 

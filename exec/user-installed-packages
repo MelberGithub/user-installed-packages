@@ -24,7 +24,7 @@ export BTN_SAVE=$(gettext 'Save List') ; BTN_SAVE+='!document-save'
 
 #define some gobals
 export UIP_ICON="user-installed-packages"
-[ -e "$UIP_ICON" ] && UIP_ICON=/usr/share/pixmaps/${UIP_ICON}.png
+[ -e "$UIP_ICON" ] && UIP_ICON=/usr/share/pixmaps/${UIP_ICON}.svg
 export UIP_CLASS="user-installed-packages"
 
 export INSTALLED_PACKAGES="/usr/share/antiX/installed-packages.txt"
